@@ -1,0 +1,441 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>任务列表</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/common.css" rel="stylesheet"  />
+    <link href="../css/animate.css" rel="stylesheet"  />
+    <link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
+    <script type="text/javascript" src="../WebContent/js/echarts.min.js"></script>
+    <style>
+        .myContent {
+            padding-top: 3px;
+            padding-bottom: 0px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .myContent .mui-col-sm-4{
+            text-align: center;
+        }
+        .myContent .mui-col-sm-4 p{
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .titlePng {
+            width: 400px;
+            height: 42px;
+        }
+        .curUser {
+            font-weight: 600;
+            color: #fffaea;
+            font-size: 16px;
+            margin: auto;
+            position: absolute;
+            top: 5px;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+        .goLeft{
+            margin-left: 70px!important;
+        }
+        .task_type{
+            text-align: right;
+        }
+        .task_type img{
+            width: 100px;
+        }
+        .task_type p{
+            margin-right: 35px;
+            font-weight: 600;
+            color: #ff6700;
+        }
+        .myScore{
+            height: 250px;
+            overflow-x: hidden;
+　　　overflow-y: scroll;
+        }
+        .scores_type{
+            font-size: 12px;
+            font-weight: 600;
+        }
+        #echartsTable{
+            width: 400px;
+            margin-top: -25px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="myContent">
+    <div class="mui-row">
+        <div class="mui-col-sm-2">
+        </div>
+        <div class="mui-col-sm-8" style="text-align: center;">
+            <p class="curUser"></p>
+            <img class="titlePng"  src="../image/welcome.png" />
+        </div>
+        <div class="mui-col-sm-2">
+            <img class="goLeft" onclick="goNext('../login.html')" src="../image/icon/goLeft.png" />
+        </div>
+    </div>
+    <div class="mui-row">
+        <div class="mui-col-sm-3 first up animated" style="margin-top: 22px;">
+            <div class="task_type animated zoomIn">
+                <img src="../image/type_2/all.png" onclick="goTypeList(1)">
+                <p>学段</p>
+            </div>
+            <div class="task_type animated zoomIn">
+                <img src="../image/type_2/appoint.png" onclick="goTypeList(2)">
+                <p>任务</p>
+            </div>
+            <div class="task_type animated zoomIn">
+                <img src="../image/type_2/achievement.png" onclick="goTypeList(3)">
+                <p>成绩</p>
+            </div>
+        </div>
+        <div class="scores_type">
+            标准化平均分排名：第<span id="score_ave">--</span>名/百人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            标准化总分排名:第<span id="score_tot">--</span>名/百人
+        </div>
+        <div class="mui-col-sm-9">
+           <div class="myScore">
+               <div id="echartsTable"></div>
+           </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="../js/mui.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+    var clickMusic = new Audio('../mp3/click.mp3');
+    var recentProjectid = ''
+
+    //获取当前用户 上一次的训练任务 项目信息
+    var recentTask = {
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.thirdparty.rest.api.ThirdPartyRecentUsedProjectAndTaskProxy',
+        service: 'getRecentUsedTask',
+        args: JSON.stringify(recentTask)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            recentProjectid = data.results.projectid
+        }
+    });
+
+    //不区分项目和任务:获取一个用户的 所有项目的所有任务的常模总和的排名 加起来求平均接口
+    var userData_ = {
+        uid:localStorage.getItem('uid'),
+        access_token:localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.common.NormRecordProjectAndTaskAnalysisProxy',
+        service: 'getNormRecordScoreAverageForOneUser',
+        args: JSON.stringify(userData_)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            $('#score_ave').html(data.results);
+        }
+    });
+
+    //不区分项目和任务:获取一个用户的 所有项目的所有任务的常模总和的排名 加起来求平均接口
+    var userData_ = {
+        uid:localStorage.getItem('uid'),
+        access_token:localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.common.NormRecordProjectAndTaskAnalysisProxy',
+        service: 'getNormRecordScoreSumRankForOneUser',
+        args: JSON.stringify(userData_)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            $('#score_tot').html(data.results);
+        }
+    });
+
+
+
+    //取得用户信息接口
+    var userData_ = {
+        uid:localStorage.getItem('uid'),
+        access_token:localStorage.getItem('access_token'),
+        userType:localStorage.getItem('userType')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.thirdparty.rest.api.ThirdPartyUsersProxy',
+        service: 'getUserInfo',
+        args: JSON.stringify(userData_)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            localStorage.setItem('realName',data.results.realName);
+            $('.curUser').html('欢迎' +data.results.realName+ '同学');
+        }
+    });
+
+    function goTypeList(go) {
+        clickMusic.play();
+        if (go === 1) {
+            setTimeout(function(){
+                mui.openWindow({ //任务列表
+                    url: 'allTask/index.html',
+                    createNew: true,
+                    styles: {
+                        cachemode:"noCache",
+                    }
+                });
+            }, 500);
+        } else if ( go === 2) {
+            setTimeout(function(){
+                mui.openWindow({ //三方指定
+                    url: 'appointTask/index.html',
+                    createNew: true,
+                    styles: {
+                        cachemode:"noCache",
+                    }
+                });
+            }, 500);
+        }else if ( go === 3) {
+            setTimeout(function(){
+                mui.openWindow({ //我的成绩
+                    url: 'achievement.html',
+                    createNew: true,
+                    styles: {
+                        cachemode:"noCache",
+                    }
+                });
+            }, 500);
+        }
+
+    }
+
+    //获取:用户  --  项目列表
+    var taskListByUser = {
+        uid: parseInt(localStorage.getItem('uid')),
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.users.ProjectParticipantsMGProxy',
+        service: 'getAllProjectParticipantsMGForOneUser',
+        args: JSON.stringify(taskListByUser)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            /*处理token失效*/
+            if(data.message) {
+                mui.toast('访问时间已经过期,3秒后自动跳转到登录页面!',{ duration:'long', type:'div' });
+                setTimeout(function(){
+                    mui.openWindow({
+                        url: '../login.html',
+                        createNew: true,
+                        styles: {
+                            cachemode:"noCache",
+                        }
+                    });
+                }, 3000);
+            }
+            if (data.projects) {
+                if( data.projects.length  > 0) {
+                    var schoolType = [];
+                    //区分 小 初 高
+                    // 小学数学是针对青岛版本的
+                    data.projects.forEach( curProject => {
+                        if( curProject.projectname.indexOf("一年级") !== -1 ||
+                            curProject.projectname.indexOf("二年级") !== -1 ||
+                            curProject.projectname.indexOf("三年级") !== -1 ||
+                            curProject.projectname.indexOf("四年级") !== -1 ||
+                            curProject.projectname.indexOf("五年级") !== -1 ||
+                            curProject.projectname.indexOf("六年级") !== -1 ||
+                            curProject.projectname.indexOf("小学数学") !== -1
+                        ) {
+                            schoolType.push("小学")
+                        } else if (curProject.projectname.indexOf("人教版初中") !== -1) {
+                            schoolType.push("初中")
+                        } else if (curProject.projectname.indexOf("高中人教版") !== -1) {
+                            schoolType.push("高中")
+                        } else if (curProject.projectname.indexOf("数学分析") !== -1 ||
+                            curProject.projectname.indexOf("高等代数") !== -1 ||
+                            curProject.projectname.indexOf("数理统计") !== -1 ||
+                            curProject.projectname.indexOf("概率论") !== -1
+                        ) {
+                            //大学目前有四本书
+                            schoolType.push("大学")
+                        } else {
+                            // mui.toast('该账号下存在不在小学、初中、高中、大学以外的任务！请联系后台管理员！',{ duration:'long', type:'div' });
+                        }
+                    })
+                    //schoolType 去重
+                    localStorage.setItem('schoolType',[...new Set(schoolType)])
+                } else {
+                    mui.toast('该账号下没有配置指定训练任务！请联系后台管理员！',{ duration:'long', type:'div' });
+                }
+
+            }
+        }
+    });
+
+
+    //获取:用户  --  项目列表 --任务列表
+    var taskListByUser = {
+        uid: parseInt(localStorage.getItem('uid')),
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.thirdparty.results.ThirdPartyTestResultsProxy',
+        service: 'getAllTasksAndAverageResultForOneUser',
+        args: JSON.stringify(taskListByUser)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            /*处理token失效*/
+            if(data.message) {
+                mui.toast('访问时间已经过期,3秒后自动跳转到登录页面!',{ duration:'long', type:'div' });
+                setTimeout(function(){
+                    mui.openWindow({
+                        url: '../login.html',
+                        createNew: true,
+                        styles: {
+                            cachemode:"noCache",
+                        }
+                    });
+                }, 3000);
+            }
+            if (data.results) {
+                if( data.results.length  > 0) {
+                    var allTasksArray = [];
+                    var echartArray = [];
+                    //清除 平均分为0的任务(表示没有训练过)
+                    data.results.forEach( result => {
+                        if(result.project.pid === recentProjectid){
+                            result.tasks.forEach( task => {
+                                if(task.averagePercentile !== 0){
+                                    allTasksArray.push(task)
+                                }
+                            })
+                        }
+                    } );
+                    allTasksArray.sort(function(a,b){
+                        return a.averagePercentile - b.averagePercentile
+                    });
+                    if(allTasksArray.length < 7){
+                        $('#echartsTable').css("height","250px");
+                    } else {
+                        // $('#echartsTable').css("height",allTasksArray.length*25);
+                        $('#echartsTable').css("height","250px");
+                    }
+                    for(var i = 0;i<allTasksArray.length;i++){
+                        var array_ = [];
+                        array_[0] = allTasksArray[i].averagePercentile;
+                        array_[1] = allTasksArray[i].name;
+                        echartArray.push(array_)
+                    }
+                    echartArray.unshift(['score', 'taskName'])
+
+                    var dom = document.getElementById("echartsTable");
+                    var myChart = echarts.init(dom);
+                    option = {
+                        dataset: {
+                            source: []
+                        },
+                        // grid: {containLabel: true},
+                        grid: {
+                            x: 120,
+                            y2: 20,
+                        },
+                        xAxis: {
+                            name: '分数',
+                            min: 1,
+                            max: 99,
+                            axisLabel: {
+                                textStyle: {
+                                    fontSize : 10      //更改坐标轴文字大小
+                                }
+                            },
+                        },
+                        yAxis: {
+                            type: 'category',
+                            axisLabel: {
+                                textStyle: {
+                                    fontSize : 6     //更改坐标轴文字大小
+                                }
+                            },
+                        },
+                        visualMap: {
+                            orient: 'horizontal',
+                            top:"30px",
+                            left: '86px',
+                            itemWidth:10,
+                            itemHeight:242,
+                            min: 1,
+                            max: 99,
+                            text: ['99分', '1分'],
+                            dimension: 0,
+                            inRange: {
+                                color: ['#fff2cf', '#fdd2a0' , '#ff8c71', '#e64b45', '#bd1316', '#7d1100']
+                            }
+                        },
+                        series: [
+                            {
+                                type: 'bar',
+                                encode: {
+                                    x: 'score',
+                                    y: 'taskName'
+                                }
+                            }
+                        ]
+                    };
+                    if (option && typeof option === "object") {
+                        option.dataset.source = echartArray;
+                        myChart.setOption(option, true);
+                    }
+
+
+                } else {
+                    mui.toast('该账号下没有配置指定训练任务！请联系后台管理员！',{ duration:'long', type:'div' });
+                }
+
+            }
+        }
+    });
+
+
+</script>
+
+
+</html>

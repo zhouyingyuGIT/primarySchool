@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多位数乘一位数</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #524db9;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+
+        </div>
+
+        <div class="item1_img item1_imgBox2" style="position: relative;">
+            <div id="img1" class="beginText" style="left:0px">开始</div>
+            <img src="../com_imgs/begin.jpg" alt="" style="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_C"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_D"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+{"id":"1","ans":"B","topic":"2×30=？","A":"A","AText":"58","B":"B","BText":"60","C":"C","CText":"70","D":"D","DText":"80"},
+{"id":"2","ans":"A","topic":"5×20=？","A":"A","AText":"100","B":"B","BText":"86","C":"C","CText":"96","D":"D","DText":"90"},
+{"id":"3","ans":"C","topic":"3×40=？","A":"A","AText":"130","B":"B","BText":"150","C":"C","CText":"120","D":"D","DText":"140"},
+{"id":"4","ans":"D","topic":"3×30=？","A":"A","AText":"70","B":"B","BText":"80","C":"C","CText":"60","D":"D","DText":"90"},
+{"id":"5","ans":"B","topic":"6×40=？","A":"A","AText":"250","B":"B","BText":"240","C":"C","CText":"230","D":"D","DText":"210"},
+{"id":"6","ans":"A","topic":"50×5=？","A":"A","AText":"250","B":"B","BText":"240","C":"C","CText":"270","D":"D","DText":"260"},
+{"id":"7","ans":"D","topic":"30×6=？","A":"A","AText":"190","B":"B","BText":"170","C":"C","CText":"160","D":"D","DText":"180"},
+{"id":"8","ans":"C","topic":"7×70=？","A":"A","AText":"460","B":"B","BText":"480","C":"C","CText":"490","D":"D","DText":"500"},
+{"id":"9","ans":"A","topic":"6×80=？","A":"A","AText":"480","B":"B","BText":"490","C":"C","CText":"450","D":"D","DText":"500"},
+{"id":"10","ans":"B","topic":"8×50=？","A":"A","AText":"410","B":"B","BText":"400","C":"C","CText":"420","D":"D","DText":"380"},
+{"id":"11","ans":"C","topic":"80×7=？","A":"A","AText":"540","B":"B","BText":"550","C":"C","CText":"560","D":"D","DText":"570"},
+{"id":"12","ans":"D","topic":"9×40=？","A":"A","AText":"370","B":"B","BText":"320","C":"C","CText":"350","D":"D","DText":"360"},
+{"id":"13","ans":"A","topic":"9×30=？","A":"A","AText":"270","B":"B","BText":"260","C":"C","CText":"250","D":"D","DText":"240"},
+{"id":"14","ans":"B","topic":"5×90=？","A":"A","AText":"460","B":"B","BText":"450","C":"C","CText":"440","D":"D","DText":"420"},
+{"id":"15","ans":"D","topic":"9×90=？","A":"A","AText":"720","B":"B","BText":"790","C":"C","CText":"630","D":"D","DText":"810"},
+{"id":"16","ans":"C","topic":"2×15=？","A":"A","AText":"40","B":"B","BText":"20","C":"C","CText":"30","D":"D","DText":"60"},
+{"id":"17","ans":"A","topic":"32×2=？","A":"A","AText":"64","B":"B","BText":"65","C":"C","CText":"63","D":"D","DText":"66"},
+{"id":"18","ans":"B","topic":"33×3=？","A":"A","AText":"98","B":"B","BText":"99","C":"C","CText":"97","D":"D","DText":"96"},
+{"id":"19","ans":"C","topic":"25×4=？","A":"A","AText":"120","B":"B","BText":"110","C":"C","CText":"100","D":"D","DText":"130"},
+{"id":"20","ans":"D","topic":"2×75=？","A":"A","AText":"160","B":"B","BText":"140","C":"C","CText":"120","D":"D","DText":"150"},
+{"id":"21","ans":"B","topic":"2×66=？","A":"A","AText":"122","B":"B","BText":"132","C":"C","CText":"142","D":"D","DText":"152"},
+{"id":"22","ans":"A","topic":"3×55=？","A":"A","AText":"165","B":"B","BText":"155","C":"C","CText":"145","D":"D","DText":"175"},
+{"id":"23","ans":"D","topic":"4×56=？","A":"A","AText":"244","B":"B","BText":"222","C":"C","CText":"234","D":"D","DText":"224"},
+{"id":"24","ans":"C","topic":"54×3=？","A":"A","AText":"160","B":"B","BText":"152","C":"C","CText":"162","D":"D","DText":"150"},
+{"id":"25","ans":"A","topic":"75×4=？","A":"A","AText":"300","B":"B","BText":"310","C":"C","CText":"320","D":"D","DText":"330"},
+{"id":"26","ans":"B","topic":"43×4=？","A":"A","AText":"170","B":"B","BText":"172","C":"C","CText":"171","D":"D","DText":"173"},
+{"id":"27","ans":"C","topic":"65×4=？","A":"A","AText":"270","B":"B","BText":"250","C":"C","CText":"260","D":"D","DText":"240"},
+{"id":"28","ans":"D","topic":"4×62=？","A":"A","AText":"247","B":"B","BText":"249","C":"C","CText":"250","D":"D","DText":"248"},
+{"id":"29","ans":"B","topic":"5×67=？","A":"A","AText":"345","B":"B","BText":"335","C":"C","CText":"325","D":"D","DText":"355"},
+{"id":"30","ans":"A","topic":"5×78=？","A":"A","AText":"390","B":"B","BText":"395","C":"C","CText":"380","D":"D","DText":"385"},
+{"id":"31","ans":"D","topic":"56×5=？","A":"A","AText":"279","B":"B","BText":"270","C":"C","CText":"289","D":"D","DText":"280"},
+{"id":"32","ans":"C","topic":"6×45=？","A":"A","AText":"280","B":"B","BText":"260","C":"C","CText":"270","D":"D","DText":"250"},
+{"id":"33","ans":"A","topic":"76×6=？","A":"A","AText":"456","B":"B","BText":"446","C":"C","CText":"466","D":"D","DText":"436"},
+{"id":"34","ans":"B","topic":"87×6=？","A":"A","AText":"521","B":"B","BText":"522","C":"C","CText":"523","D":"D","DText":"524"},
+{"id":"35","ans":"D","topic":"58×6=？","A":"A","AText":"339","B":"B","BText":"338","C":"C","CText":"349","D":"D","DText":"348"},
+{"id":"36","ans":"C","topic":"6×89=？","A":"A","AText":"544","B":"B","BText":"542","C":"C","CText":"534","D":"D","DText":"524"},
+{"id":"37","ans":"B","topic":"7×78=？","A":"A","AText":"566","B":"B","BText":"546","C":"C","CText":"556","D":"D","DText":"536"},
+{"id":"38","ans":"A","topic":"96×7=？","A":"A","AText":"672","B":"B","BText":"687","C":"C","CText":"678","D":"D","DText":"627"},
+{"id":"39","ans":"C","topic":"7×88=？","A":"A","AText":"617","B":"B","BText":"615","C":"C","CText":"616","D":"D","DText":"618"},
+{"id":"40","ans":"D","topic":"93×7=？","A":"A","AText":"643","B":"B","BText":"644","C":"C","CText":"653","D":"D","DText":"651"},
+{"id":"41","ans":"A","topic":"89×7=？","A":"A","AText":"623","B":"B","BText":"633","C":"C","CText":"634","D":"D","DText":"643"},
+{"id":"42","ans":"B","topic":"8×45=？","A":"A","AText":"367","B":"B","BText":"360","C":"C","CText":"380","D":"D","DText":"376"},
+{"id":"43","ans":"C","topic":"68×8=？","A":"A","AText":"547","B":"B","BText":"548","C":"C","CText":"544","D":"D","DText":"554"},
+{"id":"44","ans":"D","topic":"9×67=？","A":"A","AText":"609","B":"B","BText":"605","C":"C","CText":"613","D":"D","DText":"603"},
+{"id":"45","ans":"A","topic":"96×9=？","A":"A","AText":"864","B":"B","BText":"850","C":"C","CText":"874","D":"D","DText":"854"},
+{"id":"46","ans":"B","topic":"2×200=？","A":"A","AText":"440","B":"B","BText":"400","C":"C","CText":"300","D":"D","DText":"340"},
+{"id":"47","ans":"D","topic":"2×400=？","A":"A","AText":"500","B":"B","BText":"600","C":"C","CText":"700","D":"D","DText":"800"},
+{"id":"48","ans":"C","topic":"3×400=？","A":"A","AText":"1400","B":"B","BText":"1300","C":"C","CText":"1200","D":"D","DText":"1500"},
+{"id":"49","ans":"A","topic":"500×5=？","A":"A","AText":"2500","B":"B","BText":"2800","C":"C","CText":"2600","D":"D","DText":"2700"},
+{"id":"50","ans":"B","topic":"700×5=？","A":"A","AText":"4500","B":"B","BText":"3500","C":"C","CText":"2500","D":"D","DText":"3600"},
+{"id":"51","ans":"D","topic":"4×500=？","A":"A","AText":"2500","B":"B","BText":"2200","C":"C","CText":"2300","D":"D","DText":"2000"},
+{"id":"52","ans":"C","topic":"6×800=？","A":"A","AText":"4600","B":"B","BText":"4500","C":"C","CText":"4800","D":"D","DText":"4700"},
+{"id":"53","ans":"B","topic":"600×6=？","A":"A","AText":"4500","B":"B","BText":"3600","C":"C","CText":"3200","D":"D","DText":"3000"},
+{"id":"54","ans":"A","topic":"7×700=？","A":"A","AText":"4900","B":"B","BText":"4200","C":"C","CText":"5600","D":"D","DText":"6300"},
+{"id":"55","ans":"C","topic":"800×7=？","A":"A","AText":"6600","B":"B","BText":"5400","C":"C","CText":"5600","D":"D","DText":"7200"},
+{"id":"56","ans":"D","topic":"900×4=？","A":"A","AText":"3000","B":"B","BText":"2500","C":"C","CText":"3200","D":"D","DText":"3600"},
+{"id":"57","ans":"A","topic":"900×5=？","A":"A","AText":"4500","B":"B","BText":"5600","C":"C","CText":"6300","D":"D","DText":"7200"},
+{"id":"58","ans":"B","topic":"8×900=？","A":"A","AText":"6300","B":"B","BText":"7200","C":"C","CText":"5400","D":"D","DText":"4500"},
+{"id":"59","ans":"C","topic":"7×900=？","A":"A","AText":"5400","B":"B","BText":"7200","C":"C","CText":"6300","D":"D","DText":"4500"},
+{"id":"60","ans":"D","topic":"8×500=？","A":"A","AText":"4500","B":"B","BText":"4200","C":"C","CText":"5400","D":"D","DText":"4000"},
+{"id":"61","ans":"A","topic":"2×250=？","A":"A","AText":"500","B":"B","BText":"450","C":"C","CText":"540","D":"D","DText":"600"},
+{"id":"62","ans":"B","topic":"350×2=？","A":"A","AText":"500","B":"B","BText":"700","C":"C","CText":"600","D":"D","DText":"800"},
+{"id":"63","ans":"D","topic":"650×2=？","A":"A","AText":"1200","B":"B","BText":"1000","C":"C","CText":"1100","D":"D","DText":"1300"},
+{"id":"64","ans":"C","topic":"2×850=？","A":"A","AText":"1400","B":"B","BText":"1500","C":"C","CText":"1700","D":"D","DText":"1600"},
+{"id":"65","ans":"A","topic":"3×550=？","A":"A","AText":"1650","B":"B","BText":"2000","C":"C","CText":"1850","D":"D","DText":"2300"},
+{"id":"66","ans":"B","topic":"750×3=？","A":"A","AText":"2000","B":"B","BText":"2250","C":"C","CText":"2100","D":"D","DText":"2200"},
+{"id":"67","ans":"D","topic":"650×3=？","A":"A","AText":"2000","B":"B","BText":"2100","C":"C","CText":"2150","D":"D","DText":"1950"},
+{"id":"68","ans":"C","topic":"880×3=？","A":"A","AText":"2680","B":"B","BText":"3000","C":"C","CText":"2640","D":"D","DText":"3640"},
+{"id":"69","ans":"A","topic":"4×760=？","A":"A","AText":"3040","B":"B","BText":"3500","C":"C","CText":"3200","D":"D","DText":"3240"},
+{"id":"70","ans":"A","topic":"4×650=？","A":"A","AText":"2600","B":"B","BText":"4600","C":"C","CText":"4200","D":"D","DText":"3600"},
+{"id":"71","ans":"B","topic":"780×4=？","A":"A","AText":"3500","B":"B","BText":"3120","C":"C","CText":"3200","D":"D","DText":"3520"},
+{"id":"72","ans":"D","topic":"850×4=？","A":"A","AText":"3200","B":"B","BText":"3000","C":"C","CText":"3300","D":"D","DText":"3400"},
+{"id":"73","ans":"C","topic":"5×550=？","A":"A","AText":"2800","B":"B","BText":"2850","C":"C","CText":"2750","D":"D","DText":"2700"},
+{"id":"74","ans":"A","topic":"760×5=？","A":"A","AText":"3800","B":"B","BText":"4000","C":"C","CText":"3900","D":"D","DText":"4100"},
+{"id":"75","ans":"C","topic":"950×5=？","A":"A","AText":"4700","B":"B","BText":"5000","C":"C","CText":"4750","D":"D","DText":"5750"},
+{"id":"76","ans":"D","topic":"880×5=？","A":"A","AText":"4600","B":"B","BText":"4500","C":"C","CText":"4700","D":"D","DText":"4400"},
+{"id":"77","ans":"B","topic":"6×660=？","A":"A","AText":"4000","B":"B","BText":"3960","C":"C","CText":"4960","D":"D","DText":"3000"},
+{"id":"78","ans":"A","topic":"6×780=？","A":"A","AText":"4680","B":"B","BText":"5200","C":"C","CText":"5680","D":"D","DText":"4200"},
+{"id":"79","ans":"B","topic":"830×6=？","A":"A","AText":"5240","B":"B","BText":"4980","C":"C","CText":"4240","D":"D","DText":"5980"},
+{"id":"80","ans":"D","topic":"790×6=？","A":"A","AText":"5420","B":"B","BText":"5440","C":"C","CText":"4720","D":"D","DText":"4740"},
+{"id":"81","ans":"C","topic":"7×670=？","A":"A","AText":"6490","B":"B","BText":"5690","C":"C","CText":"4690","D":"D","DText":"5760"},
+{"id":"82","ans":"A","topic":"7×990=？","A":"A","AText":"6930","B":"B","BText":"9630","C":"C","CText":"3690","D":"D","DText":"6390"},
+{"id":"83","ans":"B","topic":"780×7=？","A":"A","AText":"4650","B":"B","BText":"5460","C":"C","CText":"5480","D":"D","DText":"4680"},
+{"id":"84","ans":"C","topic":"890×7=？","A":"A","AText":"6350","B":"B","BText":"6330","C":"C","CText":"6230","D":"D","DText":"6250"},
+{"id":"85","ans":"D","topic":"8×970=？","A":"A","AText":"8760","B":"B","BText":"8790","C":"C","CText":"8890","D":"D","DText":"7760"},
+{"id":"86","ans":"B","topic":"8×680=？","A":"A","AText":"4550","B":"B","BText":"5440","C":"C","CText":"5430","D":"D","DText":"4560"},
+{"id":"87","ans":"A","topic":"9×860=？","A":"A","AText":"7740","B":"B","BText":"7440","C":"C","CText":"7540","D":"D","DText":"7640"},
+{"id":"88","ans":"C","topic":"850×9=？","A":"A","AText":"6570","B":"B","BText":"6750","C":"C","CText":"7650","D":"D","DText":"5760"},
+{"id":"89","ans":"D","topic":"750×9=？","A":"A","AText":"6570","B":"B","BText":"7650","C":"C","CText":"7560","D":"D","DText":"6750"},
+{"id":"90","ans":"B","topic":"9×990=？","A":"A","AText":"9810","B":"B","BText":"8910","C":"C","CText":"1980","D":"D","DText":"9990"},
+{"id":"91","ans":"A","topic":"2×225=？","A":"A","AText":"450","B":"B","BText":"470","C":"C","CText":"460","D":"D","DText":"480"},
+{"id":"92","ans":"D","topic":"2×255=？","A":"A","AText":"520","B":"B","BText":"530","C":"C","CText":"500","D":"D","DText":"510"},
+{"id":"93","ans":"C","topic":"358×2=？","A":"A","AText":"726","B":"B","BText":"761","C":"C","CText":"716","D":"D","DText":"762"},
+{"id":"94","ans":"B","topic":"543×2=？","A":"A","AText":"1860","B":"B","BText":"1086","C":"C","CText":"7680","D":"D","DText":"1680"},
+{"id":"95","ans":"C","topic":"3×654=？","A":"A","AText":"1692","B":"B","BText":"2196","C":"C","CText":"1962","D":"D","DText":"2169"},
+{"id":"96","ans":"D","topic":"3×621=？","A":"A","AText":"1368","B":"B","BText":"1638","C":"C","CText":"1683","D":"D","DText":"1863"},
+{"id":"97","ans":"A","topic":"521×3=？","A":"A","AText":"1563","B":"B","BText":"1653","C":"C","CText":"1356","D":"D","DText":"1365"},
+{"id":"98","ans":"B","topic":"777×3=？","A":"A","AText":"3221","B":"B","BText":"2331","C":"C","CText":"3312","D":"D","DText":"2313"},
+{"id":"99","ans":"D","topic":"4×678=？","A":"A","AText":"2172","B":"B","BText":"2217","C":"C","CText":"2271","D":"D","DText":"2712"},
+{"id":"100","ans":"C","topic":"4×985=？","A":"A","AText":"4390","B":"B","BText":"4930","C":"C","CText":"3940","D":"D","DText":"3490"},
+{"id":"101","ans":"A","topic":"125×4=？","A":"A","AText":"500","B":"B","BText":"450","C":"C","CText":"550","D":"D","DText":"400"},
+{"id":"102","ans":"C","topic":"234×4=？","A":"A","AText":"639","B":"B","BText":"396","C":"C","CText":"936","D":"D","DText":"693"},
+{"id":"103","ans":"D","topic":"5×555=？","A":"A","AText":"2755","B":"B","BText":"2557","C":"C","CText":"2555","D":"D","DText":"2775"},
+{"id":"104","ans":"B","topic":"5×789=？","A":"A","AText":"3459","B":"B","BText":"3945","C":"C","CText":"3549","D":"D","DText":"3594"},
+{"id":"105","ans":"A","topic":"543×5=？","A":"A","AText":"2715","B":"B","BText":"7215","C":"C","CText":"2751","D":"D","DText":"2175"},
+{"id":"106","ans":"C","topic":"673×5=？","A":"A","AText":"6300","B":"B","BText":"6335","C":"C","CText":"3365","D":"D","DText":"3350"},
+{"id":"107","ans":"D","topic":"6×567=？","A":"A","AText":"3242","B":"B","BText":"3240","C":"C","CText":"3204","D":"D","DText":"3402"},
+{"id":"108","ans":"B","topic":"6×369=？","A":"A","AText":"4412","B":"B","BText":"2214","C":"C","CText":"2224","D":"D","DText":"4422"},
+{"id":"109","ans":"A","topic":"741×6=？","A":"A","AText":"4446","B":"B","BText":"6446","C":"C","CText":"4466","D":"D","DText":"4436"},
+{"id":"110","ans":"C","topic":"859×6=？","A":"A","AText":"5451","B":"B","BText":"5145","C":"C","CText":"5154","D":"D","DText":"5441"},
+{"id":"111","ans":"D","topic":"7×123=？","A":"A","AText":"826","B":"B","BText":"816","C":"C","CText":"871","D":"D","DText":"861"},
+{"id":"112","ans":"B","topic":"7×357=？","A":"A","AText":"2944","B":"B","BText":"2499","C":"C","CText":"2399","D":"D","DText":"2933"},
+{"id":"113","ans":"C","topic":"789×7=？","A":"A","AText":"5322","B":"B","BText":"5323","C":"C","CText":"5523","D":"D","DText":"5533"},
+{"id":"114","ans":"D","topic":"813×7=？","A":"A","AText":"5916","B":"B","BText":"5681","C":"C","CText":"5926","D":"D","DText":"5691"},
+{"id":"115","ans":"A","topic":"8×125=？","A":"A","AText":"1000","B":"B","BText":"1100","C":"C","CText":"1200","D":"D","DText":"900"},
+{"id":"116","ans":"B","topic":"8×255=？","A":"A","AText":"2400","B":"B","BText":"2040","C":"C","CText":"2004","D":"D","DText":"2300"},
+{"id":"117","ans":"A","topic":"9×567=？","A":"A","AText":"5103","B":"B","BText":"5310","C":"C","CText":"5113","D":"D","DText":"5210"},
+{"id":"118","ans":"D","topic":"9×543=？","A":"A","AText":"4787","B":"B","BText":"4888","C":"C","CText":"4688","D":"D","DText":"4887"},
+{"id":"119","ans":"C","topic":"888×9=？","A":"A","AText":"7982","B":"B","BText":"9792","C":"C","CText":"7992","D":"D","DText":"7972"},
+{"id":"120","ans":"B","topic":"951×9=？","A":"A","AText":"8955","B":"B","BText":"8559","C":"C","CText":"8569","D":"D","DText":"8579"},
+{"id":"121","ans":"D","topic":"2×3000=？","A":"A","AText":"5000","B":"B","BText":"4000","C":"C","CText":"3000","D":"D","DText":"6000"},
+{"id":"122","ans":"A","topic":"6000×2=？","A":"A","AText":"12000","B":"B","BText":"13000","C":"C","CText":"14000","D":"D","DText":"15000"},
+{"id":"123","ans":"C","topic":"3×7000=？","A":"A","AText":"22000","B":"B","BText":"23000","C":"C","CText":"21000","D":"D","DText":"24000"},
+{"id":"124","ans":"B","topic":"4000×3=？","A":"A","AText":"21000","B":"B","BText":"12000","C":"C","CText":"31000","D":"D","DText":"13000"},
+{"id":"125","ans":"A","topic":"4×4000=？","A":"A","AText":"16000","B":"B","BText":"12000","C":"C","CText":"14000","D":"D","DText":"15000"},
+{"id":"126","ans":"C","topic":"5000×4=？","A":"A","AText":"15000","B":"B","BText":"16000","C":"C","CText":"20000","D":"D","DText":"21000"},
+{"id":"127","ans":"D","topic":"5×7000=？","A":"A","AText":"40000","B":"B","BText":"45000","C":"C","CText":"30000","D":"D","DText":"35000"},
+{"id":"128","ans":"B","topic":"5000×5=？","A":"A","AText":"24000","B":"B","BText":"25000","C":"C","CText":"26000","D":"D","DText":"23000"},
+{"id":"129","ans":"D","topic":"6×7000=？","A":"A","AText":"24000","B":"B","BText":"25000","C":"C","CText":"36000","D":"D","DText":"42000"},
+{"id":"130","ans":"A","topic":"8000×6=？","A":"A","AText":"48000","B":"B","BText":"45000","C":"C","CText":"42000","D":"D","DText":"49000"},
+{"id":"131","ans":"C","topic":"7×7000=？","A":"A","AText":"42000","B":"B","BText":"45000","C":"C","CText":"49000","D":"D","DText":"56000"},
+{"id":"132","ans":"B","topic":"8000×7=？","A":"A","AText":"65000","B":"B","BText":"56000","C":"C","CText":"63000","D":"D","DText":"42000"},
+{"id":"133","ans":"A","topic":"8×9000=？","A":"A","AText":"72000","B":"B","BText":"63000","C":"C","CText":"54000","D":"D","DText":"56000"},
+{"id":"134","ans":"C","topic":"9×9000=？","A":"A","AText":"72000","B":"B","BText":"63000","C":"C","CText":"81000","D":"D","DText":"54000"},
+{"id":"135","ans":"D","topic":"8000×9=？","A":"A","AText":"81000","B":"B","BText":"63000","C":"C","CText":"54000","D":"D","DText":"72000"},
+{"id":"136","ans":"A","topic":"2×2500=？","A":"A","AText":"5000","B":"B","BText":"4500","C":"C","CText":"4000","D":"D","DText":"6000"},
+{"id":"137","ans":"B","topic":"4500×2=？","A":"A","AText":"8000","B":"B","BText":"9000","C":"C","CText":"10000","D":"D","DText":"7000"},
+{"id":"138","ans":"C","topic":"2500×3=？","A":"A","AText":"7300","B":"B","BText":"7200","C":"C","CText":"7500","D":"D","DText":"7400"},
+{"id":"139","ans":"D","topic":"3200×3=？","A":"A","AText":"7000","B":"B","BText":"6900","C":"C","CText":"9000","D":"D","DText":"9600"},
+{"id":"140","ans":"B","topic":"4×4400=？","A":"A","AText":"16700","B":"B","BText":"17600","C":"C","CText":"18600","D":"D","DText":"16800"},
+{"id":"141","ans":"D","topic":"5500×4=？","A":"A","AText":"21000","B":"B","BText":"20000","C":"C","CText":"23000","D":"D","DText":"22000"},
+{"id":"142","ans":"A","topic":"5×6500=？","A":"A","AText":"32500","B":"B","BText":"35200","C":"C","CText":"32000","D":"D","DText":"35000"},
+{"id":"143","ans":"C","topic":"5×2500=？","A":"A","AText":"15000","B":"B","BText":"15200","C":"C","CText":"12500","D":"D","DText":"12000"},
+{"id":"144","ans":"B","topic":"3500×6=？","A":"A","AText":"12000","B":"B","BText":"21000","C":"C","CText":"28000","D":"D","DText":"16000"},
+{"id":"145","ans":"A","topic":"7×7700=？","A":"A","AText":"53900","B":"B","BText":"54000","C":"C","CText":"53000","D":"D","DText":"54900"},
+{"id":"146","ans":"C","topic":"8×9500=？","A":"A","AText":"72000","B":"B","BText":"75000","C":"C","CText":"76000","D":"D","DText":"73000"},
+{"id":"147","ans":"D","topic":"8×5500=？","A":"A","AText":"42000","B":"B","BText":"45000","C":"C","CText":"43000","D":"D","DText":"44000"},
+{"id":"148","ans":"B","topic":"9×6500=？","A":"A","AText":"55800","B":"B","BText":"58500","C":"C","CText":"58000","D":"D","DText":"55000"},
+{"id":"149","ans":"A","topic":"6800×9=？","A":"A","AText":"61200","B":"B","BText":"62100","C":"C","CText":"62000","D":"D","DText":"61000"},
+{"id":"150","ans":"C","topic":"9×9900=？","A":"A","AText":"82000","B":"B","BText":"81900","C":"C","CText":"89100","D":"D","DText":"89200"}
+];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=5;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].AText);
+            $("#item2_A").attr("data-data",data[data_index].A);
+            $("#item2_B").text(data[data_index].BText);
+            $("#item2_B").attr("data-data",data[data_index].B);
+            $("#item2_C").text(data[data_index].CText);
+            $("#item2_C").attr("data-data",data[data_index].C);
+            $("#item2_D").text(data[data_index].DText);
+            $("#item2_D").attr("data-data",data[data_index].D);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push(type4Num);
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

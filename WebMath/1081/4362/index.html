@@ -1,0 +1,1189 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>立体几何图形的数量匹配</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #ff6700;">
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <!--<img src="yun.png" alt="">-->
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+
+
+        </div>
+
+        <div class="item1_img item1_imgBox2">
+            <img id="img1" src="../com_imgs/taiyang.png" alt="">
+        </div>
+    </div>
+    <div id="item2" class="item hide item2">
+        <div class="item item2_box">
+            <div class="item2_topic">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_A">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_B">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide">
+        <div class="outBox">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption class="tableTitle" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data = [
+            {
+                "ID": "1",
+                "ans": "B",
+                "TU": "img/01.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "2",
+                "ans": "A",
+                "TU": "img/02.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "3",
+                "ans": "B",
+                "TU": "img/03.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "4",
+                "ans": "A",
+                "TU": "img/04.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "5",
+                "ans": "A",
+                "TU": "img/05.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "6",
+                "ans": "B",
+                "TU": "img/06.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "7",
+                "ans": "B",
+                "TU": "img/07.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "8",
+                "ans": "B",
+                "TU": "img/08.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "9",
+                "ans": "A",
+                "TU": "img/09.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "10",
+                "ans": "B",
+                "TU": "img/10.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "11",
+                "ans": "A",
+                "TU": "img/11.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "12",
+                "ans": "A",
+                "TU": "img/12.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "13",
+                "ans": "A",
+                "TU": "img/13.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "14",
+                "ans": "B",
+                "TU": "img/14.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "15",
+                "ans": "B",
+                "TU": "img/15.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "16",
+                "ans": "A",
+                "TU": "img/16.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "17",
+                "ans": "A",
+                "TU": "img/17.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "18",
+                "ans": "A",
+                "TU": "img/18.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "19",
+                "ans": "B",
+                "TU": "img/19.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "20",
+                "ans": "B",
+                "TU": "img/20.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "21",
+                "ans": "B",
+                "TU": "img/21.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "22",
+                "ans": "A",
+                "TU": "img/22.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "23",
+                "ans": "A",
+                "TU": "img/23.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "24",
+                "ans": "B",
+                "TU": "img/24.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "25",
+                "ans": "A",
+                "TU": "img/25.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "26",
+                "ans": "A",
+                "TU": "img/26.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "27",
+                "ans": "B",
+                "TU": "img/27.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "28",
+                "ans": "B",
+                "TU": "img/28.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "29",
+                "ans": "A",
+                "TU": "img/29.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "30",
+                "ans": "A",
+                "TU": "img/30.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "31",
+                "ans": "B",
+                "TU": "img/31.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "32",
+                "ans": "B",
+                "TU": "img/32.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "33",
+                "ans": "A",
+                "TU": "img/33.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "34",
+                "ans": "B",
+                "TU": "img/34.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "35",
+                "ans": "B",
+                "TU": "img/35.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "36",
+                "ans": "A",
+                "TU": "img/36.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "37",
+                "ans": "A",
+                "TU": "img/37.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "38",
+                "ans": "B",
+                "TU": "img/38.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "39",
+                "ans": "A",
+                "TU": "img/39.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "40",
+                "ans": "B",
+                "TU": "img/40.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "41",
+                "ans": "A",
+                "TU": "img/41.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "42",
+                "ans": "B",
+                "TU": "img/42.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "43",
+                "ans": "B",
+                "TU": "img/43.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "44",
+                "ans": "A",
+                "TU": "img/44.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "47",
+                "ans": "A",
+                "TU": "img/47.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "48",
+                "ans": "B",
+                "TU": "img/48.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "49",
+                "ans": "A",
+                "TU": "img/49.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "50",
+                "ans": "A",
+                "TU": "img/50.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "51",
+                "ans": "A",
+                "TU": "img/51.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "52",
+                "ans": "B",
+                "TU": "img/52.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "53",
+                "ans": "B",
+                "TU": "img/53.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "54",
+                "ans": "A",
+                "TU": "img/54.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "55",
+                "ans": "A",
+                "TU": "img/55.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "56",
+                "ans": "A",
+                "TU": "img/56.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "57",
+                "ans": "B",
+                "TU": "img/57.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            },
+            {
+                "ID": "60",
+                "ans": "B",
+                "TU": "img/60.PNG",
+                "TAU": "false",
+                "A": "A",
+                "ATU": "正确",
+                "ATAU": "true",
+                "B": "B",
+                "BTU": "错误",
+                "BTAU": "true",
+                "": ""
+            }
+        ];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index = 0, data_click = false, correct_number = 0, great = 0, data_number = 0;
+        var time, beginTime, endTime,errorNum=0,errorCont=3;
+        var maxtime = 120, timer = null, mouldTime;
+        var time1 = 1500, timer1 = null, type4Num = "0";
+        var type4set = [], stimidset = [], correctanswerset = [], buttonset = [], timeset = [], topicArr = [],
+            commentset = [], ansText = [], buttonsetText = [];
+        var ansTAUArr = [], xtauArr = [], tauArr = [];
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+
+        function topicFun(data_index) {
+            /*border-radius:100%;background:#ff6700;*/
+            $("#item2_A").text(" ");
+            $("#item2_B").text(" ");
+            $("#topic").text(" ");
+            $("#item2_A").attr("data-data", data[data_index].A);
+            if (data[data_index].ATAU == "true") {
+                $("#item2_A").append(
+                    '<div>' + data[data_index].ATU + '</div>'
+                )
+            } else {
+                $("#item2_A").append(
+                    '<img src="' + data[data_index].ATU + '" alt="">'
+                )
+            }
+            $("#item2_B").attr("data-data", data[data_index].B);
+            if (data[data_index].BTAU == "true") {
+                $("#item2_B").append(
+                    '<div>' + data[data_index].BTU + '</div>'
+                )
+            } else {
+                $("#item2_B").append(
+                    '<img src="' + data[data_index].BTU + '" alt="">'
+                )
+            }
+
+            if (data[data_index].TAU == "true") {
+                console.log(data[data_index].TAU);
+                $("#topic").append(
+                    '<div>' + data[data_index].TU + '</div>'
+                )
+            } else {
+                $("#topic").append(
+                    '<img id="localImageId" alt="">'
+                )
+                localCache(data[data_index],'TU',curTaskInfo.taskid,'#localImageId');
+            }
+
+        }
+
+        function textFun(ans, ans1) {
+            if (ans == "Q") {
+                ansText.push(data[data_index].QTU);
+                ansTAUArr.push(data[data_index].QTAU);
+            } else if (ans == "P") {
+                ansText.push(data[data_index].PTU);
+                ansTAUArr.push(data[data_index].PTAU);
+            } else if (ans == "A") {
+                ansText.push(data[data_index].ATU);
+                ansTAUArr.push(data[data_index].ATAU);
+            } else if (ans == "B") {
+                ansText.push(data[data_index].BTU);
+                ansTAUArr.push(data[data_index].BTAU);
+            } else if (ans == "C") {
+                ansText.push(data[data_index].CTU);
+                ansTAUArr.push(data[data_index].CTAU);
+            } else if (ans == "D") {
+                ansText.push(data[data_index].DTU);
+                ansTAUArr.push(data[data_index].DTAU);
+            } else if (ans == "E") {
+                ansText.push(data[data_index].ETU);
+                ansTAUArr.push(data[data_index].ETAU);
+            } else if (ans == "F") {
+                ansText.push(data[data_index].FTU);
+                ansTAUArr.push(data[data_index].FTAU);
+            }
+            if (ans1 == "Q") {
+                buttonsetText.push(data[data_index].QTU);
+                xtauArr.push(data[data_index].QTAU);
+            } else if (ans1 == "P") {
+                buttonsetText.push(data[data_index].PTU);
+                xtauArr.push(data[data_index].PTAU);
+            } else if (ans1 == "A") {
+                buttonsetText.push(data[data_index].ATU);
+                xtauArr.push(data[data_index].ATAU);
+            } else if (ans1 == "B") {
+                buttonsetText.push(data[data_index].BTU);
+                xtauArr.push(data[data_index].BTAU);
+            } else if (ans1 == "C") {
+                buttonsetText.push(data[data_index].CTU);
+                xtauArr.push(data[data_index].CTAU);
+            } else if (ans1 == "D") {
+                buttonsetText.push(data[data_index].DTU);
+                xtauArr.push(data[data_index].DTAU);
+            } else if (ans1 == "E") {
+                buttonsetText.push(data[data_index].ETU);
+                xtauArr.push(data[data_index].ETAU);
+            } else if (ans1 == "F") {
+                buttonsetText.push(data[data_index].FTU);
+                xtauArr.push(data[data_index].FTAU);
+            }
+        }
+
+        $("#img1").on("click", function () {
+            mouldTime = $("#input1[type='checkbox']").is(':checked');
+            data_number = data.length;
+            data_click = true;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime + "秒");
+            if (!mouldTime) {
+                timer = setInterval(function () {
+                    CountDown();
+                }, 1000);
+            } else {
+                type4Num = "99";
+                time1 = 500;
+            }
+            beginTime = new Date().getTime();
+        });
+        $(".item2_set").on("click", function () {
+            if (data_click) {
+                var key = $(this).attr("data-data");
+                keyFun(key);
+            }
+        });
+
+        function keyFun(key) {
+            endTime = new Date().getTime();
+            time = (endTime - beginTime).toFixed(0);
+            // $(".item2_item img").removeClass("revolve");
+            var ans = data[data_index].ans;
+            var ans1 = key;
+            console.log(ans1 + "," + ans);
+            stimidset.push(data[data_index].ID);
+            type4set.push(type4Num);
+            topicArr.push(data[data_index].TU);
+            tauArr.push(data[data_index].TAU);
+            correctanswerset.push(ans);
+            buttonset.push(ans1);
+            timeset.push(time);
+            textFun(ans, ans1);
+            $("#item2").addClass("op");
+            if (ans1 == ans) {
+                correctMp3.play();
+                correct_number++;
+                great++;
+                $("#xs2").text(correct_number);
+                if (great >= 5) {
+                    great = 0;
+                    $("#reward_img").attr("src", "../com_imgs/jiangli.gif");
+                } else {
+                    $("#reward_img").attr("src", "../com_imgs/yes.gif");
+                }
+
+            } else {
+                great = 0;
+                wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+            }
+            $("#xs3").text(Math.round((correct_number / (data_index + 1)) * 100) + "%");
+            nextTopicFun()
+        }
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if (data_number <= data_index) {
+                endFun();
+                clearInterval(timer);
+                timer = null;
+                return;
+            }
+            timer1 = setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src", " ");
+                $("#reward").addClass("hide");
+                data_click = true;
+                beginTime = new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1 = null;
+            }, time1);
+
+        }
+
+        function endFun() {
+            commentset.push(((correct_number / stimidset.length) * 100).toFixed(2) + "%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                var topicCon, ansCon, buttonsetCon;
+                if (tauArr[i] == "true") {
+                    topicCon = topicArr[i]
+                } else {
+                    topicCon = '<img src="' + topicArr[i] + '" alt="">'
+                }
+                if (ansTAUArr[i] == "true") {
+                    ansCon = ansText[i]
+                } else {
+                    ansCon = '<img src="' + ansText[i] + '" alt="">'
+                }
+                if (xtauArr[i] == "true") {
+                    buttonsetCon = buttonsetText[i]
+                } else {
+                    buttonsetCon = '<img src="' + buttonsetText[i] + '" alt="">'
+                }
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td class="tableTd">' + topicCon + '</td>' +
+                    '<td class="tableTd">' + ansCon + '</td>' +
+                    '<td class="tableTd">' + buttonsetCon + '</td>' +
+                    '<td class="tableTd">' + timeset[i] + '</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime + "秒")
+
+            } else {
+                endFun();
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime + "秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        $("#out").on("click", function () {
+            post_result();
+        });
+
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {};
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

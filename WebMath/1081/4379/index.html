@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时间情景应用</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #524db9;">
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+
+        </div>
+
+        <div class="item1_img item1_imgBox2" style="position: relative;">
+            <div id="img1" class="beginText" style="left:0px">开始</div>
+            <img src="../com_imgs/begin.jpg" alt="" style="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+
+                <!--<div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_C"></div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+{"ID":"1","ans":"P","topic":"小明每天睡8分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"2","ans":"Q","topic":"小红每天花40分钟写数学作业","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"3","ans":"P","topic":"课间休息10小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"4","ans":"P","topic":"放学后梅梅要坐公交1秒才能到家","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"5","ans":"Q","topic":"新中国成立已经70年了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"6","ans":"P","topic":"每节数学课45小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"7","ans":"P","topic":"今年国庆节放了7分钟的假期","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"8","ans":"Q","topic":"小亮每天午休40分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"9","ans":"P","topic":"亮亮发烧已经2年没来上课了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"10","ans":"Q","topic":"运动会上小雪50米短跑用了15秒","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"11","ans":"P","topic":"小菲每天练习钢琴1秒钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"12","ans":"P","topic":"从北京坐飞机到新疆要3个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"13","ans":"Q","topic":"人们每天工作8小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"14","ans":"P","topic":"张鹏每天刷牙要5小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"15","ans":"P","topic":"今年学校放了2分钟暑假","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"16","ans":"P","topic":"数学期末考试时间为2分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"17","ans":"Q","topic":"妈妈每天做饭用45分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"18","ans":"Q","topic":"爷爷每天早上去公园晨练2小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"19","ans":"Q","topic":"每天放学后莉莉都要练习舞蹈1个小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"20","ans":"P","topic":"离北京奥运会过去已经11个月了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"21","ans":"P","topic":"潜水兴趣课上小军通过练习可以在水中憋气15天","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"22","ans":"Q","topic":"牙医建议每三个月换一次牙刷","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"23","ans":"P","topic":"周末小瑞和小慧去爬山用了4年","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"24","ans":"P","topic":"张老师曾经在国外留学2小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"25","ans":"P","topic":"小麦成熟大概需要4年","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"26","ans":"Q","topic":"李飞每隔2个月就去剪一次头发","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"27","ans":"P","topic":"丽丽吃早饭需要30小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"28","ans":"Q","topic":"一场篮球比赛40分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"29","ans":"P","topic":"北京到天津坐高铁要40秒","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"30","ans":"P","topic":"学校规定每天晨读英语40小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"31","ans":"P","topic":"学校运动会上100米短跑最快纪录是12分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"32","ans":"P","topic":"昨天的一场大雪整整持续了10秒","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"33","ans":"Q","topic":"学校元旦放了3天假","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"34","ans":"Q","topic":"看一场电影用了2小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"35","ans":"Q","topic":"为了参加歌咏比赛同学们每天训练唱歌2小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"36","ans":"Q","topic":"李老师感冒了3天没来学校了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"37","ans":"P","topic":"课堂上媛媛进行了10小时的问题回答","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"38","ans":"P","topic":"早上悦悦上课迟到了5个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"39","ans":"Q","topic":"体育课上大家先热身10分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"40","ans":"P","topic":"妈妈感冒了在医院打点滴用了40秒","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"41","ans":"P","topic":"夏洛每天背单词要用40小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"42","ans":"Q","topic":"小明每天锻炼40分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"43","ans":"Q","topic":"张爷爷年轻的时候从军8年","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"44","ans":"P","topic":"小张每天学习数学50小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"45","ans":"Q","topic":"小红今天有2小时书法兴趣课","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"46","ans":"Q","topic":"冰冰今天中午在食堂排队用了15分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"47","ans":"P","topic":"下班后张叔叔开车30个月才能到家","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"48","ans":"P","topic":"人的一生大概有70天","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"49","ans":"P","topic":"每节英语课上有10小时用来练口语","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"50","ans":"P","topic":"今年夏令营持续了15个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"51","ans":"P","topic":"李飞飞每天都练习书法2秒","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"52","ans":"P","topic":"北京大学至今有100多天的历史了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"53","ans":"Q","topic":"马可波罗曾经在中国游历了17年","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"54","ans":"P","topic":"唐三藏历经14天到西天取得真经","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"55","ans":"P","topic":"李潇这次暑假去西藏玩了10秒","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"56","ans":"Q","topic":"紫禁城已经有快600年历史了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"57","ans":"P","topic":"伊拉克战争持续了10秒之久","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"58","ans":"Q","topic":"中华文明有5000年历史了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"59","ans":"P","topic":"妈妈每天练习瑜伽用45小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"60","ans":"P","topic":"奶奶每天去公园遛弯2秒","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"61","ans":"Q","topic":"每天放学后晓晓都要练习画画2小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"62","ans":"P","topic":"小龙昨晚熬夜了打游戏只睡了4个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"63","ans":"P","topic":"奶奶腿脚不好上五楼用了5秒","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"64","ans":"P","topic":"早上堵车爸爸上班迟到了2个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"65","ans":"Q","topic":"周末小龙和小斌去游乐场玩了3小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"66","ans":"Q","topic":"张亮今年去国外交流学习2个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"67","ans":"Q","topic":"夏小小每天背单词要用40分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"68","ans":"P","topic":"小明每天跑步40小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"69","ans":"P","topic":"菲菲每天花2秒学习英语","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"70","ans":"Q","topic":"丽丽吃早饭需要30分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"71","ans":"Q","topic":"一场足球比赛90分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"72","ans":"Q","topic":"北京到深圳坐高铁要10小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"73","ans":"Q","topic":"学校规定早操时间30分钟","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"74","ans":"P","topic":"学校运动会上1000米长跑最快纪录是12个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"75","ans":"P","topic":"昨天的一场大火整整持续了30年","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"76","ans":"P","topic":"今年学校寒假放了30个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"77","ans":"Q","topic":"听一场演唱会用了2小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"78","ans":"P","topic":"为了参加歌咏比赛同学们每天训练唱歌2秒","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"79","ans":"Q","topic":"玥玥生病了3天没来学校了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"80","ans":"Q","topic":"课堂上老师让同学们看了10分钟的教学纪录片","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"81","ans":"P","topic":"昨天妈妈加班了下班晚了4个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"82","ans":"P","topic":"体育课上大家先热身10小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"83","ans":"Q","topic":"今天学校开了4小时的考前动员大会","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"84","ans":"Q","topic":"今天李阿姨在单位参加了5小时的岗前培训","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"85","ans":"Q","topic":"今早数学课上老师讲一道题用了20天","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"86","ans":"P","topic":"第二小组去户外进行了4秒钟的专题采访","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"87","ans":"Q","topic":"下午学校邀请丘成桐进行2小时关于数学的讲座","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"88","ans":"P","topic":"天气预报称明天会有持续4年的强降雪","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"89","ans":"Q","topic":"李教授预测还需要150年人工智能才能替代人类","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"90","ans":"P","topic":"小李从网上买的衣服快递3秒就到了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"91","ans":"Q","topic":"曦曦每天都会看30分钟的动画片","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"92","ans":"P","topic":"昨天王校长在毕业典礼上作了2年报告","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"93","ans":"Q","topic":"这件青铜器竟然有1000年历史了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"94","ans":"Q","topic":"周末阿辉和哥哥一起完成了2小时的志愿者活动","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"95","ans":"P","topic":"小强新买的笔记本开机仅仅用了5年","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"96","ans":"Q","topic":"昨天哥哥在网吧待了3小时","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"97","ans":"Q","topic":"李老师在这里工作了10年了","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"98","ans":"Q","topic":"壮壮养成了每天看文学书1小时的好习惯","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"99","ans":"P","topic":"隔壁张奶奶每天跳广场舞2年","Q":"Q","QText":"合理","P":"P","PText":"不合理"},
+{"ID":"100","ans":"P","topic":"今天的家长会整整进行了3个月","Q":"Q","QText":"合理","P":"P","PText":"不合理"}
+];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=3;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].QText);
+            $("#item2_A").attr("data-data",data[data_index].Q);
+            $("#item2_B").text(data[data_index].PText);
+            $("#item2_B").attr("data-data",data[data_index].P);
+            // $("#item2_C").text(data[data_index].CText);
+            // $("#item2_C").attr("data-data",data[data_index].C);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push(type4Num);
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,380 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>指定训练任务列表</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+    <link href="../../css/common.css" rel="stylesheet"  />
+    <link href="../../css/animate.css" rel="stylesheet"  />
+    <link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            background: url('../../image/newUi/index_bg.png') no-repeat;
+            height:100%;
+            width:109%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            background-size:100% 100%;
+            text-align: center;
+        }
+        .myContent {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        img.headerBg {
+            width: 250px;
+            margin-top: -8px;
+        }
+        p.curTitle {
+            font-size: 17px;
+            color: #ffe000;
+            margin-top: -50px;
+        }
+        p.curTitle_ {
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 20px;
+            color: #13A090;
+        }
+        .slide-box{
+            margin-top: 20px;
+            display: -webkit-box;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling:touch;
+        }
+        .slide-item{
+            width: 140pt;
+            border-radius: 5px;
+            padding: 8px;
+            height: 200pt;
+            border: 2px solid #68954a;
+            margin-right: 25px;
+            text-align: center;
+            background: #fff;
+            position: relative;
+        }
+        .slide-item::after{
+            position: absolute;
+
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            z-index: 99999;
+        }
+        .slide-item .a_link {
+            height: 70pt;
+            width: 70pt;
+            background: #e1f7f9;
+            margin-top: 8px;
+        }
+        .slide-item .a_link img {
+            height: 70pt;
+            width: 70pt;
+            border-radius: 100%;
+        }
+        .slide-item p {
+            /*color: black;*/
+            /*font-weight: bold;*/
+            /*font-size: 18px;*/
+        }
+        .slide-item .slide-item-taskid {
+            /*color: black;*/
+            /*font-weight: bold;*/
+            width: 55pt;
+            height: 16pt;
+            text-align: center;
+            line-height: 16pt;
+            font-size: 11pt;
+            margin: 0px auto;
+            border-radius: 50px;
+            background: #76B39D;
+            color: #FFFFFF;
+        }
+        .formal p {
+            color: #13a090
+        }
+        p.statute{
+            color: #FFED7C;
+            -webkit-text-fill-color:#FFED7C;
+            -webkit-text-stroke:1px #76B39D;
+        }
+        /*p.statute_yes {*/
+        /*    color: #FFED7C;*/
+        /*    -webkit-text-fill-color:#FFED7C;*/
+        /*    -webkit-text-stroke:2px #76B39D;*/
+        /*}*/
+        /*p.statute_no {*/
+        /*    color: #FFED7C;*/
+        /*    -webkit-text-fill-color:#FFED7C;*/
+        /*    -webkit-text-stroke:2px #76B39D;*/
+        /*}*/
+        /*p.statute_pass {*/
+        /*    color: #FFED7C;*/
+        /*    -webkit-text-fill-color:#FFED7C;*/
+        /*    -webkit-text-stroke:2px #76B39D;*/
+        /*}*/
+        /*p.statute_good {*/
+        /*    color: #FFED7C;*/
+        /*    -webkit-text-fill-color:#FFED7C;*/
+        /*    -webkit-text-stroke:2px #76B39D;*/
+        /*}*/
+        .a_link{
+            position: relative;
+            display: inline-block;
+        }
+        .myContent img.goLeft{
+            margin-left: 0px;
+            /*text-align: left;*/
+        }
+    </style>
+</head>
+
+<body>
+<div class="myContent">
+    <div class="mui-row">
+        <div class="mui-col-sm-3" style="text-align: left">
+            <img class="goLeft" onclick="goNext('index.html')" src="../../image/icon/back.png" />
+        </div>
+        <div class="mui-col-sm-6" style="text-align: center">
+            <p class="curTitle_"></p>
+        </div>
+        <div class="mui-col-sm-3">
+
+        </div>
+    </div>
+    <div class="mui-row slide-box"></div>
+
+</div>
+
+</body>
+
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/common.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript">
+    var clickMusic = new Audio('../../mp3/click.mp3');
+    var taskList = [];
+    var recentTaskid = '';
+
+    //获取当前用户 上一次的训练任务 信息
+    var recentTask = {
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.thirdparty.rest.api.ThirdPartyRecentUsedProjectAndTaskProxy',
+        service: 'getRecentUsedTask',
+        args: JSON.stringify(recentTask)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            recentTaskid = data.results.taskid;
+        }
+    });
+
+    //全部任务里面 - 根据项目id 获取所有任务信息
+    var curProjectTaskArray = [];
+    var allTasks = {
+        uid: parseInt(localStorage.getItem('uid')),
+        projectid: GetQueryString('pid'),
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.thirdparty.results.ThirdPartyTestResultsProxy',
+        service: 'getAllTasksAndAverageResultForOneProject',
+        args: JSON.stringify(allTasks)
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            curProjectTaskArray = data.results;
+        }
+    })
+
+
+    //获取: 用户 --  项目  --  任务列表
+    var taskListByProject = {
+        uid: parseInt(localStorage.getItem('uid')),
+        access_token: localStorage.getItem('access_token'),
+        projectid: GetQueryString('pid'),
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.users.ProjectTaskMGProxy',
+        service: 'getTasksForOneProject',
+        args: JSON.stringify(taskListByProject)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            /*处理token失效*/
+            if(data.message) {
+                mui.toast('访问时间已经过期,3秒后自动跳转到登录页面!',{ duration:'long', type:'div' });
+                setTimeout(function(){
+                    mui.openWindow({
+                        url: '../../login.html',
+                        createNew: true,
+                        styles: {
+                            cachemode:"noCache",
+                        }
+                    });
+                }, 3000);
+            }
+            if (data.tasks) {
+                $('.curTitle_').html(data.project.projectname)
+                taskList = data.tasks
+                //两个根据项目id查询 任务列表信息 合并
+                taskList.forEach( curList => {
+                    curProjectTaskArray.forEach( curTask => {
+                        if(curList.taskid === curTask.taskid){
+                            curList.averagePercentile = curTask.averagePercentile;
+                            curList.testResultCount = curTask.testResultCount;
+                        }
+                    })
+                })
+                for (var i = 0; i < taskList.length; i++) {
+                    if (taskList[i].taskid === recentTaskid) {
+                        var recentTaskInfo = taskList[i];
+                        taskList.splice(i, 1);
+                        taskList.unshift(recentTaskInfo);
+                        break;
+                    }
+                }
+
+                for (var i = 0;i<taskList.length;i++) {
+                    var j = i + 1;
+                    var  addStr ='<div style="" class="slide-item formal" id=" '+taskList[i].taskid+' " onclick="doTask(event)">' +
+                                    '<p class="slide-item-taskid">' +taskList[i].taskid+'</p>' +
+
+                                    '<a class="a_link">' +
+                                        '<img class="animated bounceInDown" src="'+isImgExerse(taskList[i].lastestPercentileScore)+'"  />' +
+                                    '</a>' +
+                                    '<p class="statute statute_'+ isExerseStatute(taskList[i].lastestPercentileScore) +'" style="font-size: 16pt;font-weight: 900;margin-top: 12px;height: 15.5pt">' +isExerse(taskList[i].lastestPercentileScore)+ '</p>' +
+                                    '<p style="font-size: 13pt">' + taskList[i].name + '</p>' +
+                                    '<div style="font-size: 10pt;color: #5dbaa8;position: absolute;top: 175pt;width: 100%;left: 0px">' +
+                                        '<span style="position: absolute;left: 7pt;">练习次数:'+ taskList[i].testResultCount +'</span>' +
+                                        '<span style="position: absolute;left: 80pt;">平均分:'+ taskList[i].averagePercentile +'</span>' +
+                                    '</div>' +
+                                '</div>';
+                    $(".slide-box").append(addStr);
+                }
+                $("#"+recentTaskid).css("border-color","orange")
+            }
+        }
+    });
+
+    /*判断是否训练过当前的任务*/
+    function isExerse(arr) {
+        if (arr.length === 0) {
+            return '未练习'
+        } else if (arr.length === 1) {
+            return '待及格'
+        }else{
+            if(arr[0]>=90 && arr[1]>=90){
+                return '优秀'
+            }else if(arr[0]>=80 && arr[1]>=80){
+                return '及格'
+            }else {
+                return '待及格'
+            }
+
+        }
+    }
+    function isImgExerse(arr) {
+        if (arr.length === 0) {
+            return '../../image/index-list/wlx-icon.png'
+        } else if (arr.length === 1) {
+            return '../../image/index-list/djg-icon.png'
+        }else{
+            if(arr[0]>=90 && arr[1]>=90){
+                return '../../image/index-list/yx-icon.png'
+            }else if(arr[0]>=80 && arr[1]>=80){
+                return '../../image/index-list/jg-icon.png'
+            }else {
+                return '../../image/index-list/djg-icon.png'
+            }
+
+        }
+    }
+    function isExerseStatute(arr) {
+        if (arr.length === 0) {
+            return 'no'
+        } else if (arr.length === 1) {
+            return 'yes'
+        }else{
+            if(arr[0]>=90 && arr[1]>=90){
+                return 'good'
+            }else if(arr[0]>=80 && arr[1]>=80){
+                return 'pass'
+            }else {
+                return 'yes'
+            }
+
+        }
+    }
+
+    //跳转到 -- 指定任务--开始训练
+    function doTask(e) {
+        console.log(e)
+        console.log(e.currentTarget)
+        var taskid =  parseInt(e.currentTarget.id);
+        for (var i = 0;i<taskList.length;i++) {
+            if(taskList[i].taskid === taskid) {
+                //把当前任务 信息存到缓存中去
+                localStorage.setItem('curTaskInfo',JSON.stringify(taskList[i]));
+                mui.openWindow({
+                    url: '../../WebMath/1081/'+taskList[i].taskid+'/index.html',
+                    // url: '../../WebMath/'+ taskList[i].projectid+'/'+taskList[i].taskid+'/index.html',
+                    // url: '../../WebMath/1081/4360/index.html',  //本地测试用 1081/4360
+                    createNew: true,
+                    styles: {
+                        cachemode:"noCache",
+                    }
+                });
+            }
+        }
+    }
+
+    //打开项目 立即保存到 用户最近浏览的项目中
+    var curOpenPro = {
+        projectid: GetQueryString('pid'),
+        access_token: localStorage.getItem('access_token')
+    }
+    var curOpenProData = {
+        clazz: 'com.lattice.action.proxy.rest.api.RecentUsedProjectMGProxy',
+        service: 'saveRecentUsedProjectMG',
+        args: JSON.stringify(curOpenPro)
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: curOpenProData,
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+        }
+    })
+
+
+</script>
+
+
+</html>

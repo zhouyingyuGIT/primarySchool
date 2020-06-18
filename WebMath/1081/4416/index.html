@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角的测量</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #524db9;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+        </div>
+
+        <div class="item1_img item1_imgBox2" style="position: relative;">
+            <div id="img1" class="beginText" style="left:0px">开始</div>
+            <img src="../com_imgs/begin.jpg" alt="" style="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_C"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_D"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+			{"ID":"1","ans":"A","topic":"度量一个角，角的一条边对着量角器上“180”的刻度，另一条边对着“120”的刻度，这个角度数是（）","A":"A","AText":"60度","B":"B","BText":"120度","C":"C","CText":"180度","D":"D","DText":"90度"},
+			{"ID":"2","ans":"C","topic":"周角的一半的度数是（）","A":"A","AText":"60度","B":"B","BText":"90度","C":"C","CText":"180度","D":"D","DText":"270度"},
+			{"ID":"3","ans":"C","topic":"组成平角的两个角，如果其中一个角是锐角，另一个角一定是（）","A":"A","AText":"锐角","B":"B","BText":"直角","C":"C","CText":"钝角","D":"D","DText":"都有可能"},
+			{"ID":"4","ans":"D","topic":"度量一个角，角的一条边对着量角器上“180”的刻度，另一条边对着刻度“90”，这个角度数是（）","A":"A","AText":"60度","B":"B","BText":"30度","C":"C","CText":"锐角","D":"D","DText":"直角"},
+			{"ID":"5","ans":"D","topic":"用量角器量角的大小时，与角的顶点重合的是（）","A":"A","AText":"180刻度线","B":"B","BText":"0刻度线","C":"C","CText":"外圈或内圈刻度线","D":"D","DText":"中心"},
+			{"ID":"6","ans":"D","topic":"测量角的大小使用的工具是（）","A":"A","AText":"直尺","B":"B","BText":"三角板","C":"C","CText":"天平","D":"D","DText":"量角器"},
+			{"ID":"7","ans":"A","topic":"把（）由中心分成180等份，每一份所对的角就是1度？","A":"A","AText":"半圆","B":"B","BText":"一个圆","C":"C","CText":"正方形","D":"D","DText":"长方形"},
+			{"ID":"8","ans":"A","topic":"为了准确测量角的大小，要有统一的计量单位和度量工具，度量角的工具是（）","A":"A","AText":"量角器","B":"B","BText":"三角尺","C":"C","CText":"直尺","D":"D","DText":"圆规"},
+			{"ID":"9","ans":"A","topic":"下列关于度量角的工具正确的是（）","A":"A","AText":"量角器","B":"B","BText":"三角板","C":"C","CText":"直尺","D":"D","DText":"圆规"},
+			{"ID":"10","ans":"B","topic":"用一副三角板拼成135度角，这两个角可以是（）","A":"A","AText":"100度和35度","B":"B","BText":"90度和45度","C":"C","CText":"55度和75度","D":"D","DText":"80度和55度"},
+			{"ID":"11","ans":"D","topic":"用一副三角板，可以组合的角的度数下列成立的是（）","A":"A","AText":"35度","B":"B","BText":"50度","C":"C","CText":"145度","D":"D","DText":"120度"},
+			{"ID":"12","ans":"B","topic":"用100倍的放大镜看的40角，这个角的度数是（）","A":"A","AText":"4度","B":"B","BText":"40度","C":"C","CText":"4000度","D":"D","DText":"40000度"},
+			{"ID":"13","ans":"A","topic":"仔细观察量角器，内外圈的刻度是成对出现的．下面正确的是（）","A":"A","AText":"105度和75度","B":"B","BText":"55度和45度","C":"C","CText":"85度和115度","D":"D","DText":"30度和60度"},
+			{"ID":"14","ans":"B","topic":"将一个钝角分成两个角，一定有一个角是（）","A":"A","AText":"直角","B":"B","BText":"锐角","C":"C","CText":"钝角","D":"D","DText":"都有可能"},
+			{"ID":"15","ans":"B","topic":"有两个角刚好拼成一个平角，如果其中一个角是钝角，那么另一个角一定是（）","A":"A","AText":"直角","B":"B","BText":"锐角","C":"C","CText":"钝角","D":"D","DText":"都有可能"},
+			{"ID":"16","ans":"C","topic":"下列角的单位正确的是（）","A":"A","AText":"厘米","B":"B","BText":"毫升","C":"C","CText":"度","D":"D","DText":"克"},
+			{"ID":"17","ans":"A","topic":"度量一个角，角的一条边对着量角器上“0”的刻度，另一条边对着刻度“60”，这个角度数是（）","A":"A","AText":"60度","B":"B","BText":"30度","C":"C","CText":"180度","D":"D","DText":"120度"},
+			{"ID":"18","ans":"A","topic":"把一个15度的角放在10倍放大镜下观察，角的度数（）","A":"A","AText":"不变","B":"B","BText":"变大","C":"C","CText":"变小","D":"D","DText":"不确定"},
+			{"ID":"19","ans":"B","topic":"下面各度数的角中，可以用一副三角板组合成的是（）","A":"A","AText":"70度","B":"B","BText":"75度","C":"C","CText":"80度","D":"D","DText":"125度"},
+			{"ID":"20","ans":"A","topic":"用一副三角板不能拼出的角度是（）","A":"A","AText":"20度","B":"B","BText":"135度","C":"C","CText":"15度","D":"D","DText":"75度"},
+			{"ID":"21","ans":"B","topic":"一个角是50度，这个角与三角尺上的最大的角比较，下列说法正确的是（）","A":"A","AText":"大","B":"B","BText":"小","C":"C","CText":"相等","D":"D","DText":"无法比较"},
+			{"ID":"22","ans":"D","topic":"在一副三角板上，最大的角的度数是（）","A":"A","AText":"30度","B":"B","BText":"45度","C":"C","CText":"60度","D":"D","DText":"90度"},
+			{"ID":"23","ans":"D","topic":"下列各角的度数是用一副三角板拼成的是（）","A":"A","AText":"5度","B":"B","BText":"25度","C":"C","CText":"40度","D":"D","DText":"75度"},
+			{"ID":"24","ans":"A","topic":"用一个4倍的放大镜观察一个30度的角，这个角的度数是（）","A":"A","AText":"30度","B":"B","BText":"90度","C":"C","CText":"120度","D":"D","DText":"150度"},
+			{"ID":"25","ans":"A","topic":"用一副三角板，不能拼出的角是（）","A":"A","AText":"50度","B":"B","BText":"75度","C":"C","CText":"105度","D":"D","DText":"135度"},
+			{"ID":"26","ans":"A","topic":"把一个半圆由中心分成180等份，每一份所对的角是（）","A":"A","AText":"1度","B":"B","BText":"2度","C":"C","CText":"90度","D":"D","DText":"180度"},
+			{"ID":"27","ans":"C","topic":"如果三个可以完全重合的角刚好组成一个周角，那么每个角的度数是（）","A":"A","AText":"60度","B":"B","BText":"90度","C":"C","CText":"120度","D":"D","DText":"180度"},
+			{"ID":"28","ans":"D","topic":"度量角的大小的工具是（）","A":"A","AText":"圆规","B":"B","BText":"三角尺","C":"C","CText":"直尺","D":"D","DText":"量角器"},
+			{"ID":"29","ans":"C","topic":"用一副三角板不能拼出的角的度数是（）","A":"A","AText":"120度","B":"B","BText":"135度","C":"C","CText":"145度","D":"D","DText":"75度"},
+			{"ID":"30","ans":"C","topic":"把一个周角由中心平均分成12份，每份是（）","A":"A","AText":"12度","B":"B","BText":"15度","C":"C","CText":"30度","D":"D","DText":"45度"},
+			{"ID":"31","ans":"B","topic":"量角器测量的最大的角的度数是（）","A":"A","AText":"120度","B":"B","BText":"180度","C":"C","CText":"360度","D":"D","DText":"90度"},
+			{"ID":"32","ans":"C","topic":"量角时，与角的顶点重合重合的是（）","A":"A","AText":"一条边","B":"B","BText":"0刻度线","C":"C","CText":"中心","D":"D","DText":"外圈"},
+			{"ID":"33","ans":"C","topic":"度量角的大小的工具是（）","A":"A","AText":"圆规","B":"B","BText":"天平","C":"C","CText":"量角器","D":"D","DText":"直尺"},
+			{"ID":"34","ans":"C","topic":"把半圆由中心分成两等份，每一份所对的角的度数是（）","A":"A","AText":"30度","B":"B","BText":"60度","C":"C","CText":"90度","D":"D","DText":"180度"},
+			{"ID":"35","ans":"C","topic":"下列各角能用三角板拼出的度数是（）","A":"A","AText":"70度","B":"B","BText":"106度","C":"C","CText":"120度","D":"D","DText":"145度"},
+			{"ID":"36","ans":"D","topic":"下列各角不能用一副三角板拼出的是（）","A":"A","AText":"105度角","B":"B","BText":"75度角","C":"C","CText":"135度角","D":"D","DText":"110度角"},
+			{"ID":"37","ans":"A","topic":"下列各角，哪一个不是一副三角板拼出的度数（）","A":"A","AText":"70度","B":"B","BText":"120度","C":"C","CText":"105","D":"D","DText":"135"},
+			{"ID":"38","ans":"C","topic":"用量角器量角的度数时，与角的顶点对齐的是量角器的（）","A":"A","AText":"一边","B":"B","BText":"端点","C":"C","CText":"中心点","D":"D","DText":"内圈"},
+			{"ID":"39","ans":"B","topic":"用一副三角板可以拼成的角的度数是（）","A":"A","AText":"100度和120度","B":"B","BText":"105度和135度","C":"C","CText":"135度和110度","D":"D","DText":"85度和95度"},
+			{"ID":"40","ans":"D","topic":"用一副三角板，不能拼出的角的度数是（）","A":"A","AText":"75度","B":"B","BText":"120度","C":"C","CText":"135度","D":"D","DText":"155度"},
+			{"ID":"41","ans":"A","topic":"量角器由中心把半圆平均分成（）份","A":"A","AText":"180","B":"B","BText":"90","C":"C","CText":"360","D":"D","DText":"60"},
+			{"ID":"42","ans":"D","topic":"用两块三角板，不能拼出的角的度数是（）","A":"A","AText":"15度","B":"B","BText":"30度","C":"C","CText":"135度","D":"D","DText":"115度"},
+			{"ID":"43","ans":"B","topic":"量角时，如果角的一条边与量角器外圈的0刻度线重合，要看的刻度是量角器的（）","A":"A","AText":"内圈","B":"B","BText":"外圈","C":"C","CText":"内圈或外圈","D":"D","DText":"中心"},
+			{"ID":"44","ans":"C","topic":"要准确知道角的大小，可以使用的测量工具是（）","A":"A","AText":"三角尺","B":"B","BText":"直尺","C":"C","CText":"量角器","D":"D","DText":"圆规"},
+			{"ID":"45","ans":"D","topic":"下面各角不能用一副三角板拼出是（）","A":"A","AText":"15度","B":"B","BText":"75度","C":"C","CText":"105度","D":"D","DText":"20度"},
+			{"ID":"46","ans":"C","topic":"一个平角由两个角拼成，其中一个角是锐角，另一个角的一定是（）","A":"A","AText":"平角","B":"B","BText":"直角","C":"C","CText":"钝角","D":"D","DText":"都有可能"},
+			{"ID":"47","ans":"C","topic":"我们画一个角，可以选用的工具是（）","A":"A","AText":"三角板","B":"B","BText":"量角器","C":"C","CText":"三角板或量角器","D":"D","DText":"圆规"},
+			{"ID":"48","ans":"D","topic":"下列文具中，不能用于画角是（）","A":"A","AText":"量角器","B":"B","BText":"直角三角尺","C":"C","CText":"锐角三角尺","D":"D","DText":"圆规"},
+			{"ID":"49","ans":"B","topic":"量角器测量的最大的角的度数是（）","A":"A","AText":"90度","B":"B","BText":"180度","C":"C","CText":"360度","D":"D","DText":"450"},
+			{"ID":"50","ans":"C","topic":"在一副三角板上，最小的角的度数是（）","A":"A","AText":"10度","B":"B","BText":"15度","C":"C","CText":"30度","D":"D","DText":"60度"},
+			{"ID":"51","ans":"A","topic":"下面角的度数中不能用三角板直接画出的是（）","A":"A","AText":"85度","B":"B","BText":"30度","C":"C","CText":"180","D":"D","DText":"40度"},
+			{"ID":"52","ans":"D","topic":"下列各角不能用一副三角板画出的是（）","A":"A","AText":"15度","B":"B","BText":"75度","C":"C","CText":"135度","D":"D","DText":"130度"}
+			];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=5;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].AText);
+            $("#item2_A").attr("data-data",data[data_index].A);
+            $("#item2_B").text(data[data_index].BText);
+            $("#item2_B").attr("data-data",data[data_index].B);
+            $("#item2_C").text(data[data_index].CText);
+            $("#item2_C").attr("data-data",data[data_index].C);
+            $("#item2_D").text(data[data_index].DText);
+            $("#item2_D").attr("data-data",data[data_index].D);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push(type4Num);
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

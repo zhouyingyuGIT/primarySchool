@@ -1,0 +1,299 @@
+html,body,#box,.item{
+    width: 100%;
+    height: 100%;
+}
+.item1_text{
+    width: 50%;color:#000;
+    height: 40%;
+    position: relative;
+    margin: 0px auto;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: left;
+}
+.item1_img{
+    width: 60%;
+    height: 60%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin: 0px auto;
+
+}
+#item1{
+    background: url('bj.png') no-repeat;
+    background-size: 100% 100%;
+}
+.xianshi{
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    width: 128px;
+    font-size: 14px;
+    font-weight: 900;
+    /*background: #ff6700;*/
+    padding: 8px;
+    /*border: 2px #ff6700 solid;*/
+    border-radius: 10px;
+    z-index: 9999;
+}
+.xianshi .title_name{
+    height: 42px;
+    line-height:42px;
+    background: #2e6da4;
+    color: #fff;
+    text-align: center;
+
+}
+.xianshi .title_num{
+    height: 32px;
+    line-height: 32px;
+    background: #fff;
+    text-align: center;
+}
+.item1_imgBox1 img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.item1_imgBox2 img{
+    max-width: 50%;
+    max-height: 50%;
+    cursor: pointer;
+}
+.div_flex{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+.item2{
+    background: url("bj.png")  no-repeat;
+    background-size: 100% 100%;
+}
+.item2_box{
+    width: 75%;
+    height: 100%;
+}
+
+.item2_topic{
+    display: flex;
+    flex-flow: column;
+    align-items:center;
+    justify-content:center;
+    width: 80%;
+    margin: 0 auto;
+    height: 70%;
+    position: relative;
+    overflow: hidden;
+}
+.imgBox{
+    height: 70%;
+    width: 100%;
+}
+.imgBox img{
+    max-height: 90%;
+    max-width: 90%
+}
+.topic{
+    height: 30%;
+    font-size: 32px;
+    font-weight: 900;
+    width: 100%;
+    display: flex;
+    align-items:center;
+    text-indent: 2em;
+    font-family:STXinwei,YouYuan
+}
+.item2_ans_box{
+    position: relative;
+    width: 80%;
+    height: 26%;
+    margin: 0px auto;
+    overflow: hidden;
+}
+.item2_item_box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    font-family:STXinwei,YouYuan
+}
+
+.item2_fiex{
+    flex: 1;
+    height: 80%;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.item2_item{
+    width: 80%;
+    height: 90%;
+    position: relative;
+    margin: 0px auto;
+    border-radius: 100%;
+}
+.item2_set{
+    background: url("xuanxiang.png") no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    font-size: 36px;
+    font-weight: 900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index: 999;
+    border-radius: 5px;
+    cursor: pointer;
+ }
+
+.itemImg{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.itemImg img{
+    max-width:100%;
+    max-height:100%;
+}
+
+.op{
+    opacity: 0.3;
+}
+.tableTitle{
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+    color: #000;
+}
+.tableTd img{
+    max-height: 240px;
+    max-width: 240px;
+}
+.outBox{
+    z-index: 9999;
+    position: fixed;
+    right: 34px;
+    bottom: 40px;
+    text-align: right;
+}
+.byBox{
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    width: 20%;
+    height: 40%;
+    overflow: hidden;
+}
+
+.byBox_1{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.byBox_1 img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.xrBox{
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    width: 20%;
+    height: 40%;
+    overflow: hidden;
+}
+.xrBox_1{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.item2_topic_box{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+/*题目动画*/
+@keyframes topic_in_move {
+    from {top: -100%}
+    to{top: 0px}
+}
+@keyframes topic_out_move {
+    from {top: 0px}
+    to{top: -100%}
+}
+#item2_topic .topic_move{
+    animation: topic_in_move 1s infinite;
+    animation-iteration-count:1;
+    top: 0px;
+}
+#item2_topic .topic_out{
+    animation: topic_out_move 1s infinite;
+    animation-iteration-count:1;
+    top: -100%;
+}
+/*小人动画*/
+@keyframes xrBox_in_move {
+    from {left: -100%}
+    to{left: 5px}
+}
+@keyframes xrBox_out_move {
+    from {left: 5px}
+    to{left: -100%}
+}
+#xrBox .xrBox_move{
+    animation: xrBox_in_move 1s infinite;
+    animation-iteration-count:1;
+    left: 5px;
+}
+#xrBox .xrBox_out{
+    animation: xrBox_out_move 1s infinite;
+    animation-iteration-count:1;
+    left: -100%;
+}
+/*白云动画*/
+@keyframes byBox_in_move {
+    from {left: -100%;top: -100%;}
+    to{left: 5px;top: 5px;}
+}
+@keyframes byBox_out_move {
+    from {left: 5px;top: 5px;}
+    to{left: -100%;top: -100%;}
+}
+#byBox .byBox_move{
+    animation: byBox_in_move 1s infinite;
+    animation-iteration-count:1;
+    left: 5px;top: 5px;
+}
+#byBox .byBox_out{
+    animation: byBox_out_move 1s infinite;
+    animation-iteration-count:1;
+    left: -100%;top: -100%;
+}
+/*选项动画*/
+@keyframes item2_set_in_move {
+    from {left: 100%;top: 100%;}
+    to{left: 0;top: 0;}
+}
+@keyframes item2_set_out_move {
+    from {left: 0;top: 0;}
+    to{left: 100%;top: 100%;}
+}
+#item2_ans_box .item2_set_move{
+    animation: item2_set_in_move 1s infinite;
+    animation-iteration-count:1;
+    left: 0;top: 0;
+}
+#item2_ans_box .item2_set_out{
+    animation: item2_set_out_move 1s infinite;
+    animation-iteration-count:1;
+    left: 100%;top: 100%;
+}

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>两位数除一位数</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #524db9;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+        </div>
+
+        <div class="item1_img item1_imgBox2" style="position: relative;">
+            <div id="img1" class="beginText" style="left:0px">开始</div>
+            <img src="../com_imgs/begin.jpg" alt="" style="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+
+                <!--<div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_C"></div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+{"ID":"1","ans":"Q","topic":"10÷2 =？","P":"P","PText":"6","Q":"Q","QText":"5"},
+{"ID":"2","ans":"Q","topic":"12÷2 =？","P":"P","PText":"5","Q":"Q","QText":"6"},
+{"ID":"3","ans":"Q","topic":"14÷2 =？","P":"P","PText":"4","Q":"Q","QText":"7"},
+{"ID":"4","ans":"Q","topic":"16÷2 =？","P":"P","PText":"6","Q":"Q","QText":"8"},
+{"ID":"5","ans":"Q","topic":"18÷2 =？","P":"P","PText":"8","Q":"Q","QText":"9"},
+{"ID":"6","ans":"Q","topic":"20÷2 =？","P":"P","PText":"9","Q":"Q","QText":"10"},
+{"ID":"7","ans":"Q","topic":"22÷2 =？","P":"P","PText":"10","Q":"Q","QText":"11"},
+{"ID":"8","ans":"Q","topic":"24÷2 =？","P":"P","PText":"11","Q":"Q","QText":"12"},
+{"ID":"9","ans":"Q","topic":"30÷2 =？","P":"P","PText":"14","Q":"Q","QText":"15"},
+{"ID":"10","ans":"Q","topic":"34÷2 =？","P":"P","PText":"16","Q":"Q","QText":"17"},
+{"ID":"11","ans":"Q","topic":"38÷2 =？","P":"P","PText":"18","Q":"Q","QText":"19"},
+{"ID":"12","ans":"Q","topic":"40÷2 =？","P":"P","PText":"10","Q":"Q","QText":"20"},
+{"ID":"13","ans":"Q","topic":"42÷2 =？","P":"P","PText":"12","Q":"Q","QText":"21"},
+{"ID":"14","ans":"Q","topic":"44÷2 =？","P":"P","PText":"12","Q":"Q","QText":"22"},
+{"ID":"15","ans":"Q","topic":"46÷2 =？","P":"P","PText":"13","Q":"Q","QText":"23"},
+{"ID":"16","ans":"Q","topic":"48÷2 =？","P":"P","PText":"14","Q":"Q","QText":"24"},
+{"ID":"17","ans":"Q","topic":"50÷2 =？","P":"P","PText":"15","Q":"Q","QText":"25"},
+{"ID":"18","ans":"Q","topic":"60÷2 =？","P":"P","PText":"23","Q":"Q","QText":"30"},
+{"ID":"19","ans":"Q","topic":"64÷2 =？","P":"P","PText":"23","Q":"Q","QText":"32"},
+{"ID":"20","ans":"Q","topic":"66÷2 =？","P":"P","PText":"23","Q":"Q","QText":"33"},
+{"ID":"21","ans":"Q","topic":"68÷2 =？","P":"P","PText":"43","Q":"Q","QText":"34"},
+{"ID":"22","ans":"Q","topic":"80÷2 =？","P":"P","PText":"42","Q":"Q","QText":"40"},
+{"ID":"23","ans":"Q","topic":"82÷2 =？","P":"P","PText":"42","Q":"Q","QText":"41"},
+{"ID":"24","ans":"Q","topic":"84÷2 =？","P":"P","PText":"43","Q":"Q","QText":"42"},
+{"ID":"25","ans":"Q","topic":"86÷2 =？","P":"P","PText":"42","Q":"Q","QText":"43"},
+{"ID":"26","ans":"Q","topic":"88÷2 =？","P":"P","PText":"42","Q":"Q","QText":"44"},
+{"ID":"27","ans":"Q","topic":"12÷3 =？","P":"P","PText":"3","Q":"Q","QText":"4"},
+{"ID":"28","ans":"Q","topic":"15÷3 =？","P":"P","PText":"4","Q":"Q","QText":"5"},
+{"ID":"29","ans":"Q","topic":"18÷3 =？","P":"P","PText":"5","Q":"Q","QText":"6"},
+{"ID":"30","ans":"Q","topic":"21÷3 =？","P":"P","PText":"6","Q":"Q","QText":"7"},
+{"ID":"31","ans":"Q","topic":"24÷3 =？","P":"P","PText":"7","Q":"Q","QText":"8"},
+{"ID":"32","ans":"Q","topic":"27÷3 =？","P":"P","PText":"8","Q":"Q","QText":"9"},
+{"ID":"33","ans":"Q","topic":"30÷3 =？","P":"P","PText":"5","Q":"Q","QText":"10"},
+{"ID":"34","ans":"Q","topic":"33÷3 =？","P":"P","PText":"12","Q":"Q","QText":"11"},
+{"ID":"35","ans":"Q","topic":"36÷3 =？","P":"P","PText":"11","Q":"Q","QText":"12"},
+{"ID":"36","ans":"Q","topic":"39÷3 =？","P":"P","PText":"12","Q":"Q","QText":"13"},
+{"ID":"37","ans":"Q","topic":"60÷3 =？","P":"P","PText":"30","Q":"Q","QText":"20"},
+{"ID":"38","ans":"Q","topic":"63÷3 =？","P":"P","PText":"22","Q":"Q","QText":"21"},
+{"ID":"39","ans":"Q","topic":"66÷3 =？","P":"P","PText":"21","Q":"Q","QText":"22"},
+{"ID":"40","ans":"Q","topic":"69÷3 =？","P":"P","PText":"32","Q":"Q","QText":"23"},
+{"ID":"41","ans":"Q","topic":"90÷3 =？","P":"P","PText":"20","Q":"Q","QText":"30"},
+{"ID":"42","ans":"Q","topic":"93÷3 =？","P":"P","PText":"13","Q":"Q","QText":"31"},
+{"ID":"43","ans":"Q","topic":"96÷3 =？","P":"P","PText":"23","Q":"Q","QText":"32"},
+{"ID":"44","ans":"Q","topic":"99÷3 =？","P":"P","PText":"23","Q":"Q","QText":"33"},
+{"ID":"45","ans":"Q","topic":"12÷4 =？","P":"P","PText":"4","Q":"Q","QText":"3"},
+{"ID":"46","ans":"Q","topic":"16÷4 =？","P":"P","PText":"3","Q":"Q","QText":"4"},
+{"ID":"47","ans":"Q","topic":"20÷4 =？","P":"P","PText":"6","Q":"Q","QText":"5"},
+{"ID":"48","ans":"Q","topic":"24÷4 =？","P":"P","PText":"5","Q":"Q","QText":"6"},
+{"ID":"49","ans":"Q","topic":"28÷4 =？","P":"P","PText":"6","Q":"Q","QText":"7"},
+{"ID":"50","ans":"Q","topic":"32÷4 =？","P":"P","PText":"7","Q":"Q","QText":"8"},
+{"ID":"51","ans":"Q","topic":"36÷4 =？","P":"P","PText":"8","Q":"Q","QText":"9"},
+{"ID":"52","ans":"Q","topic":"40÷4 =？","P":"P","PText":"9","Q":"Q","QText":"10"},
+{"ID":"53","ans":"Q","topic":"44÷4 =？","P":"P","PText":"12","Q":"Q","QText":"11"},
+{"ID":"54","ans":"Q","topic":"48÷4 =？","P":"P","PText":"11","Q":"Q","QText":"12"},
+{"ID":"55","ans":"Q","topic":"52÷4 =？","P":"P","PText":"12","Q":"Q","QText":"13"},
+{"ID":"56","ans":"Q","topic":"56÷4 =？","P":"P","PText":"13","Q":"Q","QText":"14"},
+{"ID":"57","ans":"Q","topic":"80÷4 =？","P":"P","PText":"10","Q":"Q","QText":"20"},
+{"ID":"58","ans":"Q","topic":"84÷4 =？","P":"P","PText":"12","Q":"Q","QText":"21"},
+{"ID":"59","ans":"Q","topic":"88÷4 =？","P":"P","PText":"23","Q":"Q","QText":"22"},
+{"ID":"60","ans":"Q","topic":"10÷5 =？","P":"P","PText":"3","Q":"Q","QText":"2"},
+{"ID":"61","ans":"Q","topic":"15÷5 =？","P":"P","PText":"2","Q":"Q","QText":"3"},
+{"ID":"62","ans":"Q","topic":"20÷5 =？","P":"P","PText":"5","Q":"Q","QText":"4"},
+{"ID":"63","ans":"Q","topic":"25÷5 =？","P":"P","PText":"4","Q":"Q","QText":"5"},
+{"ID":"64","ans":"Q","topic":"30÷5 =？","P":"P","PText":"5","Q":"Q","QText":"6"},
+{"ID":"65","ans":"Q","topic":"35÷5 =？","P":"P","PText":"6","Q":"Q","QText":"7"},
+{"ID":"66","ans":"Q","topic":"40÷5 =？","P":"P","PText":"9","Q":"Q","QText":"8"},
+{"ID":"67","ans":"Q","topic":"45÷5 =？","P":"P","PText":"7","Q":"Q","QText":"9"},
+{"ID":"68","ans":"Q","topic":"50÷5 =？","P":"P","PText":"1","Q":"Q","QText":"10"},
+{"ID":"69","ans":"Q","topic":"55÷5 =？","P":"P","PText":"12","Q":"Q","QText":"11"},
+{"ID":"70","ans":"Q","topic":"60÷5 =？","P":"P","PText":"13","Q":"Q","QText":"12"},
+{"ID":"71","ans":"Q","topic":"65÷5 =？","P":"P","PText":"12","Q":"Q","QText":"13"},
+{"ID":"72","ans":"Q","topic":"70÷5 =？","P":"P","PText":"13","Q":"Q","QText":"14"},
+{"ID":"73","ans":"Q","topic":"75÷5 =？","P":"P","PText":"14","Q":"Q","QText":"15"},
+{"ID":"74","ans":"Q","topic":"80÷5 =？","P":"P","PText":"15","Q":"Q","QText":"16"},
+{"ID":"75","ans":"Q","topic":"85÷5 =？","P":"P","PText":"19","Q":"Q","QText":"17"},
+{"ID":"76","ans":"P","topic":"90÷5 =？","P":"P","PText":"18","Q":"Q","QText":"19"},
+{"ID":"77","ans":"P","topic":"95÷5 =？","P":"P","PText":"19","Q":"Q","QText":"18"},
+{"ID":"78","ans":"P","topic":"12÷6 =？","P":"P","PText":"2","Q":"Q","QText":"3"},
+{"ID":"79","ans":"P","topic":"18÷6 =？","P":"P","PText":"3","Q":"Q","QText":"4"},
+{"ID":"80","ans":"P","topic":"24÷6 =？","P":"P","PText":"4","Q":"Q","QText":"5"},
+{"ID":"81","ans":"P","topic":"30÷6 =？","P":"P","PText":"5","Q":"Q","QText":"6"},
+{"ID":"82","ans":"P","topic":"36÷6 =？","P":"P","PText":"6","Q":"Q","QText":"5"},
+{"ID":"83","ans":"P","topic":"42÷6 =？","P":"P","PText":"7","Q":"Q","QText":"6"},
+{"ID":"84","ans":"P","topic":"48÷6 =？","P":"P","PText":"8","Q":"Q","QText":"7"},
+{"ID":"85","ans":"P","topic":"54÷6 =？","P":"P","PText":"9","Q":"Q","QText":"6"},
+{"ID":"86","ans":"P","topic":"60÷6 =？","P":"P","PText":"10","Q":"Q","QText":"9"},
+{"ID":"87","ans":"P","topic":"66÷6 =？","P":"P","PText":"11","Q":"Q","QText":"10"},
+{"ID":"88","ans":"P","topic":"72÷6 =？","P":"P","PText":"12","Q":"Q","QText":"22"},
+{"ID":"89","ans":"P","topic":"78÷6 =？","P":"P","PText":"13","Q":"Q","QText":"14"},
+{"ID":"90","ans":"P","topic":"84÷6 =？","P":"P","PText":"14","Q":"Q","QText":"13"},
+{"ID":"91","ans":"P","topic":"87÷3 =？","P":"P","PText":"29","Q":"Q","QText":"27"},
+{"ID":"92","ans":"P","topic":"96÷6 =？","P":"P","PText":"16","Q":"Q","QText":"15"},
+{"ID":"93","ans":"P","topic":"14÷7 =？","P":"P","PText":"2","Q":"Q","QText":"3"},
+{"ID":"94","ans":"P","topic":"21÷7 =？","P":"P","PText":"3","Q":"Q","QText":"2"},
+{"ID":"95","ans":"P","topic":"28÷7 =？","P":"P","PText":"4","Q":"Q","QText":"3"},
+{"ID":"96","ans":"P","topic":"35÷7 =？","P":"P","PText":"5","Q":"Q","QText":"4"},
+{"ID":"97","ans":"P","topic":"42÷7 =？","P":"P","PText":"6","Q":"Q","QText":"5"},
+{"ID":"98","ans":"P","topic":"49÷7 =？","P":"P","PText":"7","Q":"Q","QText":"6"},
+{"ID":"99","ans":"P","topic":"56÷7 =？","P":"P","PText":"8","Q":"Q","QText":"7"},
+{"ID":"100","ans":"P","topic":"63÷7 =？","P":"P","PText":"9","Q":"Q","QText":"8"},
+{"ID":"101","ans":"P","topic":"70÷7 =？","P":"P","PText":"10","Q":"Q","QText":"9"},
+{"ID":"102","ans":"P","topic":"77÷7 =？","P":"P","PText":"11","Q":"Q","QText":"10"},
+{"ID":"103","ans":"P","topic":"84÷7 =？","P":"P","PText":"12","Q":"Q","QText":"11"},
+{"ID":"104","ans":"P","topic":"91÷7 =？","P":"P","PText":"13","Q":"Q","QText":"12"},
+{"ID":"105","ans":"P","topic":"98÷7 =？","P":"P","PText":"14","Q":"Q","QText":"13"},
+{"ID":"106","ans":"P","topic":"16÷8 =？","P":"P","PText":"2","Q":"Q","QText":"3"},
+{"ID":"107","ans":"P","topic":"24÷8 =？","P":"P","PText":"3","Q":"Q","QText":"2"},
+{"ID":"108","ans":"P","topic":"32÷8 =？","P":"P","PText":"4","Q":"Q","QText":"3"},
+{"ID":"109","ans":"P","topic":"40÷8 =？","P":"P","PText":"5","Q":"Q","QText":"4"},
+{"ID":"110","ans":"P","topic":"48÷8 =？","P":"P","PText":"6","Q":"Q","QText":"5"},
+{"ID":"111","ans":"P","topic":"56÷8 =？","P":"P","PText":"7","Q":"Q","QText":"6"},
+{"ID":"112","ans":"P","topic":"64÷8 =？","P":"P","PText":"8","Q":"Q","QText":"7"},
+{"ID":"113","ans":"P","topic":"72÷8 =？","P":"P","PText":"9","Q":"Q","QText":"8"},
+{"ID":"114","ans":"P","topic":"80÷8 =？","P":"P","PText":"10","Q":"Q","QText":"9"},
+{"ID":"115","ans":"P","topic":"88÷8 =？","P":"P","PText":"11","Q":"Q","QText":"10"},
+{"ID":"116","ans":"P","topic":"96÷8 =？","P":"P","PText":"12","Q":"Q","QText":"11"},
+{"ID":"117","ans":"P","topic":"18÷9 =？","P":"P","PText":"2","Q":"Q","QText":"3"},
+{"ID":"118","ans":"P","topic":"27÷9 =？","P":"P","PText":"3","Q":"Q","QText":"4"},
+{"ID":"119","ans":"P","topic":"36÷9 =？","P":"P","PText":"4","Q":"Q","QText":"3"},
+{"ID":"120","ans":"P","topic":"45÷9 =？","P":"P","PText":"5","Q":"Q","QText":"4"},
+{"ID":"121","ans":"P","topic":"54÷9 =？","P":"P","PText":"6","Q":"Q","QText":"5"},
+{"ID":"122","ans":"P","topic":"63÷9 =？","P":"P","PText":"7","Q":"Q","QText":"6"},
+{"ID":"123","ans":"P","topic":"72÷9 =？","P":"P","PText":"8","Q":"Q","QText":"7"},
+{"ID":"124","ans":"P","topic":"81÷9 =？","P":"P","PText":"9","Q":"Q","QText":"8"},
+{"ID":"125","ans":"P","topic":"90÷9 =？","P":"P","PText":"10","Q":"Q","QText":"9"},
+{"ID":"126","ans":"P","topic":"99÷9 =？","P":"P","PText":"11","Q":"Q","QText":"10"},
+{"ID":"127","ans":"P","topic":"52÷2 =？","P":"P","PText":"26","Q":"Q","QText":"25"},
+{"ID":"128","ans":"P","topic":"54÷2 =？","P":"P","PText":"27","Q":"Q","QText":"26"},
+{"ID":"129","ans":"P","topic":"56÷2 =？","P":"P","PText":"28","Q":"Q","QText":"25"},
+{"ID":"130","ans":"P","topic":"58÷2 =？","P":"P","PText":"29","Q":"Q","QText":"27"},
+{"ID":"131","ans":"P","topic":"62÷2 =？","P":"P","PText":"31","Q":"Q","QText":"28"},
+{"ID":"132","ans":"P","topic":"70÷2 =？","P":"P","PText":"35","Q":"Q","QText":"34"},
+{"ID":"133","ans":"P","topic":"72÷2 =？","P":"P","PText":"36","Q":"Q","QText":"35"},
+{"ID":"134","ans":"P","topic":"74÷2 =？","P":"P","PText":"37","Q":"Q","QText":"36"},
+{"ID":"135","ans":"P","topic":"76÷2 =？","P":"P","PText":"38","Q":"Q","QText":"37"},
+{"ID":"136","ans":"P","topic":"78÷2 =？","P":"P","PText":"39","Q":"Q","QText":"38"},
+{"ID":"137","ans":"P","topic":"90÷2 =？","P":"P","PText":"45","Q":"Q","QText":"44"},
+{"ID":"138","ans":"P","topic":"92÷2 =？","P":"P","PText":"46","Q":"Q","QText":"45"},
+{"ID":"139","ans":"P","topic":"94÷2 =？","P":"P","PText":"47","Q":"Q","QText":"46"},
+{"ID":"140","ans":"P","topic":"96÷2 =？","P":"P","PText":"48","Q":"Q","QText":"47"},
+{"ID":"141","ans":"P","topic":"98÷2 =？","P":"P","PText":"49","Q":"Q","QText":"48"},
+{"ID":"142","ans":"P","topic":"42÷3 =？","P":"P","PText":"14","Q":"Q","QText":"13"},
+{"ID":"143","ans":"P","topic":"45÷3 =？","P":"P","PText":"15","Q":"Q","QText":"14"},
+{"ID":"144","ans":"P","topic":"48÷3 =？","P":"P","PText":"16","Q":"Q","QText":"15"},
+{"ID":"145","ans":"P","topic":"51÷3 =？","P":"P","PText":"17","Q":"Q","QText":"16"},
+{"ID":"146","ans":"P","topic":"54÷3 =？","P":"P","PText":"18","Q":"Q","QText":"17"},
+{"ID":"147","ans":"P","topic":"57÷3 =？","P":"P","PText":"19","Q":"Q","QText":"18"},
+{"ID":"148","ans":"P","topic":"72÷3 =？","P":"P","PText":"24","Q":"Q","QText":"23"},
+{"ID":"149","ans":"P","topic":"75÷3 =？","P":"P","PText":"25","Q":"Q","QText":"24"},
+{"ID":"150","ans":"P","topic":"78÷3 =？","P":"P","PText":"26","Q":"Q","QText":"25"}
+];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].QText);
+            $("#item2_A").attr("data-data",data[data_index].Q);
+            $("#item2_B").text(data[data_index].PText);
+            $("#item2_B").attr("data-data",data[data_index].P);
+            // $("#item2_C").text(data[data_index].CText);
+            // $("#item2_C").attr("data-data",data[data_index].C);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push(type4Num);
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+            if(errorNum>=3){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

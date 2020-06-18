@@ -1,0 +1,508 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平均数的应用</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #ff6700;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+
+        </div>
+
+        <div class="item1_img item1_imgBox2">
+            <img id="img1" src="../com_imgs/taiyang.png" alt="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_C"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_D"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+{"ID":"1","ans":"C","topic":"东东的语文、数学平均分是88分，加上英语成绩后平均分提高了2分，东东的英语成绩为（  ）","A":"A","AText":"90分","B":"B","BText":"88分","C":"C","CText":"94分","D":"D","DText":"92分"},
+{"ID":"2","ans":"A","topic":"四（1）班的同学中身高最高的是1.60米，最矮的1.32米，四（1）班学生平均身高可能是（  ）","A":"A","AText":"1.45米","B":"B","BText":"1.31米","C":"C","CText":"1.60米","D":"D","DText":"1.32米"},
+{"ID":"3","ans":"A","topic":"笑笑调查了操场上做游戏的同学的年龄情况：12岁，12岁，11岁，11岁，10岁。这时另一位同学也加入游戏的队伍，他的年龄是8岁，此时做游戏的人的平均年龄会（  ）","A":"A","AText":"变小","B":"B","BText":"变大","C":"C","CText":"不变","D":"D","DText":"无法确定"},
+{"ID":"4","ans":"D","topic":"农具厂要生产1900件农具，已经生产了4天，平均每天生产250件，剩下的要生产3天才能完成，平均每天生产农具（  ）","A":"A","AText":"1500件","B":"B","BText":"900件","C":"C","CText":"2150件","D":"D","DText":"300件"},
+{"ID":"5","ans":"A","topic":"有五个数：8，4，7，6，X，它们的平均数为8，则X为（  ）","A":"A","AText":"15","B":"B","BText":"11","C":"C","CText":"12","D":"D","DText":"13"},
+{"ID":"6","ans":"A","topic":"如果一组数据3，6，X，7，3的平均数是4，则X＝（  ）","A":"A","AText":"1","B":"B","BText":"3","C":"C","CText":"4","D":"D","DText":"5"},
+{"ID":"7","ans":"A","topic":"贝贝语文、数学、英语三科考试的平均成绩是92分，已知数学95分，英语93分，那么她的语文成绩（　　）三科的平均成绩","A":"A","AText":"低于","B":"B","BText":"等于","C":"C","CText":"高于","D":"D","DText":"都有可能"},
+{"ID":"8","ans":"A","topic":"某小组4个学生的数学成绩是（单位：分）：87、93、95、85，这个小组的数学平均成绩是（  ）","A":"A","AText":"90分","B":"B","BText":"89分","C":"C","CText":"91分","D":"D","DText":"88分"},
+{"ID":"9","ans":"D","topic":"黄霏霏所在班级学生的平均身高是145cm，黄霏霏的身高（  ）","A":"A","AText":"一定比145cm高","B":"B","BText":"一定比145cm矮","C":"C","CText":"等于145cm","D":"D","DText":"不确定"},
+{"ID":"10","ans":"C","topic":"有三个数分别是8、a、12，如果这三个数的平均数大于11并小于14，那么这个数a（  ）","A":"A","AText":"比8小","B":"B","BText":"比8大但比12小","C":"C","CText":"比13大但比22小","D":"D","DText":"无法判断"},
+{"ID":"11","ans":"B","topic":"三年级同学捐书，三（1）班捐了35本，三（2）班捐了45本，三（3）班捐了40本，平均每班捐（  ）","A":"A","AText":"41本","B":"B","BText":"40本","C":"C","CText":"43本","D":"D","DText":"44本"},
+{"ID":"12","ans":"D","topic":"丽丽数学、英语的平均分是95分，其中英语是91分，数学是（  ）","A":"A","AText":"90分","B":"B","BText":"94分","C":"C","CText":"95分","D":"D","DText":"99分"},
+{"ID":"13","ans":"C","topic":"四个数的平均数是15，如果每个数增加a，那么这四个数的和是（  ）","A":"A","AText":"15×4+a","B":"B","BText":"15+4a","C":"C","CText":"（15+a）×4","D":"D","DText":"以上都不是"},
+{"ID":"14","ans":"A","topic":"有一条山路，一辆汽车上山时每小时行30千米，下山原路返回每小时行50千米，则汽车上山往返一次的平均速度是（  ）","A":"A","AText":"40千米/时","B":"B","BText":"37.5千米/时","C":"C","CText":"35千米/时","D":"D","DText":"45千米/时"},
+{"ID":"15","ans":"B","topic":"甲、乙、丙三人去秋游，甲带了5个面包，乙带了4个面包，三人平分着吃，每个人分得（  ）个。","A":"A","AText":"4.5个","B":"B","BText":"3个","C":"C","CText":"1.5个","D":"D","DText":"2个"},
+{"ID":"16","ans":"A","topic":"甲、乙、丙三名同学的平均年龄是12岁，甲与乙的平均年龄是13岁，则丙的年龄是（  ）","A":"A","AText":"10岁","B":"B","BText":"11岁","C":"C","CText":"12岁","D":"D","DText":"13岁"},
+{"ID":"17","ans":"C","topic":"在一组数据中最大的数是20，最小的数是8，这组数的平均数不可能是（  ）","A":"A","AText":"9","B":"B","BText":"15","C":"C","CText":"20","D":"D","DText":"14"},
+{"ID":"18","ans":"A","topic":"小明的语数英三科平均分是92分，科学95分，那么小明的四科平均分（  ）","A":"A","AText":"比92分高","B":"B","BText":"比92分低","C":"C","CText":"是92分","D":"D","DText":"不能确定"},
+{"ID":"19","ans":"B","topic":"壮壮三次英语口试成绩的平均分为92分，第一次成绩90分，第二次成绩96分，第三次成绩（  ）","A":"A","AText":"高于平均分","B":"B","BText":"低于平均分","C":"C","CText":"等于平均分","D":"D","DText":"都有可能"},
+{"ID":"20","ans":"C","topic":"在10、14、16、20四个数中，比这四个数的平均数大的有（  ）","A":"A","AText":"1个","B":"B","BText":"3个","C":"C","CText":"2个","D":"D","DText":"4个"},
+{"ID":"21","ans":"C","topic":"已知16＜a＜20，那么9、17和a三个数的平均数可能是（  ）","A":"A","AText":"13","B":"B","BText":"14","C":"C","CText":"15","D":"D","DText":"16"},
+{"ID":"22","ans":"B","topic":"四年级一班舞蹈队有20个同学，平均身高150厘米，（  ）比150厘米矮的同学。","A":"A","AText":"没有","B":"B","BText":"可能有","C":"C","CText":"不确定","D":"D","DText":"不可能有"},
+{"ID":"23","ans":"B","topic":"已知一组数据16，a，12，14的平均数是14，那么a的值是（  ）","A":"A","AText":"12","B":"B","BText":"14","C":"C","CText":"15","D":"D","DText":"16"},
+{"ID":"24","ans":"A","topic":"小红语文、英语总分181分，数学95分，她的平均成绩是（  ）","A":"A","AText":"92分","B":"B","BText":"138分","C":"C","CText":"90分","D":"D","DText":"94分"},
+{"ID":"25","ans":"C","topic":"某班一次数学测试平均分为88.7，小明因病后来补测成绩是88.5。那么这个班级的平均分将（  ）","A":"A","AText":"提升","B":"B","BText":"不变","C":"C","CText":"降低","D":"D","DText":"不确定"},
+{"ID":"26","ans":"A","topic":"林琳家到公园300米，如果她以1米/秒的速度从家去公园，然后以3米/秒的速度从公园回家，那么林琳往返的平均速度是（  ）","A":"A","AText":"2米/秒","B":"B","BText":"2.4米/秒","C":"C","CText":"1.5米/秒","D":"D","DText":"1.8米/秒"},
+{"ID":"27","ans":"B","topic":"在一组数据中最大的是30，最小的是25，那么这组数据的平均数可能是（  ）","A":"A","AText":"30","B":"B","BText":"27","C":"C","CText":"23","D":"D","DText":"无法确定"},
+{"ID":"28","ans":"B","topic":"三个数的平均数是18，其中两个数分别是10、24,第三个数是（  ）","A":"A","AText":"18","B":"B","BText":"20","C":"C","CText":"22","D":"D","DText":"无法确定"},
+{"ID":"29","ans":"B","topic":"如果一组数据2，5，7，a的平均数是7，则a的值是（  ）","A":"A","AText":"15","B":"B","BText":"14","C":"C","CText":"16","D":"D","DText":"18"},
+{"ID":"30","ans":"B","topic":"周杰家3口人住120平方米的房子，周宇家5口人住150平方米的房子，人均居住面积大的是（  ）","A":"A","AText":"周杰家","B":"B","BText":"周宇家","C":"C","CText":"不好判断","D":"D","DText":"两家相等"},
+{"ID":"31","ans":"C","topic":"5人中最高是153厘米，最矮的是126厘米，这5人的平均身高可能是（  ）","A":"A","AText":"119厘米","B":"B","BText":"126厘米","C":"C","CText":"138厘米","D":"D","DText":"153厘米"},
+{"ID":"32","ans":"B","topic":"17、13、12、18四个数的平均数是（  ）","A":"A","AText":"14","B":"B","BText":"15","C":"C","CText":"16","D":"D","DText":"17"},
+{"ID":"33","ans":"A","topic":"小华语文和数学的总分为182分，科学85分，她的平均成绩是（  ）","A":"A","AText":"89分","B":"B","BText":"90分","C":"C","CText":"91分","D":"D","DText":"92分"},
+{"ID":"34","ans":"C","topic":"小成语文、数学、英语三门功课的平均分为95分，英语95分，语文90分，他的数学成绩是（  ）","A":"A","AText":"89分","B":"B","BText":"134分","C":"C","CText":"100分","D":"D","DText":"98分"},
+{"ID":"35","ans":"C","topic":"小芳沿100米跑道走了3次，三次走的步数分别是148、152、153。照这样走1千米，小芳大约要走（  ）步","A":"A","AText":"150步","B":"B","BText":"151步","C":"C","CText":"1500步","D":"D","DText":"1000步"},
+{"ID":"36","ans":"C","topic":"某校平均每班人数正好是50.4人，则该校的班级数可能是（  ）","A":"A","AText":"18","B":"B","BText":"21","C":"C","CText":"25","D":"D","DText":"32"},
+{"ID":"37","ans":"C","topic":"三年级3个班平均每班有学生40人，其中一班有39人，二班有40人，三班有（  ）","A":"A","AText":"39人","B":"B","BText":"40人","C":"C","CText":"41人","D":"D","DText":"42人"},
+{"ID":"38","ans":"C","topic":"小军和小亮的语文平均成绩是95分,小军的成绩低于95分,小亮的成绩（  ）","A":"A","AText":"可能是95分","B":"B","BText":"可能比95分低","C":"C","CText":"一定比95分高","D":"D","DText":"可能比95分高"},
+{"ID":"39","ans":"D","topic":"小红在一天中测量了4次气温，分别是15℃、27℃、25℃、21℃。这一天的平均气温是（  ）","A":"A","AText":"25℃","B":"B","BText":"24℃","C":"C","CText":"23℃","D":"D","DText":"22℃"},
+{"ID":"40","ans":"B","topic":"已知甲＞乙＞丙＞丁，且都是大于0的整数，如果甲、乙、丙三个数的平均数是15，那么甲、乙、丙、丁四个数的平均数应该（  ）","A":"A","AText":"还是15","B":"B","BText":"比15小","C":"C","CText":"比15大","D":"D","DText":"不确定"},
+{"ID":"41","ans":"D","topic":"李强在5次考试中最低85分，最高100分，这5次平均分可能是（  ）","A":"A","AText":"85分","B":"B","BText":"100分","C":"C","CText":"78分","D":"D","DText":"92分"},
+{"ID":"42","ans":"D","topic":"小明所在班级的数学平均成绩是98分，小强所在班级的数学平均成绩是96分，小明比小强考得（  ）","A":"A","AText":"高","B":"B","BText":"低","C":"C","CText":"一样高","D":"D","DText":"无法确定"},
+{"ID":"43","ans":"B","topic":"小丽期末考的成绩：语文96分，数学97分，英语89分。小丽这三门功课的平均分是（  ）","A":"A","AText":"95分","B":"B","BText":"94分","C":"C","CText":"96分","D":"D","DText":"93分"},
+{"ID":"44","ans":"C","topic":"甲、乙两数的平均数是5.67，乙、丙两数的平均数是5.7。那么甲、丙两数的大小关系是（  ）","A":"A","AText":"甲＞丙","B":"B","BText":"甲=丙","C":"C","CText":"甲＜丙","D":"D","DText":"无法确定"},
+{"ID":"45","ans":"B","topic":"在一次期中检测中，小林语文、数学、英语三科的平均分是93分，如果不计英语，其中语文、数学两科的平均分增加了，小林的英语成绩（  ）","A":"A","AText":"比93分多","B":"B","BText":"比93分少","C":"C","CText":"等于93分","D":"D","DText":"无法确定"},
+{"ID":"46","ans":"C","topic":"三个数的平均数是15.7，加上第四个数后平均数是16，第四个数是（  ）","A":"A","AText":"15.85","B":"B","BText":"18","C":"C","CText":"16.9","D":"D","DText":"17.2"},
+{"ID":"47","ans":"C","topic":"小刚算出他们学校平均每班人数为46.4人，他们学校的班级可能是（  ）","A":"A","AText":"18","B":"B","BText":"32","C":"C","CText":"25","D":"D","DText":"29"},
+{"ID":"48","ans":"D","topic":"小芳、小亮和小兵每人买了2支笔，一共要18元，每支笔多少钱？","A":"A","AText":"9元","B":"B","BText":"6元","C":"C","CText":"4.5元","D":"D","DText":"3元"},
+{"ID":"49","ans":"A","topic":"在某学期的前四次数学测试中，小红成绩最高得了95分，最低得了87分。第五次数学测试小红得了99分。小红这五次的平均分与前四次的平均分相比（  ）。","A":"A","AText":"前者比后者高","B":"B","BText":"前者比后者低","C":"C","CText":"二者一样高","D":"D","DText":"不确定"},
+{"ID":"50","ans":"A","topic":"有4根彩带长度分别为：15厘米、17厘米、22厘米、18厘米，这4根彩带的平均长度是（  ）","A":"A","AText":"18厘米","B":"B","BText":"17厘米","C":"C","CText":"16厘米","D":"D","DText":"15厘米"},
+{"ID":"51","ans":"C","topic":"小明3天看完一本书平均每天看20页。他前两天每天看的都超过了20页，估计第三天看的页数是（  ）","A":"A","AText":"比20页多","B":"B","BText":"看了20页","C":"C","CText":"比20页少","D":"D","DText":"不确定"},
+{"ID":"52","ans":"C","topic":"四年级4个班同学捐图书，一班和二班共捐了25本，三班捐了16本，四班捐了15本，平均每个班捐图书（  ）","A":"A","AText":"15本","B":"B","BText":"18本","C":"C","CText":"14本","D":"D","DText":"17本"},
+{"ID":"53","ans":"C","topic":"小强的身高是146厘米，小红比他高2厘米，两人的平均身高是（  ）","A":"A","AText":"144厘米","B":"B","BText":"146厘米","C":"C","CText":"147厘米","D":"D","DText":"148厘米"},
+{"ID":"54","ans":"C","topic":"小明从A地到B地的平均速度是3米/秒，然后从B地原路返回平均速度是7米/秒。那么小明来回的平均速度是（  ）米/秒。","A":"A","AText":"6","B":"B","BText":"8","C":"C","CText":"5","D":"D","DText":"7"},
+{"ID":"55","ans":"B","topic":"一次跑步,4名同学用时分别是7分钟、x分钟、8分钟、9分钟,他们的平均用时是8分钟,用时未知的同学是（  ）分钟。","A":"A","AText":"10","B":"B","BText":"8","C":"C","CText":"5","D":"D","DText":"7"},
+{"ID":"56","ans":"A","topic":"小红从甲地到1200米外的乙地去办事，去时每分钟走40米，返回时每分钟走60米。小红往返的平均速度是每分钟走（  ）","A":"A","AText":"50米","B":"B","BText":"48米","C":"C","CText":"45米","D":"D","DText":"47米"},
+{"ID":"57","ans":"B","topic":"一次测验四（2）班的最高分95分，最低分是86分。这个班的平均成绩可能是（  ）","A":"A","AText":"85分","B":"B","BText":"90分","C":"C","CText":"95分","D":"D","DText":"96分"},
+{"ID":"58","ans":"D","topic":"小明三次数学测验的平均成绩是98，第一次是99分，第二次是95分，第三次是（  ）","A":"A","AText":"96分","B":"B","BText":"97分","C":"C","CText":"98分","D":"D","DText":"100分"},
+{"ID":"59","ans":"C","topic":"小红期末考试语文、数学的平均分是98分，英语的成绩是95分，她三科的平均成绩是（  ）","A":"A","AText":"96","B":"B","BText":"98","C":"C","CText":"97","D":"D","DText":"99"},
+{"ID":"60","ans":"D","topic":"某次考试乐乐数学考了89分，语文考了88分。数学、语文、英语三科成绩的平均分是90分。她的英语成绩是（  ）","A":"A","AText":"80分","B":"B","BText":"88分","C":"C","CText":"90分","D":"D","DText":"93分"}
+];
+
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=5;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].AText);
+            $("#item2_A").attr("data-data",data[data_index].A);
+            $("#item2_B").text(data[data_index].BText);
+            $("#item2_B").attr("data-data",data[data_index].B);
+            $("#item2_C").text(data[data_index].CText);
+            $("#item2_C").attr("data-data",data[data_index].C);
+            $("#item2_D").text(data[data_index].DText);
+            $("#item2_D").attr("data-data",data[data_index].D);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push(type4Num);
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

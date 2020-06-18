@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>反馈</title>
+    <link rel="stylesheet" href="../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="../css/iconfont/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="../css/animate.css" type="text/css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body, .box {
+            height: 100%;
+            width: 100%;
+        }
+
+        .div_flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .imgBox {
+            width: 60%;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .imgBox img {
+            max-height: 90%;
+        }
+
+        svg{
+            padding-right: 100px;
+            margin: -24px auto !important;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="div_flex imgBox" style="">
+        <IMG class="imageObj" id='imageObj1' name='imageObj' src="../WebContent/images/smile1.gif">
+        <IMG class="imageObj" style="margin: 0 32px;" id='imageObj' name='imageObj'
+             src="../WebContent/images/smile1.gif">
+        <IMG class="imageObj" id='imageObj3' name='imageObj' src="../WebContent/images/smile1.gif">
+    </div>
+
+    <div style="padding: 8px 0;text-align: center;position: relative">
+        <button class="btn btn-primary" onclick='goto_targetpagename();'>做完了，请点击这里返回</button>
+        <!-- 点赞功能-->
+        <div style="position: absolute;right: 20px;top: 8px;">
+            <span id="btn" style="display: inline-block;margin-right: 10px">
+                <i class="iconfont">&#xe602;</i><span id="task_like" ></span>
+            </span>
+            <span id="btn_" style="display: inline-block;">
+                <i class="iconfont">&#xe602;</i><span id="task_unLike" ></span>
+            </span>
+        </div>
+    </div>
+
+    <div id="container"></div>
+    <div id="containerH" style="padding: 16px;font-size: 16px;text-align: center">最低水平：0；最高水平：99</div>
+
+</div>
+<script src="../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../js/mui.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script>
+    $(function () {
+        pre_check_url_parameters();
+        //点赞效果初始化
+        $.extend({
+            tipsBox: function (options) {
+                options = $.extend({
+                    obj: null,  //jq对象，要在那个html标签上显示
+                    str: "+1",  //字符串，要显示的内容;也可以传一段html，如: "<b style='font-family:Microsoft YaHei;'>+1</b>"
+                    startSize: "12px",  //动画开始的文字大小
+                    endSize: "30px",    //动画结束的文字大小
+                    interval: 600,  //动画时间间隔
+                    color: "red",    //文字颜色
+                    callback: function () { }    //回调函数
+                }, options);
+                $("body").append("<span class='num'>" + options.str + "</span>");
+                var box = $(".num");
+                var left = options.obj.offset().left + options.obj.width() / 2;
+                var top = options.obj.offset().top - options.obj.height();
+                box.css({
+                    "position": "absolute",
+                    "left": left + "px",
+                    "top": top + "px",
+                    "z-index": 9999,
+                    "font-size": options.startSize,
+                    "line-height": options.endSize,
+                    "color": options.color
+                });
+                box.animate({
+                    "font-size": options.endSize,
+                    "opacity": "0",
+                    "top": top - parseInt(options.endSize) + "px"
+                }, options.interval, function () {
+                    box.remove();
+                    options.callback();
+                });
+            }
+        });
+
+    })
+    var rdata = [];
+    var grade = [];
+    var progressArr = [];
+    var taskname = [];
+    var time = [];
+    var oscore = [];
+    var stannine = [];
+    var scoretype = [];
+    var arr = [];
+    var conditionlabel = [];
+    var condition = [];
+    var i = 0;
+    var d = 0;
+    var N = 16;
+
+    function testresultforDisplaying(rdata) {
+        rdata.sort(function (a, b) {
+            return a.testtime > b.testtime ? 1 : -1
+        });
+        var titleName = ""
+        var preNum = 0;
+        var averageNum = 0
+        var progress = 0
+        var perNum = 0
+        var N = rdata.length;
+        var k = 0;
+        var chart;
+        for (var i = 0; i < rdata.length; i++) {
+            if (i == 0) {
+                progressArr[i] = 1
+            } else {
+                progressArr[i] = ((rdata[i].percentile - rdata[i - 1].percentile) / rdata[i - 1].percentile).toFixed(2);
+                progress = progress + ((rdata[i].percentile - rdata[i - 1].percentile) / rdata[i - 1].percentile)
+            }
+            preNum = preNum + rdata[i].percentile
+            grade[i] = rdata[i].percentile;
+            taskname[i] = rdata[i].taskname;
+            time[i] = rdata[i].testtime;
+            oscore[i] = rdata[i].originalscore;
+            stannine[i] = rdata[i].stannine;
+            scoretype[i] = rdata[i].scoretype;
+            conditionlabel[i] = rdata[i].conditionlabel;
+            condition[i] = rdata[i].condition;
+        }
+        // console.log(condition)
+        // console.log(preNum)
+        // console.log(N)
+        averageNum = (preNum / N).toFixed(2);
+        if (N <= 1) {
+            progress = 1
+        } else {
+            progress = (progress / (N - 1)).toFixed(2);
+        }
+
+        // console.log(averageNum);
+        // console.log(progress);
+        // console.log(progressArr);
+        if (N >= 5) {
+            perNum = ((rdata[N - 1].percentile) + (rdata[N - 2].percentile) + (rdata[N - 3].percentile) + (rdata[N - 4].percentile) + (rdata[N - 5].percentile)) / 5
+            titleName = rdata[0].taskname + ",平均百分位：" + averageNum + ";进步系数：" + progress + ";最近5次平均分百分位：" + perNum;
+        } else {
+            titleName = rdata[0].taskname + ",平均百分位：" + averageNum + ";进步系数：" + progress + ";最近5次平均分百分位：空";
+        }
+
+        while (k < rdata.length) {
+            arr.push([k, grade[k % N]]);
+            k++;
+        }
+
+        chart = new Highcharts.Chart({
+            credits: {enabled: false},
+            chart: {                                   //For table
+                renderTo: 'container',
+                type: 'spline',
+                width: 990,
+                height: 240 + N * 50,
+                style: {
+                    margin: '0 auto'
+                },
+                borderColor: '#96FED1',
+                borderWidth: 0,
+                backgroundColor: (0.0, "#fff"),
+                shadow: ("#96FED1", "", "", "", 6),
+                inverted: true,
+            },
+            title: {
+
+                text: titleName,
+
+                align: 'center',
+                //floating: true,
+                y: 15,
+                x: 5,
+                style:
+                    {
+                        fontSize: 16,
+                        fontWeight: 'bold'
+                    }
+            },
+            xAxis: {
+                reversed: false,
+                lineColor: '#006030',
+                tickColor: '#006030',
+                gridLineColor: '#019858',
+                title: {
+                    enabled: true,
+                    text: '时间',
+                    align: 'low',
+                    //margin: 20,
+                    offset: 260,
+                    rotation: 0,
+                    y: 20,
+                    style: {
+                        color: '#3C3C3C',
+                    },
+                },
+                categories: time,
+                labels: {
+                    step: 1,
+                    formatter: function () {
+                        //if(1) {i=d;d=i+1;return time[i%N]+"<br/>原始分("+scoretype[i%N]+"):<br/>"+oscore[i%N];};
+                        //if(1) {i=d;d=i+1;return time[i%N]+"<br/>"+taskname[i%N]+"<br/>类型: "+conditionlabel[i%N]+"; 原始分: "+oscore[i%N]+"; 标准九: "+stannine[i%N];};
+                        // if(1) {i=d;d=i+1;return time[i%N]+"<br/>"+taskname[i%N]+"<br/>类型: "+condition[i%N]+"; 原始分: "+oscore[i%N]+"; 标准九: "+stannine[i%N];};
+                        if (1) {
+                            i = d;
+                            d = i + 1;
+                            return time[i % N] + "<br/>进步系数: " + progressArr[i % N];
+                        }
+                        ;
+
+
+                    },
+                    style: {
+                        fontSize: 12,
+                        color: '#000',
+                        fontWeight: ''
+                    },
+                    enable: false,
+                    rotation: 0,
+                    y: -15,
+                    x: -20,
+                },
+                maxPadding: 5,
+                showLastLabel: true,
+                //type:'datetime',
+            },
+            yAxis: {
+                //categories: ['-10','0','10','20','30','40','50','60','70','80','90','100','110'],
+                min: -10,
+                max: 110,
+                startOnTick: true,
+                tickInterval: 10,
+                gridLineWidth: 2,
+                showLastLabel: true,
+                lineColor: '#006030',
+                tickColor: '#006030',
+                gridLineColor: '#019858',
+                title: {
+                    text: '成绩',
+                    align: 'middle',
+                    rotation: 0,
+                    offset: 30,
+                    style: {
+                        color: '#3C3C3C',
+                    }
+                },
+                plotLines: [{
+                    value: 50,
+                    color: '#000',
+                    width: 0,
+                }],
+                plotBands: [{ // Light air
+                    from: -10,
+                    to: 0,
+                    color: 'rgba(180,180,180,0.5)',
+                    label: {
+                        style: {
+                            color: '#606060',
+                        }
+                    }
+                }, { // Light breeze
+                    from: 100,
+                    to: 110,
+                    color: 'rgba(180,180,180,0.5)',
+                    label: {
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                },],
+                labels: {
+                    step: 1,
+                    formatter: function () {
+                        return this.value;
+                        //if(1) {i=d;d=i+1;return time[i%N]+"<br/>原始分："+oscore[i%N];};
+                    },
+                    align: 'right',
+                    style: {
+                        fontSize: 11,
+                        color: '#5B5B5B',
+                        fontWeight: ''
+
+                    },
+                    //y: -15,
+                    //x: 300,
+                },
+                lineWidth: 3,
+            },
+            legend: {
+                enabled: false,
+            },
+            tooltip: {
+                formatter: function () {
+                    //return '百分位：'+ this.x +' : '+ this.y;
+                    return '百分位: ' + this.y;
+                }
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enable: false
+                    }
+                }
+            },
+            series: [{
+                name: 'Grade Change',
+                data: arr,
+                lineWidth: 4,
+                color: "#007500",
+                lineColor: "#00BB00"
+            }]
+        });
+    }
+
+    //获取url中的参数
+    function GetRequest(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+        var context = "";
+        if (r != null)
+            context = r[2];
+        reg = null;
+        r = null;
+        return context == null || context == "" || context == "undefined" ? null : context;
+    }
+
+    function pre_check_url_parameters() {
+        var access_token = localStorage.getItem('access_token');
+        var taskid = JSON.parse(localStorage.getItem('curTaskInfo')).taskid;
+        var projectid = GetRequest("pid");
+        var getTaskFeedbackResults = {
+            "taskid": taskid,
+            "projectid": projectid,
+            "access_token": access_token
+        }
+        let getTaskFeedbackResultsData = {
+            clazz: 'com.lattice.action.proxy.thirdparty.rest.api.TaskFeedbackProxy',
+            service: 'getTaskFeedbackResults',
+            args: JSON.stringify(getTaskFeedbackResults)
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+            data: getTaskFeedbackResultsData,
+            dataType: 'json',
+            success: function (data) {
+                if (data.results.length == 0) {
+                    $("#containerH").css({
+                        "display": "none"
+                    })
+                } else {
+                    $(".imgBox").css({
+                        'height': '80px'
+                    })
+                    $(".imgBox .imageObj").css({
+                        'height': '80px',
+                        'width': '100px'
+                    })
+                    testresultforDisplaying(data.results);
+                }
+
+            }
+        });
+    }
+
+    function goto_targetpagename() {
+        mui.openWindow({
+            url: '../task_2/appointTask/index_list.html?pid='+GetRequest("pid"),
+            createNew: true,
+            styles: {
+                cachemode:"noCache",
+            }
+        });
+    }
+
+    function niceIn(prop){
+        prop.find('i').addClass('niceIn');
+        setTimeout(function(){
+            prop.find('i').removeClass('niceIn');
+        },1000);
+    }
+
+    $(function () {
+        //点赞
+        $("#btn").one('click',function(){
+            $.tipsBox({
+                obj: $(this),
+                str: "好评",
+                callback: function () {
+                    addCommentForTask('LIKE');
+                }
+            });
+            niceIn($(this));
+        });
+        //点差
+        $("#btn_").one('click',function(){
+            $.tipsBox({
+                obj: $(this),
+                str: "差评",
+                callback: function () {
+                    addCommentForTask('UN_LIKE');
+                }
+            });
+            niceIn($(this));
+        });
+    });
+
+    getCommentCountForTask();
+
+    //获取当前任务的点赞数量
+    function getCommentCountForTask() {
+        var taskInfo = {
+            taskid: JSON.parse(localStorage.getItem('curTaskInfo')).taskid,
+            access_token : localStorage.getItem('access_token')
+        }
+        var taskData = {
+            clazz: 'com.lattice.action.proxy.thirdparty.rest.api.TaskCommentProxy',
+            service: 'getCommentCountForTask',
+            args: JSON.stringify(taskInfo)
+        };
+        $.ajax({
+            type: 'POST',
+            url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+            data: taskData,
+            dataType: 'json',
+            success: function (data) {
+                $("#task_like").html('&nbsp;&nbsp;&nbsp;('+data.results.like+')');
+                $("#task_unLike").html('&nbsp;&nbsp;&nbsp;('+data.results.unLike+')');
+            }
+        });
+    }
+
+    //点赞、点差
+    function addCommentForTask(type) {
+        var taskInfo = {
+            taskid: JSON.parse(localStorage.getItem('curTaskInfo')).taskid,
+            comment: type,
+            access_token : localStorage.getItem('access_token')
+        }
+        var taskData = {
+            clazz: 'com.lattice.action.proxy.thirdparty.rest.api.TaskCommentProxy',
+            service: 'addCommentForTask',
+            args: JSON.stringify(taskInfo)
+        };
+        $.ajax({
+            type: 'POST',
+            url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+            data: taskData,
+            dataType: 'json',
+            success: function (data) {
+                //点赞、点差成功之后 查询点赞个数
+                getCommentCountForTask();
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

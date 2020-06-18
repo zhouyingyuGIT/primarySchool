@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平行四边形与梯形</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #ff6700;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+
+        </div>
+
+        <div class="item1_img item1_imgBox2">
+            <img id="img1" src="../com_imgs/taiyang.png" alt="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #fff2cc;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div class="item2_top" style="">
+                <div class="item2_top_img item2_top_left" style="">
+                    <img src="../com_imgs/left.png" alt="">
+                </div>
+                <div id="topic" class="item2_ti"></div>
+                <div class="item2_top_right item2_top_img">
+                    <img src="../com_imgs/right.png" alt="" style="">
+                </div>
+            </div>
+            <!--<div id="item2_center" class="item2_center" style="">
+                <div class="item2_center_img" style="">
+                    <img class="img_top" src="yes.gif" alt="" style="">
+                </div>
+            </div>-->
+            <div id="item2_ans_box" class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item item2_item_left" style="left: 0px;">
+                        <div data-data="" id="item2_TextA" class="item2_set" style="left: 0px;">
+                            <div id="item2_A" class="item2_item_text item2_item_text_left text_left" style=""></div>
+                            <div class="item2_set_img item2_set_img_left img_left">
+                                <img src="../com_imgs/l.png" alt="" style="">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex">
+                    <div class="item2_item" style="right:0px;">
+                        <div data-data="" id="item2_TextB" class="item2_set" style="right: 0px;">
+                            <div id="item2_B" class="item2_item_text item2_item_text_right text_right" style=""></div>
+                            <div class="item2_set_img item2_set_img_right img_right">
+                                <img src="../com_imgs/r.png" alt="" style="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+            {"ID":"1","ans":"P","topic":"平行四边形不容易变形，梯形容易变形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"2","ans":"P","topic":"梯形对角线互相平分","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"3","ans":"Q","topic":"长方形是特殊的平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"4","ans":"Q","topic":"平行四边形对角线互相平分","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"5","ans":"Q","topic":"正方形是特殊的平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"6","ans":"Q","topic":"平行四边形对角相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"7","ans":"Q","topic":"平行四边形和梯形都是四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"8","ans":"Q","topic":"梯形是只有一组对边平行的四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"9","ans":"Q","topic":"平行四边形和梯形的内角和都是360°","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"10","ans":"P","topic":"梯形对角相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"11","ans":"Q","topic":"平行四边形一定能分成两个完全重合的梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"12","ans":"Q","topic":"梯形的底和高一定是垂直的","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"13","ans":"P","topic":"平行四边形四个角都相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"14","ans":"P","topic":"任意两个梯形可以拼成一个平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"15","ans":"Q","topic":"只有一组对边平行的四边形一定是梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"16","ans":"Q","topic":"两腰相等的梯形叫做等腰梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"17","ans":"P","topic":"等腰梯形相邻的两个角相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"18","ans":"P","topic":"一组对边平行，另一组对边相等的四边形是平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"19","ans":"P","topic":"对角互补的四边形是平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"20","ans":"P","topic":"等腰梯形相邻的两个角相加等于180度","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"21","ans":"Q","topic":"梯形具有不稳定性","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"22","ans":"Q","topic":"平行四边形和梯形都有四个角","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"23","ans":"Q","topic":"平行四边形具有不稳定性","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"24","ans":"Q","topic":"两组对边都相等的平行四边形不一定能够完全重合","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"25","ans":"Q","topic":"四条相等的线段围成的图形一定是平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"26","ans":"Q","topic":"梯形平行的一组对边中，较长的边叫梯形的下底","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"27","ans":"Q","topic":"直角梯形的一条腰与上底、下底垂直","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"28","ans":"Q","topic":"梯形有一组对边互相平行","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"29","ans":"Q","topic":"梯形平行的一组对边中，较短的边叫上底","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"30","ans":"P","topic":"梯形中平行的一组对边叫做腰","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"31","ans":"Q","topic":"任意一个四边形的四个内角的和都是360°","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"32","ans":"Q","topic":"正方形、长方形、平行四边形和梯形是四边形的四种","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"33","ans":"Q","topic":"在平行四边形和梯形内能画出无数条高","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"34","ans":"Q","topic":"梯形对角不相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"35","ans":"P","topic":"平行四边形对角互补","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"36","ans":"Q","topic":"平行四边形是两组对边分别平行的四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"37","ans":"Q","topic":"梯形不平行的那组对边叫做梯形的腰","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"38","ans":"P","topic":"等腰梯形中有直角","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"39","ans":"Q","topic":"梯形至少有一个角是锐角","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"40","ans":"Q","topic":"梯形最多有两个角是钝角","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"41","ans":"Q","topic":"等腰梯形的对角线相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"42","ans":"Q","topic":"等腰梯形的对角互补","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"43","ans":"Q","topic":"梯形中较短的底叫上底，较长的底叫下底","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"44","ans":"P","topic":"梯形的高一定小于腰的长度","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"45","ans":"Q","topic":"对角互补的梯形为等腰梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"46","ans":"Q","topic":"如果梯形的一组对角互补，那么另一组对角也互补","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"47","ans":"Q","topic":"平行四边形和梯形都有无数条高","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"48","ans":"P","topic":"平行四边形是特殊的梯形    ","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"49","ans":"Q","topic":"等腰梯形的两底角相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"50","ans":"Q","topic":"等腰梯形一定不是直角梯形    ","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"51","ans":"P","topic":"有一组邻角相等的梯形一定是等腰梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"52","ans":"P","topic":"直角梯形的两腰和高相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"53","ans":"Q","topic":"两个底角相等的梯形是等腰梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"54","ans":"Q","topic":"任何一个梯形都可以分成两个等高的三角形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"55","ans":"P","topic":"有两条边相等的梯形是等腰梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"56","ans":"P","topic":"等腰梯形的两条底边相等 ","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"57","ans":"P","topic":"等腰梯形的腰和高相等 ","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"58","ans":"P","topic":"有两个角相等的梯形是等腰梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"59","ans":"Q","topic":"两个能够完全重合的平行四边形一定可以拼成一个平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"60","ans":"Q","topic":"对角线相等的梯形是等腰梯形 ","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"61","ans":"Q","topic":"等腰梯形上底和下底中点的连线，把梯形分成面积相等的两部分","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"62","ans":"Q","topic":"存在一个等腰梯形一条底边和腰相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"63","ans":"Q","topic":"等腰梯形没有直角 ","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"64","ans":"Q","topic":"直角梯形的两腰不相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"65","ans":"Q","topic":"直角梯形有两个直角","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"66","ans":"P","topic":"等腰梯形最多有两边相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"67","ans":"P","topic":"平行四边形的四条边一定相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"68","ans":"Q","topic":"平行四边形的对边平行且相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"69","ans":"Q","topic":"等腰梯形的两腰相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"70","ans":"P","topic":"梯形的底上只有一条高","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"71","ans":"P","topic":"任何一个四边形不是梯形，就是平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"72","ans":"P","topic":"平行四边形的底上只有一条高","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"73","ans":"P","topic":"三角形和平行四边形都具有稳定性","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"74","ans":"P","topic":"等腰梯形的对边相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"75","ans":"Q","topic":"两个能够完全重合的三角形一定可以拼成一个平行四边形　","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"76","ans":"P","topic":"平行四边形和梯形都能分割成两个完全重合的三角形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"77","ans":"Q","topic":"平行四边形的底和高一定是垂直的","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"78","ans":"P","topic":"用两个高一样的梯形就可以拼成一个平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"79","ans":"P","topic":"梯形的两组对边平行且相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"80","ans":"Q","topic":"梯形底边上的高既和上底垂直，又和下底垂直","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"81","ans":"Q","topic":"等腰梯形中，其中一条底边所连接的两个角相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"82","ans":"P","topic":"梯形的两组对角都相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"83","ans":"Q","topic":"等腰梯形中没有直角","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"84","ans":"Q","topic":"直角梯形不是等腰梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"85","ans":"P","topic":"直角梯形是等腰梯形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"86","ans":"P","topic":"平行四边形对角线相等且互相平分","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"87","ans":"P","topic":"平行四边不具有稳定性，梯形具有稳定性","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"88","ans":"P","topic":"沿着梯形的高剪开，得到的两个图形可能是两个平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"89","ans":"P","topic":"存在一个梯形它的四条边都相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"90","ans":"P","topic":"等腰梯形有一组对边相等且平行","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"91","ans":"P","topic":"直角梯形只有一个直角","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"92","ans":"Q","topic":"等腰梯形至少有两条边相等","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+				{"ID":"93","ans":"Q","topic":"两个能够完全重合的梯形一定可以拼成平行四边形","Q":"Q","QText":"正确","P":"P","PText":"错误"}
+				];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,QPkey=false,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=3;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].QText);
+            $("#item2_TextA").attr("data-data",data[data_index].Q);
+            $("#item2_B").text(data[data_index].PText);
+            $("#item2_TextB").attr("data-data",data[data_index].P);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+
+
+        function inFun(){
+            $(".item2_item_text_left").addClass("left_text_move");
+            $(".item2_item_text_left").removeClass("left_text_out");
+            $(".item2_set_img_left").addClass("left_img_move");
+            $(".item2_set_img_left").removeClass("left_img_out");
+            //right
+            $(".item2_item_text_right").addClass("right_text_move");
+            $(".item2_item_text_right").removeClass("right_text_out");
+            $(".item2_set_img_right").addClass("right_img_move");
+            $(".item2_set_img_right").removeClass("right_img_out");
+            //top
+            // $(".img_top").addClass("img_center_move");
+            // $(".img_top").removeClass("img_center_out");
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        function outFun(){
+            $(".item2_item_text_left").addClass("left_text_out");
+            $(".item2_item_text_left").removeClass("left_text_move");
+            $(".item2_set_img_left").addClass("left_img_out");
+            $(".item2_set_img_left").removeClass("left_img_move");
+            //right
+            $(".item2_item_text_right").addClass("right_text_out");
+            $(".item2_item_text_right").removeClass("right_text_move");
+            $(".item2_set_img_right").addClass("right_img_out");
+            $(".item2_set_img_right").removeClass("right_img_move");
+            //top
+            // $(".img_top").addClass("img_center_out");
+            // $(".img_top").removeClass("img_center_move");
+        }
+
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            QPkey=true;
+            inFun();
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            var key=$(this).attr("data-data");
+            if(QPkey){
+                QPkey=false;
+                keyFun(key)
+            };
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            outFun();
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                inFun();
+                QPkey=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+            QPkey=false;
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        function keyFun(key) {
+            endTime=new Date().getTime();
+            time=(endTime-beginTime).toFixed(0);
+            var ans=data[data_index].ans;
+            var ans1=key;
+            stimidset.push(data[data_index].ID);
+            type4set.push(type4Num);
+            topicArr.push(data[data_index].topic);
+            correctanswerset.push(ans);
+            buttonset.push(ans1);
+            timeset.push(time);
+            textFun(ans, ans1);
+            $("#item2").addClass("op");
+            if(ans1 == ans){
+                correctMp3.play();
+                correct_number++;
+                great++;
+                $("#xs2").text(correct_number);
+                if(great>=5){
+                    great=0;
+                    $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                }else {
+                    $("#reward_img").attr("src","../com_imgs/yes.gif");
+                }
+
+            }else {
+                great=0;
+                wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+            }
+            $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+            nextTopicFun()
+        }
+
+        $(document).keydown(function (event) {
+            var e = event || window.event;
+            var k = e.keyCode || e.which;
+
+            if(k==81){
+                if(QPkey){
+                    QPkey=false;
+                    keyFun("Q")
+                }
+            }
+
+            if(k == 80){
+                if(QPkey){
+                    QPkey=false;
+                    keyFun("P")
+
+                }
+            }
+        });
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

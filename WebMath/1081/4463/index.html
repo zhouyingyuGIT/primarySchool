@@ -1,0 +1,580 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正反比例情景应用题</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #ff6700;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+        </div>
+
+        <div class="item1_img item1_imgBox2">
+            <img id="img1" src="../com_imgs/taiyang.png" alt="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+{"ID":"1","ans":"P","ans1":"p","topic":"圆的半径和圆的面积成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"2","ans":"P","ans1":"p","topic":"正方形的边长与面积成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"3","ans":"P","ans1":"p","topic":"从南京到北京，路程和速度成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"4","ans":"P","ans1":"p","topic":"铺地的总面积确定，铺地的方砖的边长和数量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"5","ans":"P","ans1":"p","topic":"工作时间一定，工作加工的零件数量和每个零件所用的时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"6","ans":"P","ans1":"p","topic":"工作速度一定，工作时间和完成的工作量成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"7","ans":"P","ans1":"p","topic":"圆的周长和直径成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"8","ans":"P","ans1":"p","topic":"长方形面积一定，长和宽成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"9","ans":"P","ans1":"p","topic":"路程一定，速度和时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"10","ans":"P","ans1":"p","topic":"商品总价一定，单价和数量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"11","ans":"P","ans1":"p","topic":"排队做操，总人数不变，排队的行数和每行的人数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"12","ans":"P","ans1":"p","topic":"做纸盒子，总个数一定，每个人做的个数和人数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"13","ans":"P","ans1":"p","topic":"长方体的体积一定，底面积与高成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"14","ans":"P","ans1":"p","topic":"一辆汽车匀速行驶，路程和时间成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"15","ans":"P","ans1":"p","topic":"总页数一定，平均每天看的页数和看完书的天数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"16","ans":"P","ans1":"p","topic":"总字数一定，打字速度和所用时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"17","ans":"P","ans1":"p","topic":"果汁总量一定，分的杯数和每杯果汁量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"18","ans":"P","ans1":"p","topic":"总人数一定，排队的人数和每行的人数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"19","ans":"P","ans1":"p","topic":"总量一定，每天使用量和天数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"20","ans":"P","ans1":"p","topic":"植树总数一定，每行的数量和行数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"21","ans":"P","ans1":"p","topic":"面粉的总重量一定，每袋面粉的重量和袋数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"22","ans":"P","ans1":"p","topic":"工作总量一定，工作效率和工作时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"23","ans":"P","ans1":"p","topic":"打字速度一定，打字时间与总字数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"24","ans":"P","ans1":"p","topic":"工作效率一定，工作时间和工作总量成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"25","ans":"P","ans1":"p","topic":"高一定，长方体的底面积和体积成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"26","ans":"P","ans1":"p","topic":"单价一定，数量和总钱数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"27","ans":"P","ans1":"p","topic":"正方形的周长与边长成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"28","ans":"P","ans1":"p","topic":"被除数一定，除数和商成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"29","ans":"P","ans1":"p","topic":"方砖面积一定，铺地面积和块数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"30","ans":"P","ans1":"p","topic":"块数一定，方砖面积和铺地面积成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"31","ans":"P","ans1":"p","topic":"分数大小一定，分子和分母成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"32","ans":"P","ans1":"p","topic":"等分一块蛋糕，每人分到的数量和人数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"33","ans":"P","ans1":"p","topic":"长方体的底面周长一定，侧面积与高成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"34","ans":"P","ans1":"p","topic":"单产量一定，总产量与公顷数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"35","ans":"P","ans1":"p","topic":"单位用量一定，总用量与时间成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"36","ans":"P","ans1":"p","topic":"一段路程所用的时间和速度成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"37","ans":"P","ans1":"p","topic":"从家到学校，每分钟走的速度和所需的时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"38","ans":"P","ans1":"p","topic":"平行四边形面积一定，底和高成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"39","ans":"P","ans1":"p","topic":"用一些钱买铅笔，单价和购买的数量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"40","ans":"P","ans1":"p","topic":"种子的总量一定，每公顷的播种量和播种的公顷数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"41","ans":"P","ans1":"p","topic":"从家到工厂，骑自行车的速度和所需时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"42","ans":"P","ans1":"p","topic":"生产电视机的总台数一定，每天生产的台数和所用的天数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"43","ans":"P","ans1":"p","topic":"时间一定，路程和速度成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"44","ans":"P","ans1":"p","topic":"时间一定，工作总量和工作效率成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"45","ans":"P","ans1":"p","topic":"数量一定，总价和单价成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"46","ans":"P","ans1":"p","topic":"总产量一定，单产量与数量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"47","ans":"P","ans1":"p","topic":"单产量一定，总产量和数量成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"48","ans":"P","ans1":"p","topic":"数量一定，总产量和单产量成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"49","ans":"P","ans1":"p","topic":"当三角形底一定时，面积和高成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"50","ans":"P","ans1":"p","topic":"当三角形面积一定时，底和高成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"51","ans":"P","ans1":"p","topic":"当三角形的高一定时，面积和底成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"52","ans":"P","ans1":"p","topic":"当平行四边形的面积一定时，底和高成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"53","ans":"P","ans1":"p","topic":"当平行四边形的高一定时，面积和底成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"54","ans":"P","ans1":"p","topic":"当平行四边形的底一定时，面积和高成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"55","ans":"P","ans1":"p","topic":"分母一定，分数值和分子成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"56","ans":"P","ans1":"p","topic":"分子一定，分数值和分母成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"57","ans":"P","ans1":"p","topic":"圆锥的底面积一定，体积和高成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"58","ans":"P","ans1":"p","topic":"每本书的单价一定，买书的本数与总价成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"59","ans":"P","ans1":"p","topic":"货物总数一定，每次运货吨数和运货次数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"60","ans":"P","ans1":"p","topic":"大米的总千克数一定，每天吃的千克数和天数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"61","ans":"P","ans1":"p","topic":"每天吃的千克数一定，大米的总千克数和天数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"62","ans":"P","ans1":"p","topic":"天数一定，大米的总千克数和每天吃的千克数乘反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"63","ans":"P","ans1":"p","topic":"车轮的直径一定，车轮所行的路程和车轮的转数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"64","ans":"P","ans1":"p","topic":"车轮所行的路程一定，车轮的周长和车轮的转数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"65","ans":"P","ans1":"p","topic":"车轮的转数一定，车轮所行的路程和车轮的周长成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"66","ans":"P","ans1":"p","topic":"一个因数一定，积和另一个因数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"67","ans":"P","ans1":"p","topic":"长方形的长一定，它的面积和宽成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"68","ans":"P","ans1":"p","topic":"每次搬砖的块数一定，搬的总块数和搬的次数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"69","ans":"P","ans1":"p","topic":"一条水渠的长度一定，每天修的米数和所需天数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"70","ans":"P","ans1":"p","topic":"圆柱体积一定，圆柱的底面积和高成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"71","ans":"Q","ans1":"q","topic":"每吨自来水的价钱一定，用水的吨数和所需付的水费成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"72","ans":"Q","ans1":"q","topic":"订阅《学习报》的份数和钱数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"73","ans":"Q","ans1":"q","topic":"汽车每千米耗油量一定，所行的路程和耗油总量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"74","ans":"Q","ans1":"q","topic":"减数一定，被减数和差成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"75","ans":"Q","ans1":"q","topic":"圆锥的体积一定，底面积和高成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"76","ans":"Q","ans1":"q","topic":"全班人数一定，每组的人数和组数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"77","ans":"Q","ans1":"q","topic":"书的总册数一定，每包的册数和包数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"78","ans":"Q","ans1":"q","topic":"圆的面积和圆的半径成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"79","ans":"Q","ans1":"q","topic":"梯形的面积一定时，上底和下底的和与高成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"80","ans":"Q","ans1":"q","topic":"把一堆化肥装入麻袋，麻袋的数量和每袋化肥的重量成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"81","ans":"Q","ans1":"q","topic":"汽车每次运货吨数一定，运货次数和运货总吨数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"82","ans":"Q","ans1":"q","topic":"汽车运货次数一定，每次运货的吨数和运货总吨数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"83","ans":"Q","ans1":"q","topic":"汽车运货总吨数一定，每次运货的吨数和运货的次数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"84","ans":"Q","ans1":"q","topic":"每小时织布米数一定，织布的米数和时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"85","ans":"Q","ans1":"q","topic":"天数一定，每天烧煤量和烧煤总量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"86","ans":"Q","ans1":"q","topic":"生产时间一定，每小时生产的个数和总个数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"87","ans":"Q","ans1":"q","topic":"每箱木瓜的个数一定，运来木瓜的箱数和木瓜的总个数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"88","ans":"Q","ans1":"q","topic":"总价一定，观看一场电影的票价和人数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"89","ans":"Q","ans1":"q","topic":"比例尺一定，图上距离和实际距离成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"90","ans":"Q","ans1":"q","topic":"图上距离一定，实际距离和比例尺成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"91","ans":"Q","ans1":"q","topic":"苹果的单价一定，购买苹果的数量和总价成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"92","ans":"Q","ans1":"q","topic":"轮船行驶的速度一定，行驶的路程和时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"93","ans":"Q","ans1":"q","topic":"从甲地到乙地，汽车行驶的速度和所要的时间成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"94","ans":"Q","ans1":"q","topic":"圆的半径与周长成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"95","ans":"Q","ans1":"q","topic":"直角三角形的面积一定，两条直角边的长度成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"96","ans":"Q","ans1":"q","topic":"除数一定，被除数和商成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"97","ans":"Q","ans1":"q","topic":"做一件衬衫的用布量一定，生产衬衫的总用布量和件数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"98","ans":"Q","ans1":"q","topic":"每天耕地的公顷数一定，耕地的总倾数与天数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"99","ans":"Q","ans1":"q","topic":"练习本总价一定，练习本单价与数量成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"100","ans":"Q","ans1":"q","topic":"圆柱的高一定，底面半径和体积成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"101","ans":"Q","ans1":"q","topic":"每块的面积一定，总面积和块数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"102","ans":"Q","ans1":"q","topic":"总面积一定，每块的面积和块数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"103","ans":"Q","ans1":"q","topic":"出油率一定时，油的重量和大豆的重量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"104","ans":"Q","ans1":"q","topic":"大豆的重量一定时，油的重量和出油率成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"105","ans":"Q","ans1":"q","topic":"油的重量一定时，大豆的重量和出油率成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"106","ans":"Q","ans1":"q","topic":"出粉率一定时，面粉的重量和小麦的重量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"107","ans":"Q","ans1":"q","topic":"小麦的重量一定时，面粉的重量和出粉率成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"108","ans":"Q","ans1":"q","topic":"面粉的重量一定时，小麦的重量和出粉率成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"109","ans":"Q","ans1":"q","topic":"同一时间，同一地点，树高和影长成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"110","ans":"Q","ans1":"q","topic":"每天的工作时间一定，加工一个零件所用的时间和加工零件的个数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"111","ans":"Q","ans1":"q","topic":"前项一定，比的后项和比值成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"112","ans":"Q","ans1":"q","topic":"比值一定，比的前项和后项成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"113","ans":"Q","ans1":"q","topic":"后项一定，比的前项和比值成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"114","ans":"Q","ans1":"q","topic":"速度一定，时间和路程成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"115","ans":"Q","ans1":"q","topic":"种植面积一定，播种数和总面积成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"116","ans":"Q","ans1":"q","topic":"播种数一定，种植面积和总面积成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"117","ans":"Q","ans1":"q","topic":"梯形的上、下底的和一定时，高和面积成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"118","ans":"Q","ans1":"q","topic":"梯形的高一定时，面积和上、下底的和成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"119","ans":"Q","ans1":"q","topic":"两个数的积一定时，则这两个数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"120","ans":"Q","ans1":"q","topic":"两个数的商一定，则这两个数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"121","ans":"Q","ans1":"q","topic":"在分数中，当分数的分子一定，分母与分数值成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"122","ans":"Q","ans1":"q","topic":"船行驶的速度一定，行驶的路程和时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"123","ans":"Q","ans1":"q","topic":"长方形的长一定，面积和宽成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"124","ans":"Q","ans1":"q","topic":"工作效率一定，工作时间和工作总量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"125","ans":"Q","ans1":"q","topic":"圆锥的底面积一定，体积和高成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"126","ans":"Q","ans1":"q","topic":"用水总量一定，每天的用量和天数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"127","ans":"Q","ans1":"q","topic":"每天的用水量一定，用水重量和天数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"128","ans":"Q","ans1":"q","topic":"天数一定，用水总量和每天的用水量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"129","ans":"Q","ans1":"q","topic":"消费总额一定，每天的消费额与天数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"130","ans":"Q","ans1":"q","topic":"每天的消费额一定，消费总额和天数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"131","ans":"Q","ans1":"q","topic":"天数一定，每天的消费额和消费总额成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"132","ans":"Q","ans1":"q","topic":"方砖的面积一定，铺地的面积和方砖的块数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"133","ans":"Q","ans1":"q","topic":"铺地面积一定，方砖的面积和方砖的块数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"134","ans":"Q","ans1":"q","topic":"方砖的块数一定，方砖的面积和铺地面积成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"135","ans":"Q","ans1":"q","topic":"完成一项工程，人数和天数成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"136","ans":"Q","ans1":"q","topic":"练习本的单价一定，总价和数量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"137","ans":"Q","ans1":"q","topic":"汽车的速度一定，路程和时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"138","ans":"Q","ans1":"q","topic":"圆的周长与半径成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"139","ans":"Q","ans1":"q","topic":"当工作效率一定时，工作总量和工作时间成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"140","ans":"Q","ans1":"q","topic":"当工作总量一定时，工作效率和工作时间成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"141","ans":"Q","ans1":"q","topic":"当工作时间一定时，工作总量和工作效率呈正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"142","ans":"Q","ans1":"q","topic":"在长方体里，高一定时，底面积与体积成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"143","ans":"Q","ans1":"q","topic":"在长方体里，体积一定时，底面积和高成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"144","ans":"Q","ans1":"q","topic":"在长方体里，底面积一定时，体积和高成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"145","ans":"Q","ans1":"q","topic":"当打字速度一定时，时间和总字数成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"146","ans":"Q","ans1":"q","topic":"当打字总数一定时，打字速度和时间成反比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"147","ans":"Q","ans1":"q","topic":"当时间一定时，打字总数和速度成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"148","ans":"Q","ans1":"q","topic":"商品单价一定，总价和数量成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"},
+{"ID":"149","ans":"Q","ans1":"q","topic":"数量一定，总价和单价成正比例","Q":"Q","QText":"正确","P":"P","PText":"错误"}
+];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=3;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].QText);
+            $("#item2_A").attr("data-data",data[data_index].Q);
+            $("#item2_B").text(data[data_index].PText);
+            $("#item2_B").attr("data-data",data[data_index].P);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push(type4Num);
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+$("#reward_img").attr("src","../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

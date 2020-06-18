@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扇形统计图</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #ff6700;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+        </div>
+
+        <div class="item1_img item1_imgBox2">
+            <img id="img1" src="../com_imgs/taiyang.png" alt="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #fff2cc;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div class="item2_top" style="">
+                <div class="item2_top_img item2_top_left" style="">
+                    <img src="../com_imgs/left.png" alt="">
+                </div>
+                <div id="topic" class="item2_ti"></div>
+                <div class="item2_top_right item2_top_img">
+                    <img src="../com_imgs/right.png" alt="" style="">
+                </div>
+            </div>
+            <div id="item2_center" class="item2_center" style="">
+                <div class="item2_center_img" style="">
+                    <img id="img_top" class="img_top" src="" alt="" style="">
+                </div>
+            </div>
+            <div id="item2_ans_box" class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item item2_item_left" style="left: 0px;">
+                        <div id="item2_TextA" data-data="" class="item2_set" style="left: 0px;">
+                            <div id="item2_A" class="item2_item_text item2_item_text_left text_left" style=""></div>
+                            <div class="item2_set_img item2_set_img_left img_left">
+                                <img src="../com_imgs/l.png" alt="" style="">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex">
+                    <div class="item2_item" style="right:0px;">
+                        <div id="item2_TextB" data-data="" class="item2_set" style="right: 0px;">
+                            <div id="item2_B" class="item2_item_text item2_item_text_right text_right" style=""></div>
+                            <div class="item2_set_img item2_set_img_right img_right">
+                                <img src="../com_imgs/r.png" alt="" style="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+            {"ID":"1","ans":"P","topic":"某大棚生产蔬菜共100斤，由下图可知油菜有多少斤？","url":"img/1.png","P":"P","PText":"20斤","Q":"Q","QText":"15斤"},
+            {"ID":"2","ans":"P","topic":"某年级总共有200个球，由下图可知排球有多少个？","url":"img/2.png","P":"P","PText":"36个","Q":"Q","QText":"48个"},
+            {"ID":"3","ans":"Q","topic":"观众参与最受观众喜爱的节目评选，由下图可知选择走近科学的观众占多少？","url":"img/3.png","P":"P","PText":"22%","Q":"Q","QText":"38%"},
+            {"ID":"4","ans":"Q","topic":"五年级学生进行英语期末考试，由下图可知成绩为优的人占多少？","url":"img/4.png","P":"P","PText":"10%","Q":"Q","QText":"5%"},
+            {"ID":"5","ans":"P","topic":"空气的主要成分占总体积百分比如下图，100升空气中含氧气多少升？","url":"img/5.png","P":"P","PText":"21升","Q":"Q","QText":"78升"},
+            {"ID":"6","ans":"Q","topic":"小明家1月总支出为3600元，其中购买衣物支出多少？","url":"img/6.png","P":"P","PText":"288元","Q":"Q","QText":"720元"},
+            {"ID":"7","ans":"P","topic":"小明共有200只兔子，三种兔子的占比如下图，其中白兔有多少只？","url":"img/7.png","P":"P","PText":"36只","Q":"Q","QText":"60只"},
+            {"ID":"8","ans":"Q","topic":"某校共有学生600人，由下图可知女生占总人数的多少？","url":"img/8.png","P":"P","PText":"52%","Q":"Q","QText":"48%"},
+            {"ID":"9","ans":"P","topic":"五年级（1班）有50人进行月考，由下图可知成绩为优的学生有多少？","url":"img/9.png","P":"P","PText":"15人","Q":"Q","QText":"20人"},
+            {"ID":"10","ans":"Q","topic":"一个鸡蛋重80克，由下图可知其蛋壳重多少？","url":"img/10.png","P":"P","PText":"25.6克","Q":"Q","QText":"12克"},
+            {"ID":"11","ans":"Q","topic":"一个地区面积组成如下，可知山丘占总面积的多少？","url":"img/11.png","P":"P","PText":"27%","Q":"Q","QText":"22%"},
+            {"ID":"12","ans":"P","topic":"某班共有60人，由下图可知喜欢篮球的有多少人？","url":"img/12.png","P":"P","PText":"18人","Q":"Q","QText":"24人"},
+            {"ID":"13","ans":"Q","topic":"张叔叔一个月工资为4000元，由下图可知他将多少钱用于储蓄？","url":"img/13.png","P":"P","PText":"800元","Q":"Q","QText":"1200元"},
+            {"ID":"14","ans":"Q","topic":"一种奶粉成分含量如下图，其中蛋白质占比多少？","url":"img/14.png","P":"P","PText":"35%","Q":"Q","QText":"25%"},
+            {"ID":"15","ans":"Q","topic":"小明买了三种水果，各类水果重量占比如下图，可知荔枝占总重量的多少？","url":"img/15.png","P":"P","PText":"25%","Q":"Q","QText":"15%"},
+            {"ID":"16","ans":"Q","topic":"超市所有类别饮品的总销量为1000瓶，由下图可知牛奶销量为多少瓶？","url":"img/16.png","P":"P","PText":"200瓶","Q":"Q","QText":"150瓶"},
+            {"ID":"17","ans":"P","topic":"某班共50人，由下图可知喜欢文娱活动的有多少人？","url":"img/17.png","P":"P","PText":"9人","Q":"Q","QText":"15人"},
+            {"ID":"18","ans":"P","topic":"五年级三班共60人进行数学测验，由下图可知考满分的有多少人？","url":"img/18.png","P":"P","PText":"6人","Q":"Q","QText":"30人"},
+            {"ID":"19","ans":"P","topic":"三年级二班共40人，每人选择一项体育活动，由下图可知选择乒乓球的有多少人？","url":"img/19.png","P":"P","PText":"12人","Q":"Q","QText":"6人"},
+            {"ID":"20","ans":"P","topic":"某小学总人数为300人，由下图可知男生有多少人?","url":"img/20.png","P":"P","PText":"180人","Q":"Q","QText":"120人"},
+            {"ID":"21","ans":"Q","topic":"一年级共200名学生参加兴趣小组，由下图可知加入音乐组的有多少人？","url":"img/21.png","P":"P","PText":"76人","Q":"Q","QText":"64人"},
+            {"ID":"22","ans":"P","topic":"对100名中小学教师进行学历调查，由下图可知本科学历的老师有多少人？","url":"img/22.png","P":"P","PText":"55人","Q":"Q","QText":"15人"},
+            {"ID":"23","ans":"Q","topic":"李叔叔家每月开支约3000元，由下图可知食品支出多少元？","url":"img/23.png","P":"P","PText":"600元","Q":"Q","QText":"1050元"},
+            {"ID":"24","ans":"Q","topic":"农场共有500只小动物，由下图可知鹅有多少只？","url":"img/24.png","P":"P","PText":"100只","Q":"Q","QText":"75只"},
+            {"ID":"25","ans":"P","topic":"果园里共200棵果树，由下图可知苹果树有多少棵？","url":"img/25.png","P":"P","PText":"100棵","Q":"Q","QText":"50棵"},
+            {"ID":"26","ans":"Q","topic":"某学校共600名学生，由下图可知回族有多少人？","url":"img/26.png","P":"P","PText":"60人","Q":"Q","QText":"42人"},
+            {"ID":"27","ans":"Q","topic":"一年级共200人参加运动会，由下图可知参加足球运动的有多少人？","url":"img/27.png","P":"P","PText":"52人","Q":"Q","QText":"36人"},
+            {"ID":"28","ans":"P","topic":"三年级200名学生进行英语考试，由下图可知分数为90-100之间的人数为多少？","url":"img/28.png","P":"P","PText":"86人","Q":"Q","QText":"43%"},
+            {"ID":"29","ans":"Q","topic":"一天24小时，小明每天的时间安排如下图，可知小明每天睡眠的时间为？","url":"img/29.png","P":"P","PText":"3.6小时","Q":"Q","QText":"9.6小时"},
+            {"ID":"30","ans":"P","topic":"对一年级学生进行兴趣爱好调查，由下图可知喜欢唱歌的人占多少？","url":"img/30.png","P":"P","PText":"20%","Q":"Q","QText":"10%"},
+            {"ID":"31","ans":"P","topic":"某学校在市运动会上获200块奖牌，由下图可知获得银牌多少块？","url":"img/31.png","P":"P","PText":"54块","Q":"Q","QText":"36块"},
+            {"ID":"32","ans":"Q","topic":"某种植区农作物产量为1000吨，由图可知大米产量为多少吨？","url":"img/32.png","P":"P","PText":"375吨","Q":"Q","QText":"250吨"},
+            {"ID":"33","ans":"P","topic":"某学校参加兴趣小组的学生有300人，由下图可知参加美术组的有多少人？","url":"img/33.png","P":"P","PText":"75人","Q":"Q","QText":"60人"},
+            {"ID":"34","ans":"Q","topic":"某学校图书馆存书的主要类型为故事书、科技书、文艺书，由下图可知其他书占比多少？","url":"img/34.png","P":"P","PText":"20%","Q":"Q","QText":"10%"},
+            {"ID":"35","ans":"Q","topic":"某初中三个年级共1000名学生 ，由下图可知七年级学生占比多少？","url":"img/35.png","P":"P","PText":"42%","Q":"Q","QText":"32%"},
+            {"ID":"36","ans":"Q","topic":"王叔叔一家每月支出4000元，由下图可知服装支出多少元？","url":"img/36.png","P":"P","PText":"800元","Q":"Q","QText":"400元"},
+            {"ID":"37","ans":"P","topic":"果园共有200棵果树，由下图可知桃树有多少棵？","url":"img/37.png","P":"P","PText":"50棵","Q":"Q","QText":"30棵"},
+            {"ID":"38","ans":"P","topic":"某学校四个年级40名学生参加区运动会，由下图可知八年级学生占多少？","url":"img/38.png","P":"P","PText":"34%","Q":"Q","QText":"24%"},
+            {"ID":"39","ans":"Q","topic":"李阿姨每月生活费为4200元，由下图可知她的休闲支出为多少元？","url":"img/39.png","P":"P","PText":"420元","Q":"Q","QText":"840元"},
+            {"ID":"40","ans":"Q","topic":"对50名学生进行最喜欢的科目调查，由下图可知喜欢体育课的有多少人？","url":"img/40.png","P":"P","PText":"10人","Q":"Q","QText":"20人"},
+            {"ID":"41","ans":"P","topic":"赵阿姨一家每月消费3200元，由下图可知水电支出多少元？","url":"img/41.png","P":"P","PText":"320元","Q":"Q","QText":"640元"},
+            {"ID":"42","ans":"Q","topic":"某农村家庭人均收入1000元，由下图收入来源可知打工收入多少元？","url":"img/42.png","P":"P","PText":"450元","Q":"Q","QText":"350元"},
+            {"ID":"43","ans":"Q","topic":"某社区对200人进行运动调查，由下图可知喜欢跑步的有多少人？","url":"img/43.png","P":"P","PText":"50人","Q":"Q","QText":"80人"},
+            {"ID":"44","ans":"P","topic":"某工厂日销售额为3万元，由下图可知外销售额为多少元？","url":"img/44.png","P":"P","PText":"19500元","Q":"Q","QText":"10500元"},
+            {"ID":"45","ans":"Q","topic":"某种植园共有500棵农作物，由下图可知茄子有多少棵？","url":"img/45.png","P":"P","PText":"150棵","Q":"Q","QText":"70棵"},
+            {"ID":"46","ans":"Q","topic":"今年水果收成共200斤，由下图可知梨有多少斤？","url":"img/46.png","P":"P","PText":"25斤","Q":"Q","QText":"50斤"},
+            {"ID":"47","ans":"P","topic":"某大学生入学后花费6000元，由下图可知书本费为多少元？","url":"img/47.png","P":"P","PText":"600元","Q":"Q","QText":"900元"},
+            {"ID":"48","ans":"P","topic":"某校共有400人上体育课，由下图可知上足球课的有多少人？","url":"img/48.png","P":"P","PText":"80人","Q":"Q","QText":"120人"},
+            {"ID":"49","ans":"Q","topic":"三年级共200人参加语文期中考试 ，由下图可知成绩在80-89分之间的有多少人？","url":"img/49.png","P":"P","PText":"120人","Q":"Q","QText":"64人"},
+            {"ID":"50","ans":"Q","topic":"某菜园三类蔬菜共产600斤，由下图可知产黄瓜多少斤？","url":"img/50.png","P":"P","PText":"84斤","Q":"Q","QText":"180斤"},
+            {"ID":"51","ans":"P","topic":"五年级共300人参加体育测试，成绩如下图所示，可知多少人未达标 ?","url":"img/51.png","P":"P","PText":"9人","Q":"Q","QText":"39人"},
+            {"ID":"52","ans":"P","topic":"某食品重100克，营养成分如下图，可知该食品中脂肪有多少克？","url":"img/52.png","P":"P","PText":"10克","Q":"Q","QText":"5克"},
+            {"ID":"53","ans":"Q","topic":"对七年级的100名学生进行体育运动爱好的调查，由下图可知喜欢篮球的有多少人？","url":"img/53.png","P":"P","PText":"26人","Q":"Q","QText":"19人"},
+            {"ID":"54","ans":"Q","topic":"一天24小时，李叔叔每天的时间安排如下表，可知他每天学习时间为多少？","url":"img/54.png","P":"P","PText":"12小时","Q":"Q","QText":"2.4小时"},
+            {"ID":"55","ans":"Q","topic":"小红家每月消费2500元，由下图可知用于文化支出的费用是多少？","url":"img/55.png","P":"P","PText":"250元","Q":"Q","QText":"500元"},
+            {"ID":"56","ans":"Q","topic":"下图为小辉四月份的话费账单，在所有业务消费中， 短信费占多少？","url":"img/56.png","P":"P","PText":"20%","Q":"Q","QText":"10%"},
+            {"ID":"57","ans":"Q","topic":"对400名学生进行最喜爱的电脑品牌调查，由下图可知喜欢B牌的有多少人？","url":"img/57.png","P":"P","PText":"80人","Q":"Q","QText":"140人"},
+            {"ID":"58","ans":"P","topic":"对600名年轻人进行最喜欢的出游方式调查，由下图可知喜欢坐火车出游的有多少人？","url":"img/58.png","P":"P","PText":"270人","Q":"Q","QText":"180人"},
+            {"ID":"59","ans":"Q","topic":"对全校2000人进行到校方式调查，由下图可知步行到校的学生有多少人？","url":"img/59.png","P":"P","PText":"400人","Q":"Q","QText":"500人"},
+            {"ID":"60","ans":"Q","topic":"下图为各品牌电视市场占有率的统计图，若有2000台电视，其中C牌多少台？","url":"img/60.png","P":"P","PText":"400人","Q":"Q","QText":"460人"}
+        ];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,QPkey=false,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=3;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[],imgArr=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].QText);
+            $("#item2_TextA").attr("data-data",data[data_index].Q);
+            $("#item2_B").text(data[data_index].PText);
+            $("#item2_TextB").attr("data-data",data[data_index].P);
+            // $(".item2_item img").addClass("revolve");
+            // $("#img_top").attr("src",data[data_index].url);
+            localCache(data[data_index],'url',curTaskInfo.taskid,'#img_top');
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+
+        function inFun(){
+            $(".item2_item_text_left").addClass("left_text_move");
+            $(".item2_item_text_left").removeClass("left_text_out");
+            $(".item2_set_img_left").addClass("left_img_move");
+            $(".item2_set_img_left").removeClass("left_img_out");
+            //right
+            $(".item2_item_text_right").addClass("right_text_move");
+            $(".item2_item_text_right").removeClass("right_text_out");
+            $(".item2_set_img_right").addClass("right_img_move");
+            $(".item2_set_img_right").removeClass("right_img_out");
+            //top
+            $(".img_top").addClass("img_center_move");
+            $(".img_top").removeClass("img_center_out");
+        }
+
+        function outFun(){
+            $(".item2_item_text_left").addClass("left_text_out");
+            $(".item2_item_text_left").removeClass("left_text_move");
+            $(".item2_set_img_left").addClass("left_img_out");
+            $(".item2_set_img_left").removeClass("left_img_move");
+            //right
+            $(".item2_item_text_right").addClass("right_text_out");
+            $(".item2_item_text_right").removeClass("right_text_move");
+            $(".item2_set_img_right").addClass("right_img_out");
+            $(".item2_set_img_right").removeClass("right_img_move");
+            //top
+            $(".img_top").addClass("img_center_out");
+            $(".img_top").removeClass("img_center_move");
+        }
+
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            QPkey=true;
+            inFun();
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            var key=$(this).attr("data-data");
+            if(QPkey){
+                QPkey=false;
+                keyFun(key)
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            outFun();
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                inFun();
+                QPkey=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+            QPkey=false;
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'<img src="'+imgArr[i]+'" alt="" style="height: 120px;width: auto;"></td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        function keyFun(key) {
+            endTime=new Date().getTime();
+            time=(endTime-beginTime).toFixed(0);
+            var ans=data[data_index].ans;
+            var ans1=key;
+            stimidset.push(data[data_index].ID);
+            type4set.push(type4Num);
+            topicArr.push(data[data_index].topic);
+            correctanswerset.push(ans);
+            buttonset.push(ans1);
+            timeset.push(time);
+            textFun(ans, ans1);
+            $("#item2").addClass("op");
+            if(ans1 == ans){
+                correctMp3.play();
+                correct_number++;
+                great++;
+                $("#xs2").text(correct_number);
+                if(great>=5){
+                    great=0;
+                    $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                }else {
+                    $("#reward_img").attr("src","../com_imgs/yes.gif");
+                }
+
+            }else {
+                great=0;
+                wrongMp3.play();
+                errorNum++;
+$("#reward_img").attr("src","../com_imgs/no.gif");
+            }
+            $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+            nextTopicFun()
+        }
+
+        $(document).keydown(function (event) {
+            var e = event || window.event;
+            var k = e.keyCode || e.which;
+
+            if(k==81){
+                if(QPkey){
+                    QPkey=false;
+                    keyFun("Q")
+                }
+            }
+
+            if(k == 80){
+                if(QPkey){
+                    QPkey=false;
+                    keyFun("P")
+
+                }
+            }
+        });
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

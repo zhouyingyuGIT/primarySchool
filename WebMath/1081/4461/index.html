@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百分数应用题</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #ff6700;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+        </div>
+
+        <div class="item1_img item1_imgBox2">
+            <img id="img1" src="../com_imgs/taiyang.png" alt="">
+        </div>
+    </div>
+    <div id="item2" class="item hide item2">
+        <div class="item item2_box">
+            <div class="item2_topic">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_A">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_B">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide">
+        <div class="outBox">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption class="tableTitle" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+{"ID":"1","ans":"P","TU":"小红买了101粒种子，这些种子全部发芽，发芽率为101%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"2","ans":"P","TU":"共有10块糖果，小红吃了3块，小明吃了3块，还剩60%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"3","ans":"Q","TU":"公交车长16米，小轿车长4米，小轿车长度是公交车的25%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"4","ans":"Q","TU":"甲班有30个毽子，乙班有40个毽子，甲班毽子数是乙班的75%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"5","ans":"Q","TU":"小刚跑了500米，小军跑了300米，小军跑的路程是小刚的60%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"6","ans":"Q","TU":"小刚做作业共用了5个小时，数学作业用了2小时，数学作业占总时的40%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"7","ans":"P","TU":"六年级3班有50名学生，男生20人，男生占女生人数的40%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"8","ans":"Q","TU":"六年级1班有男生30人，女生20人，男生占总人数的60%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"9","ans":"P","TU":"一件衣服原价200元，商场做活动打9折，比原价优惠了180元。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"10","ans":"P","TU":"小明进行射击游戏，命中200发，未命中50发，命中率是25%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"11","ans":"P","TU":"一个球从25厘米高的位置落下，弹起10厘米，占下落高度的20%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"12","ans":"Q","TU":"某工厂购买10吨煤块，两个月使用了3吨，剩余70%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"13","ans":"P","TU":"一种玩具的合格率是90%，那么300件产品中有30件合格。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"14","ans":"Q","TU":"一条公路长10千米，小明骑行了60%，剩下的路程为4千米。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"15","ans":"P","TU":"六年级二班有50人，某一天有两人缺席，这天的缺勤率是96%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"16","ans":"Q","TU":"一个书架上层有40本书，下层有50本书，上层书为下层书的80%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"17","ans":"P","TU":"9月份用水5吨，10月份用水4吨，10月份比9月份节省了80%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"18","ans":"Q","TU":"原计划修路250米，实际修路300米，实际比计划多修了20%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"19","ans":"P","TU":"小华要买一张贺卡10元，贺卡减价20%，她只需要支付2元。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"20","ans":"P","TU":"小红把25克盐溶解在100克水中，盐水的含盐率为25%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"21","ans":"P","TU":"一个仓库共有化肥100吨，卖出56吨，剩下的化肥占总数的64%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"22","ans":"Q","TU":"100道口算题，小明做对了80题，他的正确率是80%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"23","ans":"Q","TU":"在一次画展中，蜡笔画有80幅，比水彩画少20%，则水彩画有100幅。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"24","ans":"Q","TU":"笼子里有白兔20只，灰兔40只，灰兔数目是白兔的50%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"25","ans":"P","TU":"相距100米的两人相向而行，二人共走60米后，他们的距离占全程60%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"26","ans":"P","TU":"某乡去年造林20公顷，今年比去年多5公顷，去年造林比今年少25%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"27","ans":"P","TU":"某校一年级学生500人，三年级学生250人，一年级比三年级多50%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"28","ans":"P","TU":"一件商品打七折出售，就是按原价的30%出售。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"29","ans":"Q","TU":"今年小麦的产量比去年增产两成，表示今年比去年增产20%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"30","ans":"P","TU":"小明做了50个题，每题都正确，他的正确率是50%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"31","ans":"P","TU":"课堂出勤率就是应出勤人数占实际出勤人数的百分之几。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"32","ans":"P","TU":"某公园面积是20万平方米，其中草地占40%，草地面积为12万平方米。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"33","ans":"P","TU":"一种商品先提价10%，又降价10%，现价与原价相等。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"34","ans":"Q","TU":"小红看一本故事书，已经看了30页，占全书的30%，这本书共100页。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"35","ans":"P","TU":"小刚投篮，投10个中6个，小刚投不中的几率为60%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"36","ans":"P","TU":"一辆自行车原价500元，打了七折后的价格是150元。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"37","ans":"Q","TU":"800千克小麦可以磨出面粉600千克，小麦的出粉率是75%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"38","ans":"Q","TU":"育才小学有500名学生，其中25名学生没有参加兴趣班，占总人数的5%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"39","ans":"Q","TU":"取出一桶水的10%，还剩45升，这桶水共50升。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"40","ans":"Q","TU":"一个水桶有糖水10千克，含糖率为10%，这桶水里有1千克糖。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"41","ans":"P","TU":"有一台冰箱，原价2000元，降价后卖1600元，降了25%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"42","ans":"P","TU":"有一台空调，原价1600元，涨价后卖2000元，涨了20%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"43","ans":"Q","TU":"有一台电视，原价1200元，降价了300元，价格降了25%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"44","ans":"Q","TU":"有一个洗衣机，原价2000元，涨价了400元，价格涨了20%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"45","ans":"P","TU":"小刚投篮70次，投中70次，他的投中率为70%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"46","ans":"P","TU":"一本书300页，小红第一天看了20%，还剩60页没看。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"47","ans":"Q","TU":"六年级学生原计划植树400棵，实际植树500棵，实际比计划多植树25%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"48","ans":"P","TU":"一个长方形的长是4cm","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"49","ans":"Q","TU":"修一条长200米的长渠，已经修了80米，还剩60%未修。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"50","ans":"Q","TU":"六年级向希望工程捐款300元，占全校的15%，全校共捐款2000元。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"51","ans":"Q","TU":"有一堆糖果，其中奶糖20块，占全部糖果的20%，全部糖果为100块。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"52","ans":"Q","TU":"六年级参加数学竞赛的男生15人，是参加竞赛女生的75%，参赛女生20人。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"53","ans":"Q","TU":"一架飞机飞了1000公里，占整个航程的25%，整个航程长4000公里。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"54","ans":"Q","TU":"某小学合唱队有50人，占全校人数的10%，该校共有学生500人。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"55","ans":"Q","TU":"李叔叔原来体重80千克，减肥后体重减轻了5%，李叔叔现在体重为76千克。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"56","ans":"Q","TU":"一条绳子，减去全长的75%，还剩下4米，绳子原来长16米。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"57","ans":"P","TU":"某车间今天制造零件120个，比昨天超产20%，今天比昨天多生产24个。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"58","ans":"Q","TU":"某车间昨天制造零件100个，今天比昨天超产20%，今天比昨天多生产20个.","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"59","ans":"Q","TU":"将5000元存入银行，年利率为3%，一年后的利润为150元。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"},
+{"ID":"60","ans":"P","TU":"六年级三班共有50人，期中考试有5个人不及格，这个班及格率为10%。","TAU":"true","A":"Q","ATU":"正确","ATAU":"true","B":"P","BTU":"错误","BTAU":"true"}
+];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=false,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=3;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+        var ansTAUArr=[],xtauArr=[],tauArr=[];
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            /*border-radius:100%;background:#ff6700;*/
+            $("#item2_A").text(" ");
+            $("#item2_B").text(" ");
+            $("#topic").text(" ");
+            $("#item2_A").attr("data-data",data[data_index].A);
+            if(data[data_index].ATAU=="true"){
+                $("#item2_A").append(
+                    '<div>'+data[data_index].ATU+'</div>'
+                )
+            }else {
+                $("#item2_A").append(
+                    '<img src="'+data[data_index].ATU+'" alt="">'
+                )
+            }
+            $("#item2_B").attr("data-data",data[data_index].B);
+            if(data[data_index].BTAU=="true"){
+                $("#item2_B").append(
+                    '<div>'+data[data_index].BTU+'</div>'
+                )
+            }else {
+                $("#item2_B").append(
+                    '<img src="'+data[data_index].BTU+'" alt="">'
+                )
+            }
+
+            if(data[data_index].TAU=="true"){
+                console.log(data[data_index].TAU);
+                $("#topic").append(
+                    '<div>'+data[data_index].TU+'</div>'
+                )
+            }else {
+                $("#topic").append(
+                    '<img src="'+data[data_index].TU+'" alt="">'
+                )
+            }
+
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].BTU);
+                ansTAUArr.push(data[data_index].BTAU);
+            }else if(ans=="P"){
+                ansText.push(data[data_index].ATU);
+                ansTAUArr.push(data[data_index].ATAU);
+            }else if(ans=="A"){
+                ansText.push(data[data_index].ATU);
+                ansTAUArr.push(data[data_index].ATAU);
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BTU);
+                ansTAUArr.push(data[data_index].BTAU);
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CTU);
+                ansTAUArr.push(data[data_index].CTAU);
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DTU);
+                ansTAUArr.push(data[data_index].DTAU);
+            }else if(ans=="E"){
+                ansText.push(data[data_index].ETU);
+                ansTAUArr.push(data[data_index].ETAU);
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FTU);
+                ansTAUArr.push(data[data_index].FTAU);
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].BTU);
+                xtauArr.push(data[data_index].BTAU);
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].ATU);
+                xtauArr.push(data[data_index].ATAU);
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].ATU);
+                xtauArr.push(data[data_index].ATAU);
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BTU);
+                xtauArr.push(data[data_index].BTAU);
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CTU);
+                xtauArr.push(data[data_index].CTAU);
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DTU);
+                xtauArr.push(data[data_index].DTAU);
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].ETU);
+                xtauArr.push(data[data_index].ETAU);
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FTU);
+                xtauArr.push(data[data_index].FTAU);
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            data_click=true;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+                timer = setInterval(function () {
+                    CountDown();
+                }, 1000);
+            }else {
+                type4Num="99";
+                time1=500;
+            }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                var key=$(this).attr("data-data");
+                keyFun(key);
+            }
+        });
+        function keyFun(key) {
+            endTime=new Date().getTime();
+            time=(endTime-beginTime).toFixed(0);
+            // $(".item2_item img").removeClass("revolve");
+            var ans=data[data_index].ans;
+            var ans1=key;
+            console.log(ans1+","+ans);
+            stimidset.push(data[data_index].ID);
+            type4set.push(type4Num);
+            topicArr.push(data[data_index].TU);
+            tauArr.push(data[data_index].TAU);
+            correctanswerset.push(ans);
+            buttonset.push(ans1);
+            timeset.push(time);
+            textFun(ans, ans1);
+            $("#item2").addClass("op");
+            if(ans1 == ans){
+                correctMp3.play();
+                correct_number++;
+                great++;
+                $("#xs2").text(correct_number);
+                if(great>=5){
+                    great=0;
+                    $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                }else {
+                    $("#reward_img").attr("src","../com_imgs/yes.gif");
+                }
+
+            }else {
+                great=0;
+                wrongMp3.play();
+                errorNum++;
+                $("#reward_img").attr("src","../com_imgs/no.gif");
+            }
+            $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+            nextTopicFun()
+        }
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+            if (errorNum >= errorCont) {
+                endFun();
+                clearInterval(timer);
+                timer = null;
+                return;
+            }
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+        function endFun() {
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+        }
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                var topicCon,ansCon,buttonsetCon;
+                if(tauArr[i] == "true"){
+                    topicCon=topicArr[i]
+                }else {
+                    topicCon='<img src="'+topicArr[i]+'" alt="">'
+                }
+                if(ansTAUArr[i] == "true"){
+                    ansCon=ansText[i]
+                }else {
+                    ansCon='<img src="'+ansText[i]+'" alt="">'
+                }
+                if(xtauArr[i] == "true"){
+                    buttonsetCon=buttonsetText[i]
+                }else {
+                    buttonsetCon='<img src="'+buttonsetText[i]+'" alt="">'
+                }
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td class="tableTd">'+topicCon+'</td>' +
+                    '<td class="tableTd">'+ansCon+'</td>' +
+                    '<td class="tableTd">'+buttonsetCon+'</td>' +
+                    '<td class="tableTd">'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

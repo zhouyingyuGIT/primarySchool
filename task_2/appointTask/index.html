@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>指定训练项目列表</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+    <link href="../../css/common.css" rel="stylesheet"  />
+    <link href="../../css/animate.css" rel="stylesheet"  />
+    <link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+    <style>
+        .myContent {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        img.headerBg {
+            width: 250px;
+            margin-top: -8px;
+        }
+        p.curTitle {
+            font-size: 18px;
+            color: #77b3d4;
+            margin-top: -52px;
+        }
+        p.curTitle_ {
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 20px;
+            color: #77b3d4;
+        }
+        .slide-box{
+            margin-top: 20px;
+            display: -webkit-box;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling:touch;
+        }
+        .slide-item{
+            width: 120px;
+            height: 175px;
+            margin-right: 25px;
+            text-align: center;
+        }
+        .practice {
+            margin-top: 55px;
+        }
+        .slide-item img {
+            height: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="myContent">
+    <div class="mui-row" style="margin-bottom: 20px;">
+        <div class="mui-col-sm-3">
+<!--            <img class="goLeft" onclick="goNext('../index.html')" src="../../image/icon/goLeft.png" />-->
+        </div>
+        <div class="mui-col-sm-6" style="text-align: center">
+            <!--<img class="headerBg" src="../../image/title_bg_.png"/>-->
+            <!--<p class="curTitle">数学认知能力训练</p>-->
+            <p class="curTitle_">数学认知能力训练</p>
+        </div>
+        <div class="mui-col-sm-3">
+            <img class="goLeft" onclick="goNext('../index.html')" src="../../image/icon/goLeft.png" />
+        </div>
+    </div>
+    <div class="mui-row slide-box"></div>
+</div>
+
+</body>
+
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/common.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript">
+    var clickMusic = new Audio('../../mp3/click.mp3');
+    var projectList = [];
+    var recentProjectid = ''
+
+    //获取当前用户 上一次的训练任务 信息
+    var recentTask = {
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.thirdparty.rest.api.ThirdPartyRecentUsedProjectAndTaskProxy',
+        service: 'getRecentUsedTask',
+        args: JSON.stringify(recentTask)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            recentProjectid = data.results.projectid
+        }
+    });
+
+    //获取:用户  --  项目列表
+    var taskListByUser = {
+        uid: parseInt(localStorage.getItem('uid')),
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.users.ProjectParticipantsMGProxy',
+        service: 'getAllProjectParticipantsMGForOneUser',
+        args: JSON.stringify(taskListByUser)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            /*处理token失效*/
+            if(data.message) {
+                mui.toast('访问时间已经过期,3秒后自动跳转到登录页面!',{ duration:'long', type:'div' });
+                setTimeout(function(){
+                    mui.openWindow({
+                        url: '../../login.html',
+                        createNew: true,
+                        styles: {
+                            cachemode:"noCache",
+                        }
+                    });
+                }, 3000);
+            }
+            if (data.projects) {
+                 projectList = data.projects;
+                for (var i = 0; i < projectList.length; i++) {
+                    if (projectList[i].pid === recentProjectid) {
+                        var recentProjectInfo = projectList[i];
+                        projectList.splice(i, 1);
+                        projectList.unshift(recentProjectInfo);
+                        break;
+                    }
+                }
+                for (var i = 0;i<projectList.length;i++) {
+                    var j = i + 1;
+                    var  addStr ='<div class="slide-item '+ isClass(i) +'" id=" '+projectList[i].pid+' " onclick="doProject(event)" >' +
+                                    '<a class="a_link">' +
+                                        '<img class="animated bounceInDown" src="../../image/book.png" />' +
+                                    '</a>' +
+                                    '<p class="p_'+projectList[i].pid+'" style="font-size:16px;font-weight:600;color:#77b3d4;">' + projectList[i].projectname + '</p>' +
+                                '</div>';
+                    $(".slide-box").append(addStr);
+                }
+                $('.p_'+recentProjectid).css("color","#7da56c");
+            }
+        }
+    });
+
+    /*判断 奇数、偶数 -- 上下显示布局*/
+    function isClass(i) {
+        if ( i%2 === 1) {
+            return 'formal'
+        }else{
+            return 'practice'
+        }
+    }
+
+    function doProject(e) {
+        var pid =  parseInt(e.currentTarget.id);
+        mui.openWindow({
+            url: 'index_list.html?pid='+pid,
+            createNew: true,
+            styles: {
+                cachemode:"noCache",
+            }
+        });
+    }
+
+    //查询获取所有项目列表 带有时间--(打开项目时候保存进去的数据)
+    var recentTask = {
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.rest.api.RecentUsedProjectMGProxy',
+        service: 'getAllRecentUsedProjectMG',
+        args: JSON.stringify(recentTask)
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+        }
+    })
+
+</script>
+
+
+</html>

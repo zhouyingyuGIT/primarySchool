@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>折线统计图</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="">时间</div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name">正确个数</div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name">正确率</div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #524db9;">
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+        </div>
+
+        <div class="item1_img item1_imgBox2" style="position: relative;">
+            <div id="img1" class="beginText" style="">开始</div>
+            <img src="../com_imgs/xx.jpg" alt="" style="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="height: 68%;width: 80%;margin: 0px auto;">
+                <div id="topic" class="item2_ti">
+                    <img id="imgUrl" src="" alt="">
+                </div>
+                <div id="topicText" class="item2_topic"></div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="A.png" alt="">
+                        <div style="padding: 40px 34px 40px 20px;" data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="B.png" alt="">
+                        <div style="padding: 40px 30px 48px 34px;" data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="C.png" alt="">
+                        <div style="padding: 40px 36px 56px 30px;" data-data="" class="item2_set" id="item2_C"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="D.png" alt="">
+                        <div style="padding: 38px 24px 58px 30px;" data-data="" class="item2_set" id="item2_D"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg">返回</button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;">做题情况</caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;">任务考察知识点及解题方法</div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+{"ID":"1","url":"img/0505700100.png","topic":"小华在路上停车（ ）分","ans":"A","A":"A","AText":"20","B":"B","BText":"40","C":"C","CText":"60","D":"D","DText":"100"},
+{"ID":"2","url":"img/0505700100.png","topic":"小华在图书馆借书用（ ）分","ans":"C","A":"A","AText":"10","B":"B","BText":"20","C":"C","CText":"40","D":"D","DText":"60"},
+{"ID":"3","url":"img/0505700100.png","topic":"从图书馆返回家中，速度是每小时（ ）千米。","ans":"B","A":"A","AText":"6","B":"B","BText":"15","C":"C","CText":"9","D":"D","DText":"20"},
+{"ID":"4","url":"img/0505700100.png","topic":"小华骑得最快是在什么时间段？","ans":"D","A":"A","AText":"0-20","B":"B","BText":"40-60","C":"C","CText":"60-100","D":"D","DText":"100-120"},
+{"ID":"5","url":"img/0505700100.png","topic":"小华在路上停车的时候离图书馆还有（ ）","ans":"D","A":"A","AText":"2千米","B":"B","BText":"3千米","C":"C","CText":"不到3千米","D":"D","DText":"大于3千米"},
+{"ID":"6","url":"img/0505700200.png","topic":"第（ ）季度产量最高，是（ ）吨。","ans":"D","A":"A","AText":"一；350","B":"B","BText":"四；400","C":"C","CText":"三；450","D":"D","DText":"四；560"},
+{"ID":"7","url":"img/0505700200.png","topic":"第（ ）季度到第（ ）季度增长幅度最大","ans":"B","A":"A","AText":"一；二","B":"B","BText":"三；四","C":"C","CText":"二；四","D":"D","DText":"一；三"},
+{"ID":"8","url":"img/0505700200.png","topic":"四个季度总产量是（ ）吨","ans":"A","A":"A","AText":"1760","B":"B","BText":"400","C":"C","CText":"500","D":"D","DText":"600"},
+{"ID":"9","url":"img/0505700200.png","topic":"平均每个季度产量是（ ）吨","ans":"B","A":"A","AText":"500","B":"B","BText":"440","C":"C","CText":"550","D":"D","DText":"400"},
+{"ID":"10","url":"img/0505700300.png","topic":"哪个车的起始速度快","ans":"B","A":"A","AText":"甲车","B":"B","BText":"乙车","C":"C","CText":"一样快","D":"D","DText":"不能判断"},
+{"ID":"11","url":"img/0505700300.png","topic":"哪辆车在中途停下了？停了（ ）小时。","ans":"C","A":"A","AText":"甲车；1小时","B":"B","BText":"甲车；2小时","C":"C","CText":"乙车；1小时","D":"D","DText":"乙车；2小时"},
+{"ID":"12","url":"img/0505700300.png","topic":"行驶3小时后，哪辆车行驶路程长？","ans":"A","A":"A","AText":"甲车","B":"B","BText":"乙车","C":"C","CText":"一样长","D":"D","DText":"不能判断"},
+{"ID":"13","url":"img/0505700300.png","topic":"行驶的最后一小时，哪辆车速度更快？","ans":"A","A":"A","AText":"甲车","B":"B","BText":"乙车","C":"C","CText":"一样快","D":"D","DText":"不能判断"},
+{"ID":"14","url":"img/0505700300.png","topic":"乙车在行驶第（ ）小时第二次超过甲","ans":"D","A":"A","AText":"0","B":"B","BText":"2","C":"C","CText":"3","D":"D","DText":"4"},
+{"ID":"15","url":"img/0505700400.png","topic":"小红在（ ）到（ ）岁身高增长最快？","ans":"C","A":"A","AText":"7；8","B":"B","BText":"8；9","C":"C","CText":"11；12","D":"D","DText":"10；11"},
+{"ID":"16","url":"img/0505700400.png","topic":"小红在（ ）岁之前一直（ ）于标准身高。","ans":"D","A":"A","AText":"12；高","B":"B","BText":"12,；低","C":"C","CText":"11；高","D":"D","DText":"11；低"},
+{"ID":"17","url":"img/0505700400.png","topic":"小红在7岁之前在同龄人里身高比较（ ）。","ans":"A","A":"A","AText":"低","B":"B","BText":"高","C":"C","CText":"一样","D":"D","DText":"不能判断"},
+{"ID":"18","url":"img/0505700400.png","topic":"小红在7-12岁相对同龄人个子长得较（ ）。","ans":"A","A":"A","AText":"快","B":"B","BText":"慢","C":"C","CText":"一样","D":"D","DText":"不能判断"},
+{"ID":"19","url":"img/0505700400.png","topic":"小红从7岁到10岁大致长了（ ）cm。","ans":"B","A":"A","AText":"15","B":"B","BText":"25","C":"C","CText":"35","D":"D","DText":"50"},
+{"ID":"20","url":"img/0505700500.png","topic":"小明每隔（ ）小时测量一次气温。","ans":"B","A":"A","AText":"0.5","B":"B","BText":"1","C":"C","CText":"2","D":"D","DText":"1.5"},
+{"ID":"21","url":"img/0505700500.png","topic":"这一天的最高气温是（ ）度。","ans":"C","A":"A","AText":"16","B":"B","BText":"21","C":"C","CText":"23","D":"D","DText":"20"},
+{"ID":"22","url":"img/0505700500.png","topic":"什么时候气温上升最快？","ans":"D","A":"A","AText":"8点到10点","B":"B","BText":"14点到15点","C":"C","CText":"12点到13点","D":"D","DText":"11点到12点"},
+{"ID":"23","url":"img/0505700500.png","topic":"什么时候气温下降最快？","ans":"A","A":"A","AText":"14点到15点","B":"B","BText":"15点到16点","C":"C","CText":"11点到12点","D":"D","DText":"8点到9点"},
+{"ID":"24","url":"img/0505700500.png","topic":"某生物最活跃的温度是18℃，那么这一天中什么时候最有可能出现最多这种生物？","ans":"D","A":"A","AText":"11：00","B":"B","BText":"12：00","C":"C","CText":"16：00","D":"D","DText":"17：00"},
+{"ID":"25","url":"img/0505700600.png","topic":"月平均气温在（ ）月最高。","ans":"C","A":"A","AText":"1月","B":"B","BText":"4月","C":"C","CText":"7月","D":"D","DText":"8月"},
+{"ID":"26","url":"img/0505700600.png","topic":"月均温在10℃以下的月份有（ ）个。","ans":"B","A":"A","AText":"6","B":"B","BText":"7","C":"C","CText":"8","D":"D","DText":"9"},
+{"ID":"27","url":"img/0505700600.png","topic":"平均气温在12℃左右是出游的好时候，到九寨沟旅游最好在（）。","ans":"A","A":"A","AText":"9月","B":"B","BText":"7月","C":"C","CText":"4月","D":"D","DText":"12月"},
+{"ID":"28","url":"img/0505700700.png","topic":"（ ）月营业额最高，是（ ）万元，支出（ ）元。","ans":"A","A":"A","AText":"6；6.9；3.2","B":"B","BText":"8；4.4；1.6","C":"C","CText":"3；4.3；2.5","D":"D","DText":"5；3.3；1.4"},
+{"ID":"29","url":"img/0505700700.png","topic":"（ ）月获得的利润最高。","ans":"C","A":"A","AText":"3","B":"B","BText":"5","C":"C","CText":"6","D":"D","DText":"8"},
+{"ID":"30","url":"img/0505700700.png","topic":"这十个月里亏本的有几个月？","ans":"B","A":"A","AText":"2","B":"B","BText":"3","C":"C","CText":"7","D":"D","DText":"8"},
+{"ID":"31","url":"img/0505700700.png","topic":"整体来说，这十个月是（）。","ans":"A","A":"A","AText":"赢利的","B":"B","BText":"亏本的","C":"C","CText":"不赢不亏","D":"D","DText":"无法判断"},
+{"ID":"32","url":"img/0505700700.png","topic":"可由图猜测第（）季度的营业额最高。","ans":"B","A":"A","AText":"一","B":"B","BText":"二","C":"C","CText":"三","D":"D","DText":"四"},
+{"ID":"33","url":"img/0505700800.png","topic":"售出图书最多的一天比最少的一天多（ ）册。","ans":"C","A":"A","AText":"300","B":"B","BText":"590","C":"C","CText":"600","D":"D","DText":"185"},
+{"ID":"34","url":"img/0505700800.png","topic":"星期（）的销售额超过了800？","ans":"B","A":"A","AText":"五、六","B":"B","BText":"六、日","C":"C","CText":"六","D":"D","DText":"日"},
+{"ID":"35","url":"img/0505700800.png","topic":"星期五售出的图书册数比星期四多（)册。","ans":"A","A":"A","AText":"150","B":"B","BText":"90","C":"C","CText":"60","D":"D","DText":"30"},
+{"ID":"36","url":"img/0505700800.png","topic":"星期日售出的图书册数约是星期四的（ ）倍。","ans":"D","A":"A","AText":"0","B":"B","BText":"1","C":"C","CText":"3","D":"D","DText":"2"},
+{"ID":"37","url":"img/0505700900.png","topic":"火车停站前的速度是每分钟（）千米。","ans":"B","A":"A","AText":"3/5","B":"B","BText":"1","C":"C","CText":"2","D":"D","DText":"2/3"},
+{"ID":"38","url":"img/0505700900.png","topic":"火车停站时间是（）分钟。","ans":"B","A":"A","AText":"5","B":"B","BText":"10","C":"C","CText":"15","D":"D","DText":"20"},
+{"ID":"39","url":"img/0505700900.png","topic":"火车停站后时速比汽车每分钟（）。","ans":"A","A":"A","AText":"快","B":"B","BText":"慢","C":"C","CText":"一样","D":"D","DText":"无法判断"},
+{"ID":"40","url":"img/0505700900.png","topic":"汽车比火车早到（）分钟。","ans":"A","A":"A","AText":"5","B":"B","BText":"10","C":"C","CText":"15","D":"D","DText":"1"},
+{"ID":"41","url":"img/0505700900.png","topic":"汽车与火车哪一个行驶中的时间长？","ans":"A","A":"A","AText":"汽车","B":"B","BText":"火车","C":"C","CText":"同时到达","D":"D","DText":"无法判断"},
+{"ID":"42","url":"img/0505701000.png","topic":"（）先到达终点。","ans":"B","A":"A","AText":"小刚","B":"B","BText":"小强","C":"C","CText":"同时到达","D":"D","DText":"无法判断"},
+{"ID":"43","url":"img/0505701000.png","topic":"请用“快”“慢”来描述他们的比赛情况：小刚是先（）后（）。","ans":"C","A":"A","AText":"慢；快","B":"B","BText":"慢；慢","C":"C","CText":"快；慢","D":"D","DText":"快；快"},
+{"ID":"44","url":"img/0505701000.png","topic":"开赛初（）领先，开赛（）分钟后（）领先。","ans":"D","A":"A","AText":"小刚；4；小刚","B":"B","BText":"小强；3；小刚","C":"C","CText":"小强；4；小强","D":"D","DText":"小刚；3；小强"},
+{"ID":"45","url":"img/0505701000.png","topic":"比赛中两人相距最远约（）。","ans":"C","A":"A","AText":"50","B":"B","BText":"60","C":"C","CText":"100","D":"D","DText":"200"},
+{"ID":"46","url":"img/0505701000.png","topic":"小刚是（）分钟到达的终点。","ans":"C","A":"A","AText":"5","B":"B","BText":"6","C":"C","CText":"5.5","D":"D","DText":"4.5"},
+{"ID":"47","url":"img/0505701100.png","topic":"甲飞机飞行了（）秒","ans":"B","A":"A","AText":"35","B":"B","BText":"40","C":"C","CText":"50","D":"D","DText":"60"},
+{"ID":"48","url":"img/0505701100.png","topic":"乙飞机飞行了（）秒","ans":"C","A":"A","AText":"15","B":"B","BText":"25","C":"C","CText":"35","D":"D","DText":"40"},
+{"ID":"49","url":"img/0505701100.png","topic":"乙飞机的飞行时间比甲时间短（）。","ans":"A","A":"A","AText":"5","B":"B","BText":"10","C":"C","CText":"15","D":"D","DText":"20"},
+{"ID":"50","url":"img/0505701100.png","topic":"起飞后第25秒甲飞机的飞行高度是（）米。","ans":"B","A":"A","AText":"20","B":"B","BText":"25","C":"C","CText":"10","D":"D","DText":"30"},
+{"ID":"51","url":"img/0505701100.png","topic":"起飞后第（）秒两架飞机处于同一高度。","ans":"C","A":"A","AText":"5","B":"B","BText":"10","C":"C","CText":"15","D":"D","DText":"20"},
+{"ID":"52","url":"img/0505701100.png","topic":"起飞后大约（）秒两架飞机的高度相差最大。","ans":"C","A":"A","AText":"10","B":"B","BText":"20","C":"C","CText":"30","D":"D","DText":"35"},
+{"ID":"53","url":"img/0505701200.jpg","topic":"这六个月毛衣销售的趋势是（）。","ans":"A","A":"A","AText":"先递增再递减","B":"B","BText":"先递减再递增","C":"C","CText":"递减","D":"D","DText":"递增"},
+{"ID":"54","url":"img/0505701200.jpg","topic":"毛衣销量最高是在（）月。","ans":"B","A":"A","AText":"七","B":"B","BText":"十","C":"C","CText":"十二","D":"D","DText":"十一"},
+{"ID":"55","url":"img/0505701200.jpg","topic":"销量最高的月份是销量最低月份的几倍？","ans":"C","A":"A","AText":"2","B":"B","BText":"3","C":"C","CText":"4","D":"D","DText":"5"},
+{"ID":"56","url":"img/0505701200.jpg","topic":"十、十一、十二月的平均月销量是（）件。","ans":"D","A":"A","AText":"400","B":"B","BText":"1200","C":"C","CText":"600","D":"D","DText":"800"},
+{"ID":"57","url":"img/0505701200.jpg","topic":"小明要去买毛衣，为了价格便宜，最好在（）月份去买。","ans":"D","A":"A","AText":"十","B":"B","BText":"九","C":"C","CText":"十一","D":"D","DText":"十二"},
+{"ID":"58","url":"img/0505701300.jpg","topic":"由图，两个修路队每天修路长度是（）。","ans":"A","A":"A","AText":"都在递增","B":"B","BText":"都在递减","C":"C","CText":"一队递减，二队递增","D":"D","DText":"一队递增，二队递减"},
+{"ID":"59","url":"img/0505701300.jpg","topic":"第（）天第一队修的路长","ans":"B","A":"A","AText":"一、四","B":"B","BText":"二、三","C":"C","CText":"四","D":"D","DText":"三"},
+{"ID":"60","url":"img/0505701300.jpg","topic":"两个队五天的总计划修路长度是500米，那么第五天每个队平均约修（）米。","ans":"C","A":"A","AText":"20","B":"B","BText":"40","C":"C","CText":"50","D":"D","DText":"100"},
+{"ID":"61","url":"img/0505701400.png","topic":"前5届城运会江苏省运动员金牌的最高纪录是（）枚。","ans":"A","A":"A","AText":"19","B":"B","BText":"20","C":"C","CText":"24","D":"D","DText":"56"},
+{"ID":"62","url":"img/0505701400.png","topic":"前10届城运会江苏省运动员金牌的最高纪录是（）枚。","ans":"C","A":"A","AText":"24","B":"B","BText":"24.5","C":"C","CText":"56","D":"D","DText":"19"},
+{"ID":"63","url":"img/0505701400.png","topic":"江苏省运动员金牌的最高纪录约是最低纪录的（）倍。","ans":"B","A":"A","AText":"10","B":"B","BText":"11","C":"C","CText":"3","D":"D","DText":"5"},
+{"ID":"64","url":"img/0505701400.png","topic":"第4届之后的最低金牌记录是（）枚。","ans":"D","A":"A","AText":"5","B":"B","BText":"6","C":"C","CText":"10","D":"D","DText":"9"},
+{"ID":"65","url":"img/0505701500.png","topic":"青岛市的最高降水量发生在（)月，是（）。","ans":"B","A":"A","AText":"5，31","B":"B","BText":"5，44","C":"C","CText":"7,28","D":"D","DText":"6，35"},
+{"ID":"66","url":"img/0505701500.png","topic":"昆明市的最低降水量发生在（）月，是（）。","ans":"C","A":"A","AText":"1，5","B":"B","BText":"2，8","C":"C","CText":"2,6","D":"D","DText":"1，11"},
+{"ID":"67","url":"img/0505701500.png","topic":"昆明市相比于青岛，一年中每月的降水分布（）。","ans":"A","A":"A","AText":"比较平均","B":"B","BText":"比较集中","C":"C","CText":"变化较大","D":"D","DText":"不能判断"},
+{"ID":"68","url":"img/0505701500.png","topic":"9月（）市的降水量更高，是（）。","ans":"D","A":"A","AText":"昆明；16","B":"B","BText":"青岛；25","C":"C","CText":"青岛；16","D":"D","DText":"昆明；25"},
+{"ID":"69","url":"img/0505701500.png","topic":"青岛市第（）季度的降水量总体较低。","ans":"D","A":"A","AText":"一","B":"B","BText":"二","C":"C","CText":"三","D":"D","DText":"四"},
+{"ID":"70","url":"img/0505701600.jpg","topic":"小轿车的经过大多集中在（）时。","ans":"A","A":"A","AText":"8，16，18","B":"B","BText":"6，10,12","C":"C","CText":"8，12，14","D":"D","DText":"6，12,14"},
+{"ID":"71","url":"img/0505701600.jpg","topic":"由图可知两种车辆在（）时和（）时都会增多。","ans":"C","A":"A","AText":"8，12","B":"B","BText":"10,14","C":"C","CText":"8，16","D":"D","DText":"12,18"},
+{"ID":"72","url":"img/0505701600.jpg","topic":"公交车一天中每小时的车流量（）。","ans":"B","A":"A","AText":"比较集中","B":"B","BText":"比较平均","C":"C","CText":"与小轿车相同","D":"D","DText":"无法判断"},
+{"ID":"73","url":"img/0505701600.jpg","topic":"小轿车一天中每小时的车流量（）。","ans":"A","A":"A","AText":"比较集中","B":"B","BText":"比较平均","C":"C","CText":"与公交车相同","D":"D","DText":"无法判断"},
+{"ID":"74","url":"img/0505701600.jpg","topic":"小轿车车流量最大的时候是车流量最小时候的（）倍。","ans":"C","A":"A","AText":"10","B":"B","BText":"11","C":"C","CText":"12","D":"D","DText":"7"},
+{"ID":"75","url":"img/0505701600.jpg","topic":"下午6点小轿车车流量是公交车车流量的（）倍。","ans":"B","A":"A","AText":"1","B":"B","BText":"2","C":"C","CText":"3","D":"D","DText":"4"},
+{"ID":"76","url":"img/0505701700.png","topic":"该地降水集中在哪个季节？","ans":"A","A":"A","AText":"春，夏","B":"B","BText":"秋，冬","C":"C","CText":"冬，春","D":"D","DText":"夏，冬"},
+{"ID":"77","url":"img/0505701700.png","topic":"降水量最多的月份约是最低月份的（）倍？","ans":"D","A":"A","AText":"2","B":"B","BText":"3","C":"C","CText":"4","D":"D","DText":"5"},
+{"ID":"78","url":"img/0505701700.png","topic":"如果该地降水量低于20就需要发出用水限制，那么这一年至少有几个月需要发出用水限制？","ans":"B","A":"A","AText":"2","B":"B","BText":"3","C":"C","CText":"4","D":"D","DText":"5"},
+{"ID":"79","url":"img/0505701700.png","topic":"该地这一年降水量高于40的月份有几个？","ans":"C","A":"A","AText":"3","B":"B","BText":"4","C":"C","CText":"5","D":"D","DText":"6"},
+{"ID":"80","url":"img/0505701700.png","topic":"哪两个季度的总体降水量更大？（第一季度是3.4.5月，以此类推）","ans":"A","A":"A","AText":"一、二季度","B":"B","BText":"二、三季度","C":"C","CText":"三、四季度","D":"D","DText":"四、一季度"}
+];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0;
+        var maxtime=120,timer=null;
+        var time1=1500,timer1=null,timer2=null;
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[],topicImg=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].AText);
+            $("#item2_A").attr("data-data",data[data_index].A);
+            $("#item2_B").text(data[data_index].BText);
+            $("#item2_B").attr("data-data",data[data_index].B);
+            $("#item2_C").text(data[data_index].CText);
+            $("#item2_C").attr("data-data",data[data_index].C);
+            $("#item2_D").text(data[data_index].DText);
+            $("#item2_D").attr("data-data",data[data_index].D);
+            // $(".item2_item img").addClass("revolve");
+            // $("#imgUrl").attr("src",data[data_index].url);
+            localCache(data[data_index],'url',curTaskInfo.taskid,'#imgUrl');
+            $("#topicText").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push("0");
+                topicArr.push(data[data_index].topic);
+                topicImg.push(data[data_index].url);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1)
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+            if(errorNum>=5){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            if(data_number<=data_index){
+                endFun();
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td style="height: 120px;line-height: 120px;"><img style="height: 100%;width: auto;" src="'+topicImg[i]+'" alt="">'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

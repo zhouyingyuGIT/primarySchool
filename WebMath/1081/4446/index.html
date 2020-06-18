@@ -1,0 +1,966 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公倍数</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="">时间</div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name">正确个数</div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name">正确率</div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #524db9;">
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+        </div>
+
+        <div class="item1_img item1_imgBox2" style="position: relative;">
+            <div id="img1" class="beginText" style="">开始</div>
+            <img src="../com_imgs/begin.jpg" alt="" style="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_C"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_D"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg">返回</button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;">做题情况</caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;">任务考察知识点及解题方法</div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data = [
+            {
+                "ID": "1",
+                "ans": "A",
+                "topic": "6和11",
+                "A": "A",
+                "AText": "66",
+                "B": "B",
+                "BText": "67",
+                "C": "C",
+                "CText": "68",
+                "D": "D",
+                "DText": "69"
+            },
+            {
+                "ID": "2",
+                "ans": "A",
+                "topic": "7和8",
+                "A": "A",
+                "AText": "56",
+                "B": "B",
+                "BText": "57",
+                "C": "C",
+                "CText": "58",
+                "D": "D",
+                "DText": "59"
+            },
+            {
+                "ID": "3",
+                "ans": "A",
+                "topic": "3和8",
+                "A": "A",
+                "AText": "48",
+                "B": "B",
+                "BText": "49",
+                "C": "C",
+                "CText": "50",
+                "D": "D",
+                "DText": "51"
+            },
+            {
+                "ID": "4",
+                "ans": "A",
+                "topic": "5和9",
+                "A": "A",
+                "AText": "90",
+                "B": "B",
+                "BText": "46",
+                "C": "C",
+                "CText": "91",
+                "D": "D",
+                "DText": "81"
+            },
+            {
+                "ID": "5",
+                "ans": "A",
+                "topic": "3和2",
+                "A": "A",
+                "AText": "12",
+                "B": "B",
+                "BText": "13",
+                "C": "C",
+                "CText": "14",
+                "D": "D",
+                "DText": "15"
+            },
+            {
+                "ID": "6",
+                "ans": "A",
+                "topic": "12和7",
+                "A": "A",
+                "AText": "84",
+                "B": "B",
+                "BText": "85",
+                "C": "C",
+                "CText": "86",
+                "D": "D",
+                "DText": "87"
+            },
+            {
+                "ID": "7",
+                "ans": "A",
+                "topic": "15和3",
+                "A": "A",
+                "AText": "65",
+                "B": "B",
+                "BText": "66",
+                "C": "C",
+                "CText": "67",
+                "D": "D",
+                "DText": "68"
+            },
+            {
+                "ID": "8",
+                "ans": "A",
+                "topic": "3和14",
+                "A": "A",
+                "AText": "42",
+                "B": "B",
+                "BText": "43",
+                "C": "C",
+                "CText": "44",
+                "D": "D",
+                "DText": "45"
+            },
+            {
+                "ID": "9",
+                "ans": "A",
+                "topic": "16和6",
+                "A": "A",
+                "AText": "96",
+                "B": "B",
+                "BText": "97",
+                "C": "C",
+                "CText": "98",
+                "D": "D",
+                "DText": "99"
+            },
+            {
+                "ID": "10",
+                "ans": "A",
+                "topic": "15和4",
+                "A": "A",
+                "AText": "60",
+                "B": "B",
+                "BText": "61",
+                "C": "C",
+                "CText": "62",
+                "D": "D",
+                "DText": "63"
+            },
+            {
+                "ID": "11",
+                "ans": "B",
+                "topic": "6和13",
+                "A": "A",
+                "AText": "77",
+                "B": "B",
+                "BText": "78",
+                "C": "C",
+                "CText": "79",
+                "D": "D",
+                "DText": "80"
+            },
+            {
+                "ID": "12",
+                "ans": "B",
+                "topic": "7和3",
+                "A": "A",
+                "AText": "20",
+                "B": "B",
+                "BText": "21",
+                "C": "C",
+                "CText": "22",
+                "D": "D",
+                "DText": "23"
+            },
+            {
+                "ID": "13",
+                "ans": "B",
+                "topic": "7和6",
+                "A": "A",
+                "AText": "41",
+                "B": "B",
+                "BText": "42",
+                "C": "C",
+                "CText": "43",
+                "D": "D",
+                "DText": "44"
+            },
+            {
+                "ID": "14",
+                "ans": "B",
+                "topic": "2和6",
+                "A": "A",
+                "AText": "23",
+                "B": "B",
+                "BText": "24",
+                "C": "C",
+                "CText": "25",
+                "D": "D",
+                "DText": "26"
+            },
+            {
+                "ID": "15",
+                "ans": "B",
+                "topic": "6和9",
+                "A": "A",
+                "AText": "53",
+                "B": "B",
+                "BText": "54",
+                "C": "C",
+                "CText": "55",
+                "D": "D",
+                "DText": "56"
+            },
+            {
+                "ID": "16",
+                "ans": "B",
+                "topic": "5和3",
+                "A": "A",
+                "AText": "28",
+                "B": "B",
+                "BText": "30",
+                "C": "C",
+                "CText": "32",
+                "D": "D",
+                "DText": "34"
+            },
+            {
+                "ID": "17",
+                "ans": "B",
+                "topic": "17和2",
+                "A": "A",
+                "AText": "33",
+                "B": "B",
+                "BText": "34",
+                "C": "C",
+                "CText": "35",
+                "D": "D",
+                "DText": "36"
+            },
+            {
+                "ID": "18",
+                "ans": "B",
+                "topic": "18和4",
+                "A": "A",
+                "AText": "70",
+                "B": "B",
+                "BText": "72",
+                "C": "C",
+                "CText": "74",
+                "D": "D",
+                "DText": "75"
+            },
+            {
+                "ID": "19",
+                "ans": "B",
+                "topic": "12和8",
+                "A": "A",
+                "AText": "95",
+                "B": "B",
+                "BText": "96",
+                "C": "C",
+                "CText": "97",
+                "D": "D",
+                "DText": "98"
+            },
+            {
+                "ID": "20",
+                "ans": "B",
+                "topic": "13和4",
+                "A": "A",
+                "AText": "51",
+                "B": "B",
+                "BText": "52",
+                "C": "C",
+                "CText": "53",
+                "D": "D",
+                "DText": "54"
+            },
+            {
+                "ID": "21",
+                "ans": "C",
+                "topic": "14和6",
+                "A": "A",
+                "AText": "81",
+                "B": "B",
+                "BText": "82",
+                "C": "C",
+                "CText": "84",
+                "D": "D",
+                "DText": "85"
+            },
+            {
+                "ID": "22",
+                "ans": "C",
+                "topic": "16和7",
+                "A": "A",
+                "AText": "110",
+                "B": "B",
+                "BText": "111",
+                "C": "C",
+                "CText": "112",
+                "D": "D",
+                "DText": "113"
+            },
+            {
+                "ID": "23",
+                "ans": "C",
+                "topic": "17和3",
+                "A": "A",
+                "AText": "49",
+                "B": "B",
+                "BText": "50",
+                "C": "C",
+                "CText": "51",
+                "D": "D",
+                "DText": "52"
+            },
+            {
+                "ID": "24",
+                "ans": "C",
+                "topic": "18和5",
+                "A": "A",
+                "AText": "88",
+                "B": "B",
+                "BText": "89",
+                "C": "C",
+                "CText": "90",
+                "D": "D",
+                "DText": "91"
+            },
+            {
+                "ID": "25",
+                "ans": "C",
+                "topic": "19和2",
+                "A": "A",
+                "AText": "35",
+                "B": "B",
+                "BText": "36",
+                "C": "C",
+                "CText": "38",
+                "D": "D",
+                "DText": "39"
+            },
+            {
+                "ID": "26",
+                "ans": "C",
+                "topic": "4和7",
+                "A": "A",
+                "AText": "25",
+                "B": "B",
+                "BText": "27",
+                "C": "C",
+                "CText": "28",
+                "D": "D",
+                "DText": "30"
+            },
+            {
+                "ID": "27",
+                "ans": "C",
+                "topic": "4和9",
+                "A": "A",
+                "AText": "34",
+                "B": "B",
+                "BText": "35",
+                "C": "C",
+                "CText": "36",
+                "D": "D",
+                "DText": "38"
+            },
+            {
+                "ID": "28",
+                "ans": "C",
+                "topic": "5和6",
+                "A": "A",
+                "AText": "20",
+                "B": "B",
+                "BText": "40",
+                "C": "C",
+                "CText": "60",
+                "D": "D",
+                "DText": "80"
+            },
+            {
+                "ID": "29",
+                "ans": "C",
+                "topic": "6和4",
+                "A": "A",
+                "AText": "21",
+                "B": "B",
+                "BText": "22",
+                "C": "C",
+                "CText": "24",
+                "D": "D",
+                "DText": "25"
+            },
+            {
+                "ID": "30",
+                "ans": "C",
+                "topic": "7和5",
+                "A": "A",
+                "AText": "32",
+                "B": "B",
+                "BText": "34",
+                "C": "C",
+                "CText": "35",
+                "D": "D",
+                "DText": "36"
+            },
+            {
+                "ID": "31",
+                "ans": "D",
+                "topic": "8和9",
+                "A": "A",
+                "AText": "69",
+                "B": "B",
+                "BText": "70",
+                "C": "C",
+                "CText": "71",
+                "D": "D",
+                "DText": "72"
+            },
+            {
+                "ID": "32",
+                "ans": "D",
+                "topic": "2和5",
+                "A": "A",
+                "AText": "104",
+                "B": "B",
+                "BText": "106",
+                "C": "C",
+                "CText": "108",
+                "D": "D",
+                "DText": "110"
+            },
+            {
+                "ID": "33",
+                "ans": "D",
+                "topic": "2和7",
+                "A": "A",
+                "AText": "10",
+                "B": "B",
+                "BText": "12",
+                "C": "C",
+                "CText": "15",
+                "D": "D",
+                "DText": "14"
+            },
+            {
+                "ID": "34",
+                "ans": "D",
+                "topic": "4和5",
+                "A": "A",
+                "AText": "10",
+                "B": "B",
+                "BText": "14",
+                "C": "C",
+                "CText": "15",
+                "D": "D",
+                "DText": "20"
+            },
+            {
+                "ID": "35",
+                "ans": "D",
+                "topic": "8和5",
+                "A": "A",
+                "AText": "10",
+                "B": "B",
+                "BText": "20",
+                "C": "C",
+                "CText": "30",
+                "D": "D",
+                "DText": "40"
+            },
+            {
+                "ID": "36",
+                "ans": "D",
+                "topic": "24和3",
+                "A": "A",
+                "AText": "3",
+                "B": "B",
+                "BText": "8",
+                "C": "C",
+                "CText": "12",
+                "D": "D",
+                "DText": "48"
+            },
+            {
+                "ID": "37",
+                "ans": "D",
+                "topic": "14和9",
+                "A": "A",
+                "AText": "122",
+                "B": "B",
+                "BText": "124",
+                "C": "C",
+                "CText": "125",
+                "D": "D",
+                "DText": "126"
+            },
+            {
+                "ID": "38",
+                "ans": "D",
+                "topic": "16和3",
+                "A": "A",
+                "AText": "3",
+                "B": "B",
+                "BText": "18",
+                "C": "C",
+                "CText": "24",
+                "D": "D",
+                "DText": "48"
+            },
+            {
+                "ID": "39",
+                "ans": "D",
+                "topic": "19和3",
+                "A": "A",
+                "AText": "54",
+                "B": "B",
+                "BText": "55",
+                "C": "C",
+                "CText": "56",
+                "D": "D",
+                "DText": "57"
+            },
+            {
+                "ID": "40",
+                "ans": "D",
+                "topic": "13和5",
+                "A": "A",
+                "AText": "62",
+                "B": "B",
+                "BText": "63",
+                "C": "C",
+                "CText": "64",
+                "D": "D",
+                "DText": "65"
+            }
+        ];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index = 0, data_click = true, correct_number = 0, great = 0, data_number = 0;
+        var time, beginTime, endTime, errorNum = 0, errorCont = 5;
+        var maxtime = 120, timer = null;
+        var time1 = 1500, timer1 = null, timer2 = null;
+        var type4set = [], stimidset = [], correctanswerset = [], buttonset = [], timeset = [], topicArr = [],
+            commentset = [], ansText = [], buttonsetText = [];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+
+        function topicFun(data_index) {
+            $("#item2_A").text(data[data_index].AText);
+            $("#item2_A").attr("data-data", data[data_index].A);
+            $("#item2_B").text(data[data_index].BText);
+            $("#item2_B").attr("data-data", data[data_index].B);
+            $("#item2_C").text(data[data_index].CText);
+            $("#item2_C").attr("data-data", data[data_index].C);
+            $("#item2_D").text(data[data_index].DText);
+            $("#item2_D").attr("data-data", data[data_index].D);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+
+        function textFun(ans, ans1) {
+            if (ans == "Q") {
+                ansText.push(data[data_index].QText)
+            } else if (ans == "P") {
+                ansText.push(data[data_index].PText)
+            } else if (ans == "A") {
+                ansText.push(data[data_index].AText)
+            } else if (ans == "B") {
+                ansText.push(data[data_index].BText)
+            } else if (ans == "C") {
+                ansText.push(data[data_index].CText)
+            } else if (ans == "D") {
+                ansText.push(data[data_index].DText)
+            } else if (ans == "E") {
+                ansText.push(data[data_index].EText)
+            } else if (ans == "F") {
+                ansText.push(data[data_index].FText)
+            }
+            if (ans1 == "Q") {
+                buttonsetText.push(data[data_index].QText)
+            } else if (ans1 == "P") {
+                buttonsetText.push(data[data_index].PText)
+            } else if (ans1 == "A") {
+                buttonsetText.push(data[data_index].AText)
+            } else if (ans1 == "B") {
+                buttonsetText.push(data[data_index].BText)
+            } else if (ans1 == "C") {
+                buttonsetText.push(data[data_index].CText)
+            } else if (ans1 == "D") {
+                buttonsetText.push(data[data_index].DText)
+            } else if (ans1 == "E") {
+                buttonsetText.push(data[data_index].EText)
+            } else if (ans1 == "F") {
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+
+        $("#img1").on("click", function () {
+            data_number = data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime + "秒");
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+            beginTime = new Date().getTime();
+        });
+        $(".item2_set").on("click", function () {
+            if (data_click) {
+                endTime = new Date().getTime();
+                time = (endTime - beginTime).toFixed(0);
+                var ans = data[data_index].ans;
+                var ans1 = $(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push("0");
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if (ans1 == ans) {
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if (great >= 5) {
+                        great = 0;
+                        $("#reward_img").attr("src", "../com_imgs/jiangli.gif");
+                    } else {
+                        $("#reward_img").attr("src", "../com_imgs/yes.gif");
+                    }
+
+                } else {
+                    great = 0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src", "../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number / (data_index + 1)) * 100) + "%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+            if (errorNum >= errorCont) {
+                endFun();
+                clearInterval(timer);
+                timer = null;
+                return;
+            }
+            if (data_number <= data_index) {
+                endFun();
+                return;
+            }
+            timer1 = setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src", " ");
+                $("#reward").addClass("hide");
+                data_click = true;
+                beginTime = new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1 = null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number / stimidset.length) * 100).toFixed(2) + "%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>' + topicArr[i] + '</td>' +
+                    '<td>' + ansText[i] + '</td>' +
+                    '<td>' + buttonsetText[i] + '</td>' +
+                    '<td>' + timeset[i] + '</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime + "秒")
+
+            } else {
+                endFun();
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime + "秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        $("#out").on("click", function () {
+            post_result();
+        });
+
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

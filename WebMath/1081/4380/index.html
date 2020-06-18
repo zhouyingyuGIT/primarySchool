@@ -1,0 +1,576 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>克与千克的情景应用</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #ff6700;">
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+
+        </div>
+
+        <div class="item1_img item1_imgBox2">
+            <img id="img1" src="../com_imgs/taiyang.png" alt="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #fff2cc;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div class="item2_top" style="">
+                <div class="item2_top_img item2_top_left" style="">
+                    <img src="../com_imgs/left.png" alt="">
+                </div>
+                <div id="topic" class="item2_ti"></div>
+                <div class="item2_top_right item2_top_img">
+                    <img src="../com_imgs/right.png" alt="" style="">
+                </div>
+            </div>
+            <div id="item2_center" class="item2_center" style="">
+                <div class="item2_center_img" style="">
+                    <img id="img_top" class="img_top" src="" alt="" style="">
+                </div>
+            </div>
+            <div id="item2_ans_box" class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item item2_item_left" style="left: 0px;">
+                        <div id="item2_TextA" data-data="" class="item2_set" style="left: 0px;">
+                            <div id="item2_A" class="item2_item_text item2_item_text_left text_left" style=""></div>
+                            <div class="item2_set_img item2_set_img_left img_left">
+                                <img src="../com_imgs/l.png" alt="" style="">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex">
+                    <div class="item2_item" style="right:0px;">
+                        <div id="item2_TextB" data-data="" class="item2_set" style="right: 0px;">
+                            <div id="item2_B" class="item2_item_text item2_item_text_right text_right" style=""></div>
+                            <div class="item2_set_img item2_set_img_right img_right">
+                                <img src="../com_imgs/r.png" alt="" style="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+{"ID":"1","ans":"Q","url":"img/1.png","topic":"一个足球重400（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"2","ans":"Q","url":"img/2.png","topic":"一条金鱼重80（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"3","ans":"P","url":"img/3.png","topic":"一只鸭子重1（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"4","ans":"P","url":"img/4.png","topic":"一条狗重10（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"5","ans":"Q","url":"img/5.png","topic":"一个苹果重200（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"6","ans":"P","url":"img/6.png","topic":"一篮鸡蛋重2（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"7","ans":"P","url":"img/7.png","topic":"一头猪重100（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"8","ans":"Q","url":"img/8.png","topic":"一个梨重150（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"9","ans":"P","url":"img/9.png","topic":"一袋洗衣粉重1（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"10","ans":"Q","url":"img/10.png","topic":"一个鸡蛋重50（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"11","ans":"P","url":"img/11.png","topic":"一袋大米重10（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"12","ans":"P","url":"img/12.png","topic":"一个儿童重30（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"13","ans":"Q","url":"img/13.png","topic":"一袋瓜子重200（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"14","ans":"Q","url":"img/14.png","topic":"一个菠萝重800（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"15","ans":"Q","url":"img/15.png","topic":"一瓶矿泉水重250（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"16","ans":"P","url":"img/16.png","topic":"一只鸡重3（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"17","ans":"P","url":"img/17.png","topic":"一头牛重300（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"18","ans":"Q","url":"img/18.png","topic":"一盒牙膏重200（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"19","ans":"Q","url":"img/19.png","topic":"一支铅笔重5（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"20","ans":"P","url":"img/20.png","topic":"一箱橘子重10（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"21","ans":"P","url":"img/21.png","topic":"一只老虎重300（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"22","ans":"Q","url":"img/22.png","topic":"一本字典重500（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"23","ans":"P","url":"img/23.png","topic":"一把雨伞重1（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"24","ans":"Q","url":"img/24.png","topic":"一个水杯重200（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"25","ans":"P","url":"img/25.png","topic":"一把椅子重4（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"26","ans":"Q","url":"img/26.png","topic":"一双筷子重10（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"27","ans":"P","url":"img/27.png","topic":"一辆自行车重30（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"28","ans":"Q","url":"img/28.png","topic":"一顶帽子重150（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"29","ans":"Q","url":"img/29.png","topic":"一双鞋重600（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"30","ans":"Q","url":"img/30.png","topic":"一盒口香糖重50（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"31","ans":"Q","url":"img/31.png","topic":"一个草莓重10（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"32","ans":"P","url":"img/32.png","topic":"一个桌子重5（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"33","ans":"P","url":"img/33.png","topic":"一个南瓜重4（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"34","ans":"Q","url":"img/34.png","topic":"一袋方便面重100（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"35","ans":"Q","url":"img/35.png","topic":"一袋盐重200（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"36","ans":"Q","url":"img/36.png","topic":"一盒粉笔重50（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"37","ans":"Q","url":"img/37.png","topic":"一袋牛奶重200（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"38","ans":"P","url":"img/38.png","topic":"一箱牛奶重3（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"39","ans":"P","url":"img/39.png","topic":"一只兔子重2（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"40","ans":"Q","url":"img/40.png","topic":"一个乒乓球重3（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"41","ans":"Q","url":"img/41.png","topic":"一块橡皮重5（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"42","ans":"Q","url":"img/42.png","topic":"一串葡萄重450（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"43","ans":"Q","url":"img/43.png","topic":"一粒纽扣重1（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"44","ans":"Q","url":"img/44.png","topic":"一根火腿肠重70（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"45","ans":"Q","url":"img/45.png","topic":"一袋茶叶重450（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"46","ans":"P","url":"img/46.png","topic":"一棵白菜重2（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"47","ans":"P","url":"img/47.png","topic":"一罐奶粉重1（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"48","ans":"P","url":"img/48.png","topic":"一只大象重3000（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"49","ans":"P","url":"img/49.png","topic":"一只熊猫重120（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"50","ans":"Q","url":"img/50.png","topic":"一块饼干重5（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"51","ans":"P","url":"img/51.png","topic":"一桶油重5（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"52","ans":"Q","url":"img/52.png","topic":"一根胡萝卜重80（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"53","ans":"P","url":"img/53.png","topic":"一台笔记本电脑重2（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"54","ans":"Q","url":"img/54.png","topic":"一个地球仪重700（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"55","ans":"P","url":"img/55.png","topic":"一辆汽车重1500（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"56","ans":"Q","url":"img/56.png","topic":"一本书重500（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"57","ans":"Q","url":"img/57.png","topic":"一个钟表重600（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"58","ans":"Q","url":"img/58.png","topic":"一块糖果重5（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"59","ans":"Q","url":"img/59.png","topic":"一个桃子重250（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"},
+{"ID":"60","ans":"P","url":"img/60.png","topic":"一个西瓜重5（   ）","Q":"Q","QText":"克","P":"P","PText":"千克"}
+]
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,QPkey=false,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=3;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[],imgArr=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].QText);
+            $("#item2_TextA").attr("data-data",data[data_index].Q);
+            $("#item2_B").text(data[data_index].PText);
+            $("#item2_TextB").attr("data-data",data[data_index].P);
+            // $(".item2_item img").addClass("revolve");
+            // $("#img_top").attr("src",data[data_index].url);
+            localCache(data[data_index],'url',curTaskInfo.taskid,'#img_top');
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+
+        function inFun(){
+            $(".item2_item_text_left").addClass("left_text_move");
+            $(".item2_item_text_left").removeClass("left_text_out");
+            $(".item2_set_img_left").addClass("left_img_move");
+            $(".item2_set_img_left").removeClass("left_img_out");
+            //right
+            $(".item2_item_text_right").addClass("right_text_move");
+            $(".item2_item_text_right").removeClass("right_text_out");
+            $(".item2_set_img_right").addClass("right_img_move");
+            $(".item2_set_img_right").removeClass("right_img_out");
+            //top
+            $(".img_top").addClass("img_center_move");
+            $(".img_top").removeClass("img_center_out");
+        }
+
+        function outFun(){
+            $(".item2_item_text_left").addClass("left_text_out");
+            $(".item2_item_text_left").removeClass("left_text_move");
+            $(".item2_set_img_left").addClass("left_img_out");
+            $(".item2_set_img_left").removeClass("left_img_move");
+            //right
+            $(".item2_item_text_right").addClass("right_text_out");
+            $(".item2_item_text_right").removeClass("right_text_move");
+            $(".item2_set_img_right").addClass("right_img_out");
+            $(".item2_set_img_right").removeClass("right_img_move");
+            //top
+            $(".img_top").addClass("img_center_out");
+            $(".img_top").removeClass("img_center_move");
+        }
+
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            QPkey=true;
+            inFun();
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            var key=$(this).attr("data-data");
+            if(QPkey){
+                QPkey=false;
+                keyFun(key)
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            outFun();
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                inFun();
+                QPkey=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+            QPkey=false;
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'<img src="'+imgArr[i]+'" alt="" style="height: 120px;width: auto;"></td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        function keyFun(key) {
+            endTime=new Date().getTime();
+            time=(endTime-beginTime).toFixed(0);
+            var ans=data[data_index].ans;
+            var ans1=key;
+            stimidset.push(data[data_index].ID);
+            type4set.push(type4Num);
+            topicArr.push(data[data_index].topic);
+            correctanswerset.push(ans);
+            buttonset.push(ans1);
+            timeset.push(time);
+            textFun(ans, ans1);
+            $("#item2").addClass("op");
+            if(ans1 == ans){
+                correctMp3.play();
+                correct_number++;
+                great++;
+                $("#xs2").text(correct_number);
+                if(great>=5){
+                    great=0;
+                    $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                }else {
+                    $("#reward_img").attr("src","../com_imgs/yes.gif");
+                }
+
+            }else {
+                great=0;
+                wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+            }
+            $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+            nextTopicFun()
+        }
+
+        $(document).keydown(function (event) {
+            var e = event || window.event;
+            var k = e.keyCode || e.which;
+
+            if(k==81){
+                if(QPkey){
+                    QPkey=false;
+                    keyFun("Q")
+                }
+            }
+
+            if(k == 80){
+                if(QPkey){
+                    QPkey=false;
+                    keyFun("P")
+
+                }
+            }
+        });
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

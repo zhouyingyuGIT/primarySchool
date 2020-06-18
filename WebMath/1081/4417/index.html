@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单位换算（公顷与平方米、平方千米）</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #524db9;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+
+        </div>
+
+        <div class="item1_img item1_imgBox2" style="position: relative;">
+            <div id="img1" class="beginText" style="left:0px">开始</div>
+            <img src="../com_imgs/begin.jpg" alt="" style="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_C"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <img src="../com_imgs/xx.jpg" alt="">
+                        <div data-data="" class="item2_set" id="item2_D"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+            {"ID":"1","ans":"B","topic":"一个操场的面积是1000平方米，合（）公顷。","A":"A","AText":"1","B":"B","BText":"0.1","C":"C","CText":"0.01","D":"D","DText":"0.001"},
+				{"ID":"2","ans":"B","topic":"鸟巢的占地面积为20公顷，合（）平方千米。","A":"A","AText":"2","B":"B","BText":"0.2","C":"C","CText":"0.02","D":"D","DText":"0.002"},
+				{"ID":"3","ans":"B","topic":"一个长方形的菜地的面积为100000平方米，合（）公顷","A":"A","AText":"1","B":"B","BText":"10","C":"C","CText":"100","D":"D","DText":"1000"},
+				{"ID":"4","ans":"A","topic":"一个苹果园占地2公顷，合（）平方千米。","A":"A","AText":"0.02","B":"B","BText":"0.2","C":"C","CText":"2","D":"D","DText":"20"},
+				{"ID":"5","ans":"B","topic":"新建的花园小区占地520000平方米，合（）公顷。","A":"A","AText":"520","B":"B","BText":"52","C":"C","CText":"5.2","D":"D","DText":"0.52"},
+				{"ID":"6","ans":"D","topic":"有一块水稻试验田，占地30000平方米，合（）公顷。","A":"A","AText":"300","B":"B","BText":"0.3","C":"C","CText":"30","D":"D","DText":"3"},
+				{"ID":"7","ans":"A","topic":"400米跑道围起来部分的面积约为1公顷，合（）平方米。","A":"A","AText":"10000","B":"B","BText":"1000","C":"C","CText":"100","D":"D","DText":"100000"},
+				{"ID":"8","ans":"D","topic":"国家游泳中心水立方占地约为80000平方米，合（）公顷","A":"A","AText":"8000","B":"B","BText":"800","C":"C","CText":"80","D":"D","DText":"8"},
+				{"ID":"9","ans":"D","topic":"天安门广场是世界最大的广场，面积约为400000平方米，合（）公顷。","A":"A","AText":"4","B":"B","BText":"4000","C":"C","CText":"400","D":"D","DText":"40"},
+				{"ID":"10","ans":"D","topic":"140个足球场的面积约为1平方千米，合（）公顷。","A":"A","AText":"0.1","B":"B","BText":"1","C":"C","CText":"10","D":"D","DText":"100"},
+				{"ID":"11","ans":"D","topic":"我国台湾的日月潭面积约为827公顷，合（）平方千米。","A":"A","AText":"8270","B":"B","BText":"827","C":"C","CText":"82.7","D":"D","DText":"8.27"},
+				{"ID":"12","ans":"A","topic":"素有“万园之园”之称的北京圆明园占地面积为350公顷，合（）平方千米。","A":"A","AText":"3.5","B":"B","BText":"35","C":"C","CText":"350","D":"D","DText":"3500"},
+				{"ID":"13","ans":"B","topic":"一块空地的面积为15000平方米，合（）公顷。","A":"A","AText":"0.15","B":"B","BText":"1.5","C":"C","CText":"15","D":"D","DText":"150"},
+				{"ID":"14","ans":"D","topic":"某农场开垦了一块4公顷的荒地，合（）平方米。","A":"A","AText":"40","B":"B","BText":"400","C":"C","CText":"4000","D":"D","DText":"40000"},
+				{"ID":"15","ans":"B","topic":"一个长方形泳池的面积为6000平方米，合（）公顷。","A":"A","AText":"6","B":"B","BText":"0.6","C":"C","CText":"60","D":"D","DText":"600"},
+				{"ID":"16","ans":"D","topic":"故宫占地面积约为720000平方米，合（）平方千米。","A":"A","AText":"720","B":"B","BText":"72","C":"C","CText":"7.2","D":"D","DText":"0.72"},
+				{"ID":"17","ans":"C","topic":"奥林匹克森林公园占地约为6.8平方千米，合（）公顷。","A":"A","AText":"0.68","B":"B","BText":"68","C":"C","CText":"680","D":"D","DText":"6800"},
+				{"ID":"18","ans":"A","topic":"一个足球场的面积约为9900平方米，合（）公顷。","A":"A","AText":"0.99","B":"B","BText":"9.9","C":"C","CText":"99","D":"D","DText":"990"},
+				{"ID":"19","ans":"D","topic":"一个长方形苗圃的面积约为4公顷，合（）平方米。","A":"A","AText":"40","B":"B","BText":"400","C":"C","CText":"4000","D":"D","DText":"40000"},
+				{"ID":"20","ans":"B","topic":"我国香港特别行政区的总面积是十一亿零三百万平方米，也就是（）平方千米。","A":"A","AText":"11030","B":"B","BText":"1103","C":"C","CText":"110.3","D":"D","DText":"11.03"},
+				{"ID":"21","ans":"C","topic":"某果园的占地面积约5公顷，合（）平方米。","A":"A","AText":"500","B":"B","BText":"50","C":"C","CText":"50000","D":"D","DText":"500000"},
+				{"ID":"22","ans":"C","topic":"我国钓鱼岛的面积约为4平方千米，合（）公顷。","A":"A","AText":"4","B":"B","BText":"40","C":"C","CText":"400","D":"D","DText":"4000"},
+				{"ID":"23","ans":"A","topic":"一个正方形果园的边长是300米，其占地面积为（）公顷。","A":"A","AText":"9","B":"B","BText":"90","C":"C","CText":"900","D":"D","DText":"9000"},
+				{"ID":"24","ans":"A","topic":"一条高速公路的占地面积为100万平方米，合（）平方千米。","A":"A","AText":"1","B":"B","BText":"10","C":"C","CText":"100","D":"D","DText":"1000"},
+				{"ID":"25","ans":"B","topic":"一块长方形的玉米地，长600米，宽300米，占地面积为（）公顷。","A":"A","AText":"1.8","B":"B","BText":"18","C":"C","CText":"180","D":"D","DText":"1800"},
+				{"ID":"26","ans":"C","topic":"一个大型长方形园林，长2000米，宽1000米，占地面积为（）公顷。","A":"A","AText":"2","B":"B","BText":"20","C":"C","CText":"200","D":"D","DText":"2000"},
+				{"ID":"27","ans":"D","topic":"足球场的面积约是7000平方米，合（）公顷。","A":"A","AText":"7","B":"B","BText":"0.07","C":"C","CText":"70","D":"D","DText":"0.7"},
+				{"ID":"28","ans":"A","topic":"某运动场面积约为2000平方米，10个这样的运动场面积约为（）公顷。","A":"A","AText":"2","B":"B","BText":"20","C":"C","CText":"200","D":"D","DText":"0.2"},
+				{"ID":"29","ans":"D","topic":"北京天坛公园占地约273平方千米，合（）公顷。","A":"A","AText":"27.3","B":"B","BText":"273","C":"C","CText":"2730","D":"D","DText":"27300"},
+				{"ID":"30","ans":"A","topic":"一块长方形菜地占地面积为100平方米，100个这样的菜地占地面积为（）公顷。","A":"A","AText":"1","B":"B","BText":"10","C":"C","CText":"0.1","D":"D","DText":"0.01"},
+				{"ID":"31","ans":"B","topic":"一个人工湖的面积为28000平方米，合（）公顷。","A":"A","AText":"0.28","B":"B","BText":"2.8","C":"C","CText":"28","D":"D","DText":"280"},
+				{"ID":"32","ans":"A","topic":"一个长方形渔场，长200米，宽100米，合（）公顷。","A":"A","AText":"2","B":"B","BText":"0.2","C":"C","CText":"20","D":"D","DText":"0.02"},
+				{"ID":"33","ans":"D","topic":"一个休闲广场的占地面积为12公顷，合（）平方米。","A":"A","AText":"1200","B":"B","BText":"120","C":"C","CText":"12000","D":"D","DText":"120000"},
+				{"ID":"34","ans":"B","topic":"一度假村长1000米，宽600米，合（）公顷。","A":"A","AText":"6","B":"B","BText":"60","C":"C","CText":"600","D":"D","DText":"0.6"},
+				{"ID":"35","ans":"D","topic":"一座商场的占地面积为20公顷，合（）平方米。","A":"A","AText":"200","B":"B","BText":"2000","C":"C","CText":"20000","D":"D","DText":"200000"},
+				{"ID":"36","ans":"A","topic":"李大伯在面积为2公顷的山林上种果树，合（）平方米。","A":"A","AText":"20000","B":"B","BText":"2000","C":"C","CText":"200","D":"D","DText":"20"},
+				{"ID":"37","ans":"C","topic":"一个鱼塘的面积为5000平方米，合（）公顷。","A":"A","AText":"50","B":"B","BText":"5","C":"C","CText":"0.5","D":"D","DText":"0.05"},
+				{"ID":"38","ans":"C","topic":"某地区的植物园面积为80000平方米，合（）公顷。","A":"A","AText":"0.08","B":"B","BText":"0.8","C":"C","CText":"8","D":"D","DText":"80"},
+				{"ID":"39","ans":"D","topic":"12公顷约合（）平方米。","A":"A","AText":"120","B":"B","BText":"1200","C":"C","CText":"12000","D":"D","DText":"120000"},
+				{"ID":"40","ans":"D","topic":"某果园的占地面积约4.2公顷，合（）平方米。","A":"A","AText":"420","B":"B","BText":"420","C":"C","CText":"4200","D":"D","DText":"42000"},
+				{"ID":"41","ans":"D","topic":"一个主题游乐场占地面积为20平方千米，合（）公顷。","A":"A","AText":"200","B":"B","BText":"200000","C":"C","CText":"20000","D":"D","DText":"2000"},
+				{"ID":"42","ans":"C","topic":"一个长方形公园占地面积为6200平方米，合（）公顷。","A":"A","AText":"620","B":"B","BText":"62","C":"C","CText":"0.62","D":"D","DText":"6.2"},
+				{"ID":"43","ans":"C","topic":"一个长方形花园的面积是4公顷，合（）平方米。","A":"A","AText":"400","B":"B","BText":"4000","C":"C","CText":"40000","D":"D","DText":"400000"},
+				{"ID":"44","ans":"A","topic":"北京某学校的操场占地面积为400平方米，合（）公顷。","A":"A","AText":"0.04","B":"B","BText":"0.4","C":"C","CText":"4","D":"D","DText":"40"},
+				{"ID":"45","ans":"A","topic":"北京某小区占地560000平方米，合（）公顷。","A":"A","AText":"56","B":"B","BText":"560","C":"C","CText":"560","D":"D","DText":"5600"},
+				{"ID":"46","ans":"B","topic":"一个停车场的面积为15000平方米，合（）公顷。","A":"A","AText":"15","B":"B","BText":"1.5","C":"C","CText":"0.15","D":"D","DText":"150"},
+				{"ID":"47","ans":"A","topic":"一个游乐场的面积约为5000平方米，合（）公顷。","A":"A","AText":"0.5","B":"B","BText":"5","C":"C","CText":"50","D":"D","DText":"500"},
+				{"ID":"48","ans":"B","topic":"上海一个植物园占地面积为20平方千米，合（）公顷。","A":"A","AText":"200","B":"B","BText":"2000","C":"C","CText":"20000","D":"D","DText":"200000"},
+				{"ID":"49","ans":"B","topic":"杭州的一个动物园占地面积为3000公顷，合（）平方千米。","A":"A","AText":"3","B":"B","BText":"30","C":"C","CText":"300","D":"D","DText":"3000"},
+				{"ID":"50","ans":"A","topic":"某小学占地面积为20公顷，合（）平方米。","A":"A","AText":"200000","B":"B","BText":"20000","C":"C","CText":"2000","D":"D","DText":"200"},
+				{"ID":"51","ans":"C","topic":"一个正方形花园的边长为200米，面积为（）公顷。","A":"A","AText":"2","B":"B","BText":"20000","C":"C","CText":"4","D":"D","DText":"40000"},
+				{"ID":"52","ans":"A","topic":"一间房屋的面积为120平方米，10间这样的房屋有（）公顷。","A":"A","AText":"0.12","B":"B","BText":"1.2","C":"C","CText":"12","D":"D","DText":"120"},
+				{"ID":"53","ans":"D","topic":"一个桃园的占地面积为3公顷，合（）平方米。","A":"A","AText":"30","B":"B","BText":"300","C":"C","CText":"3000","D":"D","DText":"30000"},
+				{"ID":"54","ans":"B","topic":"某公园里有一湖泊，面积约为100平方米，合（）公顷。","A":"A","AText":"0.1","B":"B","BText":"0.01","C":"C","CText":"1","D":"D","DText":"10"},
+				{"ID":"55","ans":"C","topic":"野三坡某一旅游度假村的占地面积为20公顷，合（）平方米。","A":"A","AText":"2000","B":"B","BText":"20000","C":"C","CText":"200000","D":"D","DText":"2000000"},
+				{"ID":"56","ans":"D","topic":"一个建筑工地的基坑为15平方千米，合（）公顷。","A":"A","AText":"150","B":"B","BText":"15","C":"C","CText":"15000","D":"D","DText":"1500"},
+				{"ID":"57","ans":"D","topic":"一个苹果园的占地面积为23公顷，合（）平方米。","A":"A","AText":"230","B":"B","BText":"2300","C":"C","CText":"23000","D":"D","DText":"230000"},
+				{"ID":"58","ans":"B","topic":"某林地保护区的占地面积为100公顷，合（）平方千米。","A":"A","AText":"0.1","B":"B","BText":"1","C":"C","CText":"10","D":"D","DText":"0.01"},
+				{"ID":"59","ans":"B","topic":"北京颐和园的占地面积约为290公顷，合（）平方千米。","A":"A","AText":"29","B":"B","BText":"2.9","C":"C","CText":"0.29","D":"D","DText":"0.029"},
+				{"ID":"60","ans":"A","topic":"巴黎歌剧院的占地面积为3万平方米，合（）公顷。","A":"A","AText":"3","B":"B","BText":"30","C":"C","CText":"300","D":"D","DText":"0.3"},
+				{"ID":"61","ans":"A","topic":"埃菲尔铁塔的占地面积约为10000平方米，合（）公顷。","A":"A","AText":"1","B":"B","BText":"10","C":"C","CText":"0.1","D":"D","DText":"0.01"},
+				{"ID":"62","ans":"C","topic":"燕郊有一个采摘园，占地面积约为2000平方米，合（）公顷。","A":"A","AText":"2","B":"B","BText":"20","C":"C","CText":"0.2","D":"D","DText":"0.02"},
+				{"ID":"63","ans":"C","topic":"某地下停车场可容纳5000余辆车停放，面积约6000平方米，合（）公顷。","A":"A","AText":"60","B":"B","BText":"6","C":"C","CText":"0.6","D":"D","DText":"0.06"},
+				{"ID":"64","ans":"B","topic":"奥林匹克森林公园占地约为680公顷， 合（）平方千米。","A":"A","AText":"68","B":"B","BText":"6.8","C":"C","CText":"0.68","D":"D","DText":"680"},
+				{"ID":"65","ans":"C","topic":"北京北海公园占地面积约68.2万平方米，合（）平方千米","A":"A","AText":"68.2","B":"B","BText":"6.82","C":"C","CText":"0.682","D":"D","DText":"0.0682"},
+				{"ID":"66","ans":"C","topic":"北京海淀某小区占地面积为5万平方米，合（）公顷。","A":"A","AText":"0.05","B":"B","BText":"0.5","C":"C","CText":"5","D":"D","DText":"50"},
+				{"ID":"67","ans":"B","topic":"我国高等学府北京大学占地约2710000平方米，合（）公顷。","A":"A","AText":"2710","B":"B","BText":"271","C":"C","CText":"27.1","D":"D","DText":"27100"},
+				{"ID":"68","ans":"D","topic":"清华大学的占地面积约为3.53平方千米，合（）公顷。","A":"A","AText":"3530","B":"B","BText":"35300","C":"C","CText":"35.3","D":"D","DText":"353"},
+				{"ID":"69","ans":"C","topic":"北京市的面积为16410平方千米，合（）公顷。","A":"A","AText":"164100","B":"B","BText":"1641","C":"C","CText":"1641000","D":"D","DText":"164.1"},
+				{"ID":"70","ans":"C","topic":"鲁能星城的面积约为200公顷，合（）平方千米。","A":"A","AText":"0.2","B":"B","BText":"0.02","C":"C","CText":"2","D":"D","DText":"20"},
+				{"ID":"71","ans":"A","topic":"开荒团队深入西部开荒，土地面积为105公顷，合（）平方千米","A":"A","AText":"1.05","B":"B","BText":"10.5","C":"C","CText":"0.105","D":"D","DText":"0.0105"},
+				{"ID":"72","ans":"D","topic":"上海迪士尼乐园的占地面积为7平方千米，合（）公顷。","A":"A","AText":"0.7","B":"B","BText":"7","C":"C","CText":"70","D":"D","DText":"700"},
+				{"ID":"73","ans":"B","topic":"有“五岳独尊”之称的泰山占地面积约为24200公顷，合（）平方千米。","A":"A","AText":"2420","B":"B","BText":"242","C":"C","CText":"24.2","D":"D","DText":"2.42"},
+				{"ID":"74","ans":"C","topic":"一个长方形游泳池的面积为500平方米，合（）公顷。","A":"A","AText":"5","B":"B","BText":"0.5","C":"C","CText":"0.05","D":"D","DText":"0.005"},
+				{"ID":"75","ans":"A","topic":"一个苗圃的占地面积为2500平米，合（）公顷。","A":"A","AText":"0.25","B":"B","BText":"2.5","C":"C","CText":"25","D":"D","DText":"250"},
+				{"ID":"76","ans":"D","topic":"一个主题乐园的占地面积为400公顷，合（）平方千米。","A":"A","AText":"40","B":"B","BText":"0.4","C":"C","CText":"400","D":"D","DText":"4"},
+				{"ID":"77","ans":"C","topic":"某一温泉度假村的占地面积为30平方千米，合（）公顷。","A":"A","AText":"30","B":"B","BText":"300","C":"C","CText":"3000","D":"D","DText":"30000"},
+				{"ID":"78","ans":"A","topic":"北京四中的占地面积为43000平方米，合（）公顷。","A":"A","AText":"4.3","B":"B","BText":"43","C":"C","CText":"430","D":"D","DText":"4300"},
+				{"ID":"79","ans":"C","topic":"一个篮球场的面积为420平方米，10个这样的篮球场，面积为（）公顷。","A":"A","AText":"42","B":"B","BText":"4.2","C":"C","CText":"0.42","D":"D","DText":"0.042"},
+				{"ID":"80","ans":"B","topic":"人民大会堂是历届全国人民代表大会等大型集会召开的地方，其建筑面积171800平方米，合（）公顷。","A":"A","AText":"171.8","B":"B","BText":"17.18","C":"C","CText":"1718","D":"D","DText":"17180"},
+				{"ID":"81","ans":"A","topic":"月季公园的占地面积为40000平方米，合（）公顷。","A":"A","AText":"4","B":"B","BText":"40","C":"C","CText":"0.4","D":"D","DText":"0.04"},
+				{"ID":"82","ans":"D","topic":"一食品加工厂的占地面积为3.2公顷，合（）平方米。","A":"A","AText":"32","B":"B","BText":"320","C":"C","CText":"3200","D":"D","DText":"32000"},
+				{"ID":"83","ans":"B","topic":"一个溜冰场的面积约为1800平方米，合（）公顷。","A":"A","AText":"1.8","B":"B","BText":"0.18","C":"C","CText":"0.018","D":"D","DText":"18"},
+				{"ID":"84","ans":"C","topic":"全球领土最小的国家之一梵蒂冈的面积为0.44平方千米，合（）平方米。","A":"A","AText":"4400","B":"B","BText":"44000","C":"C","CText":"440000","D":"D","DText":"4400000"},
+				{"ID":"85","ans":"C","topic":"芒果种植区的面积为10公顷，合（）平方米。","A":"A","AText":"1000","B":"B","BText":"10000","C":"C","CText":"100000","D":"D","DText":"1000000"},
+				{"ID":"86","ans":"A","topic":"北京工人体育馆的占地面积约为5万平方米，合（）公顷。","A":"A","AText":"5","B":"B","BText":"50","C":"C","CText":"500","D":"D","DText":"5000"},
+				{"ID":"87","ans":"C","topic":"某学校的羽毛球馆面积为80平方米，100个这样的球馆合（）公顷。","A":"A","AText":"8","B":"B","BText":"80","C":"C","CText":"0.8","D":"D","DText":"0.08"},
+				{"ID":"88","ans":"D","topic":"一家医院的占地面积为4500平方米，合（）公顷。","A":"A","AText":"4.5","B":"B","BText":"0.045","C":"C","CText":"45","D":"D","DText":"0.45"},
+				{"ID":"89","ans":"B","topic":"武汉的一家宜家商场占地面积为4.6万平方米，合（）公顷。","A":"A","AText":"46","B":"B","BText":"4.6","C":"C","CText":"460","D":"D","DText":"0.46"},
+				{"ID":"90","ans":"D","topic":"一块试验田的面积为2公顷，合（）平方米。","A":"A","AText":"20","B":"B","BText":"200","C":"C","CText":"2000","D":"D","DText":"20000"},
+				{"ID":"91","ans":"A","topic":"国家游泳馆的占地面积约为8公顷，合（）平方米。","A":"A","AText":"80000","B":"B","BText":"8000","C":"C","CText":"800","D":"D","DText":"80"},
+				{"ID":"92","ans":"C","topic":"西藏的布达拉宫是朝圣之地，占地面积约为36万平方米，约合（）平方千米。","A":"A","AText":"36","B":"B","BText":"3.6","C":"C","CText":"0.36","D":"D","DText":"0.036"},
+				{"ID":"93","ans":"A","topic":"一家化工厂的占地面积为1.5公顷，合（）平方米。","A":"A","AText":"15000","B":"B","BText":"1500","C":"C","CText":"150","D":"D","DText":"15"},
+				{"ID":"94","ans":"B","topic":"某高档小区的建筑面积为8万平方米，合（）公顷。","A":"A","AText":"80","B":"B","BText":"8","C":"C","CText":"0.8","D":"D","DText":"800"},
+				{"ID":"95","ans":"B","topic":"中国人民大学的占地面积约为70万平方米，合（）公顷。","A":"A","AText":"7","B":"B","BText":"70","C":"C","CText":"700","D":"D","DText":"7000"},
+				{"ID":"96","ans":"C","topic":"表演学院的高等学府中央戏剧学院的占地面积约为23万平方米，合（）公顷。","A":"A","AText":"2300","B":"B","BText":"230","C":"C","CText":"23","D":"D","DText":"2.3"},
+				{"ID":"97","ans":"A","topic":"北京香山公园是游客最爱去的景区之一，其占地面积160公顷，合（）平方千米。","A":"A","AText":"1.6","B":"B","BText":"16","C":"C","CText":"0.16","D":"D","DText":"160"},
+				{"ID":"98","ans":"C","topic":"欲把西湖比西子，淡妆浓抹总相宜。杭州西湖的面积约6.39平方千米，合（）公顷。","A":"A","AText":"0.639","B":"B","BText":"63.9","C":"C","CText":"639","D":"D","DText":"6390"},
+				{"ID":"99","ans":"D","topic":"北京市海淀区的面积约为430.8平方千米，合（）公顷。","A":"A","AText":"4308","B":"B","BText":"430.8","C":"C","CText":"430800","D":"D","DText":"43080"},
+				{"ID":"100","ans":"B","topic":"中国国家表演艺术的最高殿堂——国家大剧院，其占地面积为11.89万平方米，合（）公顷。","A":"A","AText":"118.9","B":"B","BText":"11.89","C":"C","CText":"1189","D":"D","DText":"1.189"}
+				];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=5;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].AText);
+            $("#item2_A").attr("data-data",data[data_index].A);
+            $("#item2_B").text(data[data_index].BText);
+            $("#item2_B").attr("data-data",data[data_index].B);
+            $("#item2_C").text(data[data_index].CText);
+            $("#item2_C").attr("data-data",data[data_index].C);
+            $("#item2_D").text(data[data_index].DText);
+            $("#item2_D").attr("data-data",data[data_index].D);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push(type4Num);
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

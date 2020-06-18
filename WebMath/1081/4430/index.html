@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轴对称的概念（内涵）</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #ff6700;">
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+
+        </div>
+
+        <div class="item1_img item1_imgBox2">
+            <img id="img1" src="../com_imgs/taiyang.png" alt="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+            {"ID":"1","topic":"长方形是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"2","topic":"五角星是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"3","topic":"圆是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"4","topic":"等腰三角形、长方形和平行四边形都是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"5","topic":"在对称图形中，对称轴两侧的对称点到对称轴的距离相等。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"6","topic":"直角三角形一定不是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"7","topic":"平行四边形和梯形都不是对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"8","topic":"梯形一定不是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"9","topic":"平行四边形是对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"10","topic":"五角星有五个对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"11","topic":"对称轴两侧相对的点到对称轴的距离相等。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"12","topic":"一条直线两旁的图形完全一样，这种图形就是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"13","topic":"五边形是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"14","topic":"轴对称图形是特殊的平面图形，对称轴两边大小一定要相等，形状可以不同。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"16","topic":"折叠一个图形，如果折痕两边的形状完全相同，则这个图形一定是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"17","topic":"三个大小不同的圆不可能组成轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"18","topic":"扇形不是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"19","topic":"正方形、长方形、半圆、等腰三角形都是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"20","topic":"沿着等边三角形的一条高对折，左右两边完全重合。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"21","topic":"圆环是轴对称图形，它有两条对称轴。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"22","topic":"等腰三角形是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"23","topic":"不是所有的平行四边形都是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"24","topic":"对称图形是对称轴两边的图形完全一样，但方向相反。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"25","topic":"轴对称图形沿对称轴对折，两侧的图形完全重合。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"26","topic":"正五边形是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"27","topic":"平行四边形一定没有对称轴。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"28","topic":"长方形有两条对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"29","topic":"不是所有图形都有对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"30","topic":"平行四边形不是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"31","topic":"菱形不是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"32","topic":"有的轴对称图形没有对称轴。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"33","topic":"轴对称图形中，相应的对称点到对称轴的距离相等。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"34","topic":"正方形、圆形、平行四边形都是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"35","topic":"点A到对称轴的距离是4小格，它的对称点点A`到对称轴的距离也是4小格。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"36","topic":"轴对称图形的两个点到对称轴的距离相等。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"37","topic":"轴对称图形只有一个对称轴。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"38","topic":"角的平分线是角的对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"39","topic":"等腰三角形一定是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"40","topic":"任何图形都是对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"41","topic":"两个图形不能完全重合，这两个图形就是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"42","topic":"对称轴两边的图形形状相同，但方向相反。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"43","topic":"对称点到对称轴的距离不一定相等。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"44","topic":"因为半圆的对称轴只有1条，所以一个圆的对称轴有2条。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"45","topic":"两个图形关于某条直线对称，这两个图形必须完全一样。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"46","topic":"圆的直径就是这个圆的对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"47","topic":"等腰三角形、梯形、扇形都只有一条对称轴。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"48","topic":"环形是轴对称图形，它只有一条对称轴。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"49","topic":"将长方形对折，折痕两边的部分能够完全重合折痕就是这个长方形的对称轴。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"50","topic":"当一个图形沿着一条直线对折，两边能够完全重合，折痕所在的直线就是对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"51","topic":"沿一条直线对折，折痕两侧不能完全重合，这条折痕就不是图形的对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"52","topic":"如果两个图形完全重合，这两个图形就是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"53","topic":"轴对称图形都只有一条对称轴。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"54","topic":"通过一个圆的圆心的直线是这个圆的对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"55","topic":"如果一个图形沿着一条直线对折，两侧的图形能够完全重合。这个图形就是轴对称图形,折痕所在的直线叫作对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"56","topic":"关于轴对称的两个图形，对应线平行且相等。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"57","topic":"相对的两个对称点到对称轴的距离是相等的。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"58","topic":"四条边都相等的平行四边形是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"59","topic":"一个正方形绕中心点顺时针旋转后与原来图形重合。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"60","topic":"左右两边完全相同的图形是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"61","topic":"一个图形对折后折痕两边的部分不能够完全重合，这个图形就不是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"62","topic":"轴对称图形中对应点连线垂直于对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"63","topic":"对称点到对称轴的距离不一定相等。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"64","topic":"通过圆心的所有直线都是这个圆的对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"65","topic":"对称轴两边对称的两点到对称轴的距离一定相等。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"66","topic":"A和B是轴对称图形上的对称点，A到对称轴的距离是2厘米，B到对称轴的距离是4厘米。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"67","topic":"等边三角形有3条对称轴。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"68","topic":"圆有4条对称轴。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"69","topic":"三角形一定不是轴对称图形。","ans":"P","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+            {"ID":"70","topic":"等腰直角三角形一定是轴对称图形。","ans":"Q","P":"P","PText":"错误","Q":"Q","QText":"正确"}
+        ];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=3;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].QText);
+            $("#item2_A").attr("data-data",data[data_index].Q);
+            $("#item2_B").text(data[data_index].PText);
+            $("#item2_B").attr("data-data",data[data_index].P);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push(type4Num);
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src","../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+			if(errorNum>=errorCont){
+				endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+			}
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

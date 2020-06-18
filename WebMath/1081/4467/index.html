@@ -1,0 +1,504 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>有理数运算律</title>
+    <link rel="stylesheet" href="../../../WebContent/css/bootstrap-3.3.1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="../../../WebContent/js/Statistics/Statistics.js"></script>
+    <script src="../../../WebContent/js/oneui/opes_post_result_util.js"></script>
+</head>
+
+<body>
+<div id="box">
+    <div id="xs" class="xianshi">
+        <div>
+            <div class="title_name" style="" id="xst"></div>
+            <div class="title_num" style="" id="xs1"></div>
+        </div>
+        <div>
+            <div class="title_name" id="xsn"></div>
+            <div class="title_num" id="xs2">0</div>
+        </div>
+        <div>
+            <div class="title_name" id="xsq"></div>
+            <div class="title_num" id="xs3">0</div>
+        </div>
+    </div>
+    <div id="reward" class="item hide" style="position: fixed;z-index: 1000">
+        <div class="item itemImg">
+            <img id="reward_img" class="img-rounded" src="" alt="">
+        </div>
+    </div>
+    <div id="item1" class="item" style="background: #ff6700;">
+        <div style="position: absolute;top: 10px;left: 10px;height: 48px;">
+            <button id="btnMS" data-data="1" class="btnMS btn btn-primary">随机</button>
+            <button id="btnMS1" data-data="2" class="btnMS btn">新题</button>
+            <button id="btnMS2" data-data="3" class="btnMS btn">错题</button>
+        </div>
+        <div style="position: absolute;bottom: 0px;cursor: pointer;">
+            <label style="cursor: pointer;" for="input1">
+                <input id="input1" type="checkbox"><span id="bTime"></span>
+            </label>
+        </div>
+        <div class="item1_text item1_imgBox1" style="">
+            <div style="position: relative;top: 20%;">
+                <span id="name"></span><span id="respectfully"></span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="introduce"></span>
+            </div>
+        </div>
+
+        <div class="item1_img item1_imgBox2">
+            <img id="img1" src="../com_imgs/taiyang.png" alt="">
+        </div>
+    </div>
+    <div id="item2" class="item hide" style="background: #afdcff;">
+        <div class="item" style="background-image: url('../com_imgs/timg.gif');background-size: 100% 100%;">
+            <div style="display: flex;align-items:center;justify-content:center;height: 50%;">
+                <div id="topic" class="item2_ti">
+                </div>
+            </div>
+            <div class="item2_ans_box" style="">
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_A"></div>
+                    </div>
+                </div>
+
+                <div class="item2_fiex" style="">
+                    <div class="item2_item">
+                        <div data-data="" class="item2_set" id="item2_B"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="item3" class="item hide" style="">
+        <div style="z-index: 9999;position: fixed;right: 34px;bottom: 40px;text-align: right;">
+            <button id="out" class="btn btn-danger btn-lg"></button>
+        </div>
+        <div class="container">
+            <div class="row" style="margin: 16px 0px">
+                <!--<div class="col-md-12">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>-->
+                <div class="col-md-12" style="display: flex;justify-content:center;">
+                    <table class="table table-hover" style="width: 80%;">
+                        <caption style="font-size: 24px;font-weight: 900;text-align: center;color: #000;" id="captionTitle"></caption>
+                        <thead>
+                        <tr>
+                            <th id="th1"></th>
+                            <th id="th2"></th>
+                            <th id="th3"></th>
+                            <th id="th4"></th>
+                            <th id="th6"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="topic_result">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--<div class="row" style="margin: 16px 0px">
+                <div class="statistics_box" style="">
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">平均分排名</div>
+                            <div class="statistics_item2 average_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">总分排名</div>
+                            <div class="statistics_item2 total_score_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">项目排名</div>
+                            <div class="statistics_item2 project_rank">1</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确数</div>
+                            <div class="statistics_item2 xs2">10</div>
+                        </div>
+                    </div>
+                    <div class="statistics_item_box">
+                        <div class="statistics_item">
+                            <div class="statistics_item1">正确率</div>
+                            <div class="statistics_item2 xs3">10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row" style="margin: 16px 0px">
+                <div style="padding: 16px;font-weight: 900;font-size: 24px;" id="knowledge"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../WebContent/js/jquery.3.4.1.js"></script>
+<script src="../../../WebContent/js/rank.js"></script>
+<script src="../../../WebContent/js/bootstrap.min.3.3.1.js"></script>
+<script src="../../../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript" src="../../../WebContent/js/oneui/common_utils.js"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/mui.js"></script>
+<script>
+    $(function () {
+        var data=[
+{"ID":"1","ans":"Q","topic":"4+5-3-7=4+(-3)+5+(-7)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"2","ans":"P","topic":"8+9-(5-4)=8+(-5)+9+(-4)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"3","ans":"Q","topic":"(13+87)+(24+76)+(59+41)=13+(24+59+41+87)+76","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"4","ans":"Q","topic":"(126-26)+(224-24)+(-176+76)=126+(-24)+(-26)+224+(-176)+76","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"5","ans":"Q","topic":"(-1002.4+102.4)+(94.2+5.8)+23=102.4+5.8-1002.4+94.2+23","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"6","ans":"P","topic":"(12+88)+(96-76)+(59+41)=12+(96+59-41+88)-76","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"7","ans":"P","topic":"(113-13)+(42-42)+(152-52)=113+(-42)+(-13)+42+(-152)+52","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"8","ans":"P","topic":"(-3.3+6.7)+(9.4+0.6)+5.2=3.3+9.4-6.7+0.6+5.2","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"9","ans":"Q","topic":"7.1+8.9+(5.8+4.2)=7.1+5.8+8.9+4.2","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"10","ans":"P","topic":"4.5-6.3+8.9+3.2=4.5+(-6.3)+8.9+(-3.2)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"11","ans":"P","topic":"8-3×19=(8-3)×19","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"12","ans":"Q","topic":"125×80-7×80=(125-7)×80","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"13","ans":"Q","topic":"6×4+25×4=(6+25)×4","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"14","ans":"P","topic":"92+16×5=(92+16)×5","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"15","ans":"Q","topic":"(12.4+87.6)×3-3×3=(12.4-3)×3+87.6×3","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"16","ans":"P","topic":"(5.9+4.1)×3+3×3=(5.9-3)×3+4.1×3","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"17","ans":"Q","topic":"6×[(-3)×(-5)]=[6×(-3)]×(-5)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"18","ans":"P","topic":"23×(-16×5)=[23×(-16)]×(-5)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"19","ans":"Q","topic":"5×8+5×(-3)=5×[8+(-3)]","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"20","ans":"P","topic":"13×8+13×3=13×[8+(-3)]","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"21","ans":"Q","topic":"21×12+34×12=(21+34)×12","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"22","ans":"P","topic":"21+34×12=(21+34)×12","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"23","ans":"Q","topic":"-16×3×54=(-16)×(-3)×(-54)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"24","ans":"Q","topic":"(-33)×76×47=(-33)×(-76)×(-47)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"25","ans":"Q","topic":"4×25×(-59)=(-59)×(-4)×(-25)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"26","ans":"P","topic":"72×23×3=(-72)×(-23)×(-3)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"27","ans":"P","topic":"-16×5×7=7×(-16)×(-5)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"28","ans":"Q","topic":"(-33)×76×47=(-33)×(-76)×(-47)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"29","ans":"Q","topic":"4×25×(-59)=(-59)×(-4)×(-25)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"30","ans":"P","topic":"72×23×3=(-72)×(-23)×(-3)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"31","ans":"P","topic":"-16×5×7=7×(-16)×(-5)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"32","ans":"Q","topic":"99×(-11-88-1)=(-11)×99+(-88)×99-99","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"33","ans":"P","topic":"99×(-64-35+1)=(-64)×99+(-35)×99-99","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"34","ans":"Q","topic":"11×(-0.1-0.8-0.1)=(-0.1)×11+(-0.8)×11-1.1","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"35","ans":"P","topic":"6×(-12.1-87.8-1)=(-12.1)×6+(-87.8)×6-0.6","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"36","ans":"Q","topic":"[(-131)+(-869)]×3=(-131)×3+(-869)×3","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"37","ans":"Q","topic":"(-1019+19)×6=(-1019)×6+19×6","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"38","ans":"Q","topic":"(58+42)×40=58×40+42×40","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"39","ans":"P","topic":"(-131-31)×64=(-131)×64+31×64","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"40","ans":"P","topic":"(19+81)×2.6=(-19)×2.6+(-81)×2.6","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"41","ans":"P","topic":"28+22×104=28×104+22×104","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"42","ans":"Q","topic":"8×125×333=8×333×125","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"43","ans":"Q","topic":"25×505×4=25×505×4","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"44","ans":"Q","topic":"(-6.5)×3.8×17=(-6.5)×(-3.8)×(-17)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"45","ans":"Q","topic":"2.2×7.3×(-93)=(-2.2)×(-7.3)×(-93)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"46","ans":"P","topic":"20.4×81.2×0.3=(-20.4)×(-81.2)×(-0.3)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"47","ans":"P","topic":"-0.14×5.8×2.6=0.14×(-5.8)×(-2.6)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"48","ans":"Q","topic":"3361+1134=1134+3361","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"49","ans":"Q","topic":"3.8+6.1=6.1+3.8","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"50","ans":"Q","topic":"5+(77+23)=(5+77)+23","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"51","ans":"P","topic":"8-(11+8)=(8+11)+(-8)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"52","ans":"Q","topic":"(0.4+0.6)+(-1)=0.4+[0.6+(-1)]","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"53","ans":"P","topic":"(0.2+0.3)+0.5=0.2+[0.3+(-0.5)]","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"54","ans":"Q","topic":"(11×9)×(12×50)=(11×12)×(9×50)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"55","ans":"P","topic":"(15×4)+(20×5)=(15×5)×(4×20)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"56","ans":"Q","topic":"(-1.3)×3.3×6=(-1.3)×(-3.3)×(-6)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"57","ans":"Q","topic":"0.4×25×(-9.9)=(-9.9)×(-0.4)×(-25)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"58","ans":"P","topic":"2.82×3×1.1=(-2.82)×(-3)×(-1.1)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"59","ans":"P","topic":"-0.6×7×49=0.6×(-7)×(-49)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"60","ans":"P","topic":"20×15×10×4=(-20)×(-15)×10×(-4)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"61","ans":"P","topic":"19-25-4-3=19-(25-4-3)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"62","ans":"Q","topic":"27-45+89+67=27-(45-89-67)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"63","ans":"P","topic":"(99-19)-64+23+3=(99-23)-(64-19-3)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"64","ans":"Q","topic":"82+17-57+39+12=(82+17)-(57-39-12)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"65","ans":"Q","topic":"21×(11×11)×14=21×11×(11×14)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"66","ans":"P","topic":"56×(3×2)×12=56×(-3)×(2×12)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"67","ans":"Q","topic":"(8-7+65)×10×14=(8+65-7)×(10×14)","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"68","ans":"P","topic":"(-20)+(65-7)×12×9=[(-20+65-7)×12]×9","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"69","ans":"Q","topic":"(83+49)×[(12+7)×9]=[(83+49)×(12+7)]×9","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"70","ans":"P","topic":"103×21+34×12=103×(21+34)×12","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"71","ans":"P","topic":"14×65-47+34×76=(14+65-47+34)×76","P":"P","PText":"错误","Q":"Q","QText":"正确"},
+{"ID":"72","ans":"P","topic":"8+(-19)+(-47)+34×12=[8+(-19)+(-47)+34]×12","P":"P","PText":"错误","Q":"Q","QText":"正确"}
+];
+        var data1=JSON.parse(JSON.stringify(data));
+        var data_index=0,data_click=true,correct_number=0,great=0,data_number=0;
+        var time,beginTime,endTime,errorNum=0,errorCont=3;
+        var maxtime=120,timer=null,mouldTime;
+        var time1=1500,timer1=null,type4Num="0";
+        var type4set=[],stimidset=[],correctanswerset=[],buttonset=[],timeset=[],topicArr=[],commentset=[],ansText=[],buttonsetText=[];
+
+        var correctMp3 = new Audio('../../../mp3/correct.mp3');
+        var wrongMp3 = new Audio('../../../mp3/wrong.mp3');
+        pushArr(data);
+        function topicFun(data_index){
+            $("#item2_A").text(data[data_index].QText);
+            $("#item2_A").attr("data-data",data[data_index].Q);
+            $("#item2_B").text(data[data_index].PText);
+            $("#item2_B").attr("data-data",data[data_index].P);
+            // $(".item2_item img").addClass("revolve");
+            $("#topic").text(data[data_index].topic);
+        }
+        function textFun(ans, ans1) {
+            if(ans == "Q"){
+                ansText.push(data[data_index].QText)
+            }else if(ans=="P"){
+                ansText.push(data[data_index].PText)
+            }else if(ans=="A"){
+                ansText.push(data[data_index].AText)
+            }else if(ans=="B"){
+                ansText.push(data[data_index].BText)
+            }else if(ans=="C"){
+                ansText.push(data[data_index].CText)
+            }else if(ans=="D"){
+                ansText.push(data[data_index].DText)
+            }else if(ans=="E"){
+                ansText.push(data[data_index].EText)
+            }else if(ans=="F"){
+                ansText.push(data[data_index].FText)
+            }
+            if(ans1 == "Q"){
+                buttonsetText.push(data[data_index].QText)
+            }else if(ans1=="P"){
+                buttonsetText.push(data[data_index].PText)
+            }else if(ans1=="A"){
+                buttonsetText.push(data[data_index].AText)
+            }else if(ans1=="B"){
+                buttonsetText.push(data[data_index].BText)
+            }else if(ans1=="C"){
+                buttonsetText.push(data[data_index].CText)
+            }else if(ans1=="D"){
+                buttonsetText.push(data[data_index].DText)
+            }else if(ans1=="E"){
+                buttonsetText.push(data[data_index].EText)
+            }else if(ans1=="F"){
+                buttonsetText.push(data[data_index].FText)
+            }
+        }
+        $("#img1").on("click",function () {
+            mouldTime=$("#input1[type='checkbox']").is(':checked');
+            data_number=data.length;
+            topicFun(data_index);
+            $("#item1").addClass("hide");
+            $("#item2").removeClass("hide");
+            $("#xs1").text(maxtime+"秒");
+            if(!mouldTime){
+            timer = setInterval(function () {
+                CountDown();
+            }, 1000);
+        }else {
+            type4Num="99";
+            time1=500;
+        }
+            beginTime=new Date().getTime();
+        });
+        $(".item2_set").on("click",function () {
+            if(data_click){
+                endTime=new Date().getTime();
+                time=(endTime-beginTime).toFixed(0);
+                var ans=data[data_index].ans;
+                var ans1=$(this).attr("data-data");
+                stimidset.push(data[data_index].ID);
+                type4set.push(type4Num);
+                topicArr.push(data[data_index].topic);
+                correctanswerset.push(ans);
+                buttonset.push(ans1);
+                timeset.push(time);
+                textFun(ans, ans1);
+                $("#item2").addClass("op");
+                if(ans1 == ans){
+                    correctMp3.play();
+                correct_number++;
+                    great++;
+                    $("#xs2").text(correct_number);
+                    if(great>=5){
+                        great=0;
+                        $("#reward_img").attr("src","../com_imgs/jiangli.gif");
+                    }else {
+                        $("#reward_img").attr("src","../com_imgs/yes.gif");
+                    }
+
+                }else {
+                    great=0;
+                    wrongMp3.play();
+                errorNum++;
+                    $("#reward_img").attr("src", "../com_imgs/no.gif");
+                }
+                $("#xs3").text(Math.round((correct_number/(data_index+1))*100)+"%");
+                nextTopicFun()
+            }
+
+        });
+
+
+        function nextTopicFun() {
+            $("#reward").removeClass("hide");
+            data_index++;
+            if (errorNum >= errorCont) {
+                endFun();
+                clearInterval(timer);
+                timer = null;
+                return;
+            }
+            if(data_number<=data_index){
+                endFun();
+                clearInterval(timer);
+                timer=null;
+                return;
+            }
+            timer1=setInterval(function () {
+                $("#item2").removeClass("op");
+                $("#reward_img").attr("src"," ");
+                $("#reward").addClass("hide");
+                data_click=true;
+                beginTime=new Date().getTime();
+                topicFun(data_index);
+
+                clearInterval(timer1);
+                timer1=null;
+            }, time1);
+
+        }
+
+        function endFun() {
+
+            /*var myChart = echarts.init(document.getElementById('main'));
+            var option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [120, 200, 150, 80, 70],
+                    type: 'bar'
+                }]
+            };
+            myChart.setOption(option);*/
+            commentset.push(((correct_number/stimidset.length)*100).toFixed(2)+"%");
+            commentset.push(correct_number);
+            commentset.push(correct_number);
+            topicResultFun(stimidset);
+            $("#reward").addClass("hide");
+            $("#item2").addClass("hide");
+            $("#item3").removeClass("hide");
+
+
+        }
+
+        function topicResultFun(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                $("#topic_result").append(
+                    '<tr>' +
+                    '<td>'+topicArr[i]+'</td>' +
+                    '<td>'+ansText[i]+'</td>' +
+                    '<td>'+buttonsetText[i]+'</td>' +
+                    '<td>'+timeset[i]+'</td>' +
+                    '<td id="evaluate' + stimidset[i] + '">' +
+                        '<button id="'+stimidset[i]+'like" value="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点赞<span></span></button>' +
+                        '<button style="margin-top: 5px;" value="'+stimidset[i]+'" id="'+stimidset[i]+'" class="btn btn-primary" onclick="addCommentForTask(event)">点差<span></span></button>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                getCommentCountForTask(stimidset[i]);
+            }
+        }
+        function CountDown() {
+            if (maxtime > 0) {
+                --maxtime;
+                $("#xs1").text(maxtime+"秒")
+
+            } else{
+                endFun();
+                clearInterval(timer);
+                timer=null;
+            }
+        }
+
+        function pushArr(array) {
+            $("#xs1").text(maxtime+"秒");
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        $("#out").on("click",function () {
+            post_result();
+        });
+        $(".btnMS").on("click",function () {
+            var model=$(this).attr("data-data");
+            var Arrdata;
+            data=[];
+            $(".btnMS").removeClass("btn-primary")
+            $(this).addClass("btn-primary")
+            if(model == "1"){
+                Arrdata=data1;
+                type4Num="0"
+            }else if(model == "2"){
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,true)
+                type4Num="6"
+            }else if(model == "3"){
+                type4Num="7"
+                Arrdata=getAllTasksAndAverageResultForOneProjectFun(data1,false)
+            }
+            data=Arrdata;
+            if(data == -1){
+                $(".btnMS").removeClass("btn-primary")
+                $("#btnMS").addClass("btn-primary")
+                data=data1
+                type4Num="0"
+            }else {
+                if(data == 0){
+                    $(".btnMS").removeClass("btn-primary")
+                    $("#btnMS").addClass("btn-primary")
+                    data=data1
+                    type4Num="0"
+                }else {
+                    if(!data){
+                        $(".btnMS").removeClass("btn-primary")
+                        $("#btnMS").addClass("btn-primary")
+                        data=data1
+                        type4Num="0"
+                    }
+                }
+            }
+            pushArr(data);
+        })
+
+        function post_result() {
+            // sumscore,meanscore,meanart;
+            var opes_result_data = {}
+            opes_result_data.taskid = curTaskInfo.taskid
+            opes_result_data.sumitcoids = 0
+            opes_result_data.targetpagename = "<%=targetpagename%>"
+            opes_result_data.codematerial = 0
+            opes_result_data.uid = curTaskInfo.uid
+            opes_result_data.lan = "<%=lan%>"
+            opes_result_data.projectid = curTaskInfo.projectid
+            opes_result_data.duration = 0
+            opes_result_data.timeaverage = Math.round(0)
+            opes_result_data.type4set = type4set.join(";")
+            opes_result_data.stimidset = stimidset.join(";")
+            opes_result_data.correctanswerset = correctanswerset.join(";")
+            opes_result_data.time = "0"
+            opes_result_data.level = "0"
+            opes_result_data.timeset = timeset.join(";")
+            opes_result_data.radioset = ""
+            opes_result_data.buttonset = buttonset.join(";")
+            opes_result_data.commentset = commentset.join(";")
+            opes_result_data.numset = ""
+            opes_post_result_util_js_opes_post_result(opes_result_data)
+            return
+        }
+    })
+</script>
+</html>

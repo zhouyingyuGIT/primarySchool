@@ -1,0 +1,1013 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>全部任务分类</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+    <link href="../../css/common.css" rel="stylesheet"  />
+    <link href="../../css/animate.css" rel="stylesheet"  />
+    <link rel="stylesheet" type="text/css" href="../../css/icons-extra.css" />
+    <style>
+        * {
+            touch-action: pan-y;
+        }
+        .myContent {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        img.headerBg {
+            width: 71%;
+            margin-top: -7px;
+        }
+        p.curTitle {
+            font-size: 18px;
+            color: #fdf1cb;
+            margin-top: -48px;
+        }
+        .slide-box{
+            display: -webkit-box;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling:touch;
+        }
+        .slide-item{
+            width: 120px;
+            height: 175px;
+            margin-right: 25px;
+            text-align: center;
+        }
+        .practice {
+            margin-top: 55px;
+        }
+        .slide-item img {
+            height: 100px;
+        }
+        .slide-item p {
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .formal p {
+            color: #7aa55c
+        }
+
+        .mui-col-sm-1 {
+            padding: 2px;
+        }
+        .scorType .mui-col-sm-2 {
+            border-radius: 5px;
+            font-size: 10px;
+            text-align: center;
+        }
+        .scorType .mui-col-sm-3 {
+            border-radius: 5px;
+            font-size: 10px;
+            text-align: center;
+        }
+        .classType {
+            text-align: center;
+            font-size: 11px;
+            border-radius: 3px;
+            background: #8cb670;
+            color: #fdf1cb;
+            margin-bottom: 1px;
+        }
+        .highClass .classType{
+            line-height: 16px;
+            font-size: 9px;
+        }
+        .taskDiv {
+            font-size: 12px;
+            text-align: center;
+            padding: 4px;
+            height: 15px;
+            color: black;
+            border-radius: 50px;
+            margin-bottom: 1px;
+            line-height: 8px;
+        }
+        .score_0_20 {
+            background: #fdd2a0;
+        }
+        .score_20_40 {
+            background: #ff8c71;
+        }
+        .score_40_60 {
+            background: #e64b45;
+        }
+        .score_60_80 {
+            background: #bd1316;
+        }
+        .score_80_100 {
+            background: #7d1100;
+        }
+        .mui-toast-message {
+            text-align: left!important;
+        }
+        .myContent .mui-segmented-control .mui-control-item{
+            line-height: 28px;
+        }
+        .myContent .firstTab .mui-control-item.mui-active{
+            color: #fff;
+            border-radius: 58px;
+            background: #ff842a;
+        }
+        .myContent .uniTab .mui-control-item.mui-active{
+            font-size: 14px;
+            color: #ff842a;
+            border-bottom: 1px solid #ff842a;
+        }
+        .myContent .uniTab .mui-control-item{
+            font-size: 12px;
+        }
+        .myContent .uniTab{
+            margin-top: -10px;
+        }
+        .score_average_type {
+            font-size: 14px;
+            margin-top: -25px;
+            white-space:nowrap;
+            margin-left: 65%;
+            position: absolute;
+        }
+        /*滚动条设置*/
+        .primaryClass{
+            height: 247px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            margin-top: -8px;
+        }
+        .middleClass{
+            height: 247px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            margin-top: -8px;
+        }
+        .highClass{
+            height: 247px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            margin-top: -8px;
+        }
+        .uniClass{
+            height: 225px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            margin-top: -8px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="myContent">
+    <div class="mui-row">
+        <div class="mui-col-sm-3"></div>
+        <div class="mui-col-sm-6" >
+            <div style="text-align: center;font-size: 20px;line-height: 40px;color: #7da56c;white-space:nowrap;font-weight: 600;">
+                数学认知能力发展水平图
+            </div>
+        </div>
+        <div class="mui-col-sm-3">
+            <img class="goLeft" onclick="goNext('../index.html')" src="../../image/icon/goLeft.png" />
+        </div>
+    </div>
+    <div class="firstTab mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" id="segmented">
+        <div class="mui-scroll">
+<!--            <a class="mui-control-item mui-active" href="#item1">-->
+<!--                小学-->
+<!--            </a>-->
+<!--            <a class="mui-control-item" href="#item2">-->
+<!--                初中-->
+<!--            </a>-->
+<!--            <a class="mui-control-item" href="#item3">-->
+<!--                高中-->
+<!--            </a>-->
+<!--            <a class="mui-control-item" href="#item4">-->
+<!--                大学-->
+<!--            </a>-->
+        </div>
+    </div>
+    <div class="mui-slider-group">
+        <div id="item0" class="mui-slider-item mui-control-content animated  bounceInUp">
+            <div class="score_average_type">
+                总体平均水平：<span id="score_average_pri"></span>
+            </div>
+            <!--小学-->
+            <div class="mui-row primaryClass">
+                <div class="mui-col-sm-1 class_1">
+                    <div class="mui-row classType">一上</div>
+                </div>
+                <div class="mui-col-sm-1 class_2">
+                    <div class="mui-row classType">一下</div>
+                </div>
+                <div class="mui-col-sm-1 class_3">
+                    <div class="mui-row classType">二上</div>
+                </div>
+                <div class="mui-col-sm-1 class_4">
+                    <div class="mui-row classType">二下</div>
+                </div>
+                <div class="mui-col-sm-1 class_5">
+                    <div class="mui-row classType">三上</div>
+                </div>
+                <div class="mui-col-sm-1 class_6">
+                    <div class="mui-row classType">三下</div>
+                </div>
+                <div class="mui-col-sm-1 class_7">
+                    <div class="mui-row classType">四上</div>
+                </div>
+                <div class="mui-col-sm-1 class_8">
+                    <div class="mui-row classType">四下</div>
+                </div>
+                <div class="mui-col-sm-1 class_9">
+                    <div class="mui-row classType">五上</div>
+                </div>
+                <div class="mui-col-sm-1 class_10">
+                    <div class="mui-row classType">五下</div>
+                </div>
+                <div class="mui-col-sm-1 class_11">
+                    <div class="mui-row classType">六上</div>
+                </div>
+                <div class="mui-col-sm-1 class_12">
+                    <div class="mui-row classType">六下</div>
+                </div>
+            </div>
+        </div>
+        <div id="item1" class="mui-slider-item mui-control-content animated  bounceInUp">
+            <div class="score_average_type">
+                总体平均水平：<span id="score_average_mid"></span>
+            </div>
+            <!--初中-->
+            <div class="mui-row middleClass">
+                <div class="mui-col-sm-3"></div>
+                <div class="mui-col-sm-1 class_1">
+                    <div class="mui-row classType">七上</div>
+                </div>
+                <div class="mui-col-sm-1 class_2">
+                    <div class="mui-row classType">七下</div>
+                </div>
+                <div class="mui-col-sm-1 class_3">
+                    <div class="mui-row classType">八上</div>
+                </div>
+                <div class="mui-col-sm-1 class_4">
+                    <div class="mui-row classType">八下</div>
+                </div>
+                <div class="mui-col-sm-1 class_5">
+                    <div class="mui-row classType">九上</div>
+                </div>
+                <div class="mui-col-sm-1 class_6">
+                    <div class="mui-row classType">九下</div>
+                </div>
+                <div class="mui-col-sm-3"></div>
+            </div>
+        </div>
+        <div id="item2" class="mui-slider-item mui-control-content animated  bounceInUp">
+            <div class="score_average_type">
+                总体平均水平：<span id="score_average_hig"></span>
+            </div>
+            <!--高中-->
+            <div class="mui-row highClass">
+                <div class="mui-col-sm-1"></div>
+                <div class="mui-col-sm-1 class_1">
+                    <div class="mui-row classType">高一<br>必修1</div>
+                </div>
+                <div class="mui-col-sm-1 class_2">
+                    <div class="mui-row classType">高一<br>必修2</div>
+                </div>
+                <div class="mui-col-sm-1 class_3">
+                    <div class="mui-row classType">高一<br>必修3</div>
+                </div>
+                <div class="mui-col-sm-1 class_4">
+                    <div class="mui-row classType">高二<br>必修4</div>
+                </div>
+                <div class="mui-col-sm-1 class_5">
+                    <div class="mui-row classType">高三<br>必修5</div>
+                </div>
+                <div class="mui-col-sm-1 class_6">
+                    <div class="mui-row classType">高二<br>选修2-1</div>
+                </div>
+                <div class="mui-col-sm-1 class_7">
+                    <div class="mui-row classType">高二<br>选修2-2</div>
+                </div>
+                <div class="mui-col-sm-1 class_8">
+                    <div class="mui-row classType">高二<br>选修2-3</div>
+                </div>
+                <div class="mui-col-sm-1 class_9">
+                    <div class="mui-row classType">高二<br>选修4-1</div>
+                </div>
+                <div class="mui-col-sm-1 class_10">
+                    <div class="mui-row classType">高三<br>选修4-4</div>
+                </div>
+                <div class="mui-col-sm-1"></div>
+            </div>
+        </div>
+        <div id="item3" class="mui-slider-item mui-control-content animated  bounceInUp">
+            <div class="score_average_type">
+                总体平均水平：<span id="score_average_nui">--</span>
+            </div>
+            <!--大学-->
+            <div class="uniTab mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" id="university">
+                <div class="mui-scroll">
+                    <a class="mui-control-item mui-active" href="#u_item0">数学分析</a>
+                    <a class="mui-control-item" href="#u_item1">高等代数</a>
+                    <a class="mui-control-item" href="#u_item2">数理统计</a>
+                    <a class="mui-control-item" href="#u_item3">概率论</a>
+                </div>
+            </div>
+            <div id="u_item0" class="mui-slider-item mui-control-content mui-active">
+                <div class="mui-row uniClass">
+                    <div class="mui-col-sm-2 class_1">
+                        <div class="mui-row classType">预备知识</div>
+                    </div>
+                    <div class="mui-col-sm-2 class_2">
+                        <div class="mui-row classType">分析基础</div>
+                    </div>
+                    <div class="mui-col-sm-2 class_3">
+                        <div class="mui-row classType">一元微积分</div>
+                    </div>
+                    <div class="mui-col-sm-2 class_4">
+                        <div class="mui-row classType">多元微积分</div>
+                    </div>
+                    <div class="mui-col-sm-2 class_5">
+                        <div class="mui-row classType">曲线曲面微积分</div>
+                    </div>
+                    <div class="mui-col-sm-2 class_6">
+                        <div class="mui-row classType">级数含参变元积分</div>
+                    </div>
+                </div>
+            </div>
+            <div id="u_item1" class="mui-slider-item mui-control-content ">
+                <div class="mui-row uniClass">
+                    <div class="mui-col-sm-3 class_7">
+                        <div class="mui-row classType">高等代数(一)</div>
+                    </div>
+                    <div class="mui-col-sm-3 class_8">
+                        <div class="mui-row classType">高等代数(二)</div>
+                    </div>
+                    <div class="mui-col-sm-3 class_9">
+                        <div class="mui-row classType">高等代数(三)</div>
+                    </div>
+                    <div class="mui-col-sm-3 class_10">
+                        <div class="mui-row classType">高等代数(四)</div>
+                    </div>
+                </div>
+            </div>
+            <div id="u_item2" class="mui-slider-item mui-control-content ">
+                <div class="mui-row uniClass">
+                    <div class="mui-col-sm-3 class_11">
+                        <div class="mui-row classType">统计量及其分布</div>
+                    </div>
+                    <div class="mui-col-sm-3 class_12">
+                        <div class="mui-row classType">参数估计</div>
+                    </div>
+                    <div class="mui-col-sm-3 class_13">
+                        <div class="mui-row classType">假设检验</div>
+                    </div>
+                    <div class="mui-col-sm-3 class_14">
+                        <div class="mui-row classType">方差分析和回归分析</div>
+                    </div>
+                </div>
+            </div>
+            <div id="u_item3" class="mui-slider-item mui-control-content ">
+                <div class="mui-row uniClass">
+                    <div class="mui-col-sm-4 class_15">
+                        <div class="mui-row classType">随机事件及其概率</div>
+                    </div>
+                    <div class="mui-col-sm-4 class_16">
+                        <div class="mui-row classType">随机变量及其概率分布</div>
+                    </div>
+                    <div class="mui-col-sm-4 class_17">
+                        <div class="mui-row classType">多维随机变量</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/common.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript">
+    var clickMusic = new Audio('../../mp3/click.mp3');
+    //动态获取tab 和动态获取
+    var schoolTypeArray = localStorage.getItem('schoolType').split(",");
+    console.log(schoolTypeArray)
+    if(schoolTypeArray.length > 0) {
+        schoolTypeArray.forEach( (curType,index) => {
+            var className = '';
+            var index_ = 0;
+            if(index === 0){
+                className = 'mui-active'
+            }
+            if(curType === "小学"){
+                index_ = 0
+            } else if(curType === "初中"){
+                index_ = 1
+            } else if(curType === "高中"){
+                index_ = 2
+            } else if(curType === "大学"){
+                index_ = 3
+            }
+            $("#segmented .mui-scroll").append(
+                '<a class="mui-control-item '+className+'" href="#item'+index_+'">' +curType+ '</a>'
+            )
+        })
+        //对应初始化默认显示对应年级任务
+        if(schoolTypeArray[0] === "小学"){
+            $("#item0").addClass("mui-active");
+        } else if(schoolTypeArray[0] === "初中"){
+            $("#item1").addClass("mui-active");
+        } else if(schoolTypeArray[0] === "高中"){
+            $("#item2").addClass("mui-active");
+        } else if(schoolTypeArray[0] === "大学"){
+            $("#item3").addClass("mui-active");
+        }
+    } else {
+        mui.toast('后端服务异常请联系后端管理员!',{ duration:'long', type:'div' });
+    }
+
+    //根据当前用户获取关联任务列表 项目编号写死为1826
+    var allTasks = {
+        uid: parseInt(localStorage.getItem('uid')),
+        projectid: 1826,
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.thirdparty.results.ThirdPartyTestResultsProxy',
+        service: 'getAllTasksAndAverageResultForOneProject',
+        args: JSON.stringify(allTasks)
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            /*处理token失效*/
+            if(data.message) {
+                mui.toast('访问时间已经过期,3秒后自动跳转到登录页面!',{ duration:'long', type:'div' });
+                setTimeout(function(){
+                    mui.openWindow({
+                        url: '../../login.html',
+                        createNew: true,
+                        styles: {
+                            cachemode:"noCache",
+                        }
+                    });
+                }, 3000);
+            }
+            if (data.results) {
+                schoolTypeArray.forEach( curType => {
+                    if (curType === "小学") {
+                        var scoreArray_1 = [];
+                        var scoreArray_2 = [];
+                        var scoreArray_3 = [];
+                        var scoreArray_4 = [];
+                        var scoreArray_5 = [];
+                        var scoreArray_6 = [];
+                        var scoreArray_7 = [];
+                        var scoreArray_8 = [];
+                        var scoreArray_9 = [];
+                        var scoreArray_10 = [];
+                        var scoreArray_11 = [];
+                        var scoreArray_12 = [];
+                        for (var i = 0; i < data.results.length; i++) {
+                            if (data.results[i].sequence.toString().length === 4) {
+                                if (data.results[i].sequence.toString().slice(0, 1) === '1') {
+                                    if(data.results[i].sequence.toString().slice(1, 2) === '1'){
+                                        scoreArray_1.push(data.results[i])
+                                    } else if(data.results[i].sequence.toString().slice(1, 2) === '2'){
+                                        scoreArray_2.push(data.results[i])
+                                    }
+                                } else if (data.results[i].sequence.toString().slice(0, 1) === '2') {
+                                    if(data.results[i].sequence.toString().slice(1, 2) === '1'){
+                                        scoreArray_3.push(data.results[i])
+                                    } else if(data.results[i].sequence.toString().slice(1, 2) === '2'){
+                                        scoreArray_4.push(data.results[i])
+                                    }
+                                } else if (data.results[i].sequence.toString().slice(0, 1) === '3') {
+                                    if(data.results[i].sequence.toString().slice(1, 2) === '1'){
+                                        scoreArray_5.push(data.results[i])
+                                    } else if(data.results[i].sequence.toString().slice(1, 2) === '2'){
+                                        scoreArray_6.push(data.results[i])
+                                    }
+                                } else if (data.results[i].sequence.toString().slice(0, 1) === '4') {
+                                    if(data.results[i].sequence.toString().slice(1, 2) === '1'){
+                                        scoreArray_7.push(data.results[i])
+                                    } else if(data.results[i].sequence.toString().slice(1, 2) === '2'){
+                                        scoreArray_8.push(data.results[i])
+                                    }
+                                } else if (data.results[i].sequence.toString().slice(0, 1) === '5') {
+                                    if(data.results[i].sequence.toString().slice(1, 2) === '1'){
+                                        scoreArray_9.push(data.results[i])
+                                    } else if(data.results[i].sequence.toString().slice(1, 2) === '2'){
+                                        scoreArray_10.push(data.results[i])
+                                    }
+                                } else if (data.results[i].sequence.toString().slice(0, 1) === '6') {
+                                    if(data.results[i].sequence.toString().slice(1, 2) === '1'){
+                                        scoreArray_11.push(data.results[i])
+                                    } else if(data.results[i].sequence.toString().slice(1, 2) === '2'){
+                                        scoreArray_12.push(data.results[i])
+                                    }
+                                }
+                            }
+                        }
+                        scoreArray_1.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_2.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_3.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_4.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_5.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_6.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_7.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_8.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_9.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_10.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_11.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_12.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        var total_average = 0
+                        var number_average = 0
+                        for (var a = 1; a < 13; a++) {
+                            var newArray_ = []
+                            if (a === 1) {
+                                newArray_ = scoreArray_1
+                            } else if (a === 2) {
+                                newArray_ = scoreArray_2
+                            } else if (a === 3) {
+                                newArray_ = scoreArray_3
+                            } else if (a === 4) {
+                                newArray_ = scoreArray_4
+                            } else if (a === 5) {
+                                newArray_ = scoreArray_5
+                            } else if (a === 6) {
+                                newArray_ = scoreArray_6
+                            } else if (a === 7) {
+                                newArray_ = scoreArray_7
+                            } else if (a === 8) {
+                                newArray_ = scoreArray_8
+                            } else if (a === 9) {
+                                newArray_ = scoreArray_9
+                            } else if (a === 10) {
+                                newArray_ = scoreArray_10
+                            } else if (a === 11) {
+                                newArray_ = scoreArray_11
+                            } else if (a === 12) {
+                                newArray_ = scoreArray_12
+                            }
+                            for (var i = 0; i < newArray_.length; i++) {
+                                //计算平均分，去掉得分为0的
+                                if (newArray_[i].averagePercentile > 0) {
+                                    number_average++;
+                                    total_average = total_average + newArray_[i].averagePercentile
+                                }
+                                let className = ''
+                                if (newArray_[i].averagePercentile >= 0 && newArray_[i].averagePercentile < 20) {
+                                    className = 'score_0_20'
+                                } else if (newArray_[i].averagePercentile >= 20 && newArray_[i].averagePercentile < 40) {
+                                    className = 'score_20_40'
+                                } else if (newArray_[i].averagePercentile >= 40 && newArray_[i].averagePercentile < 60) {
+                                    className = 'score_40_60'
+                                } else if (newArray_[i].averagePercentile >= 60 && newArray_[i].averagePercentile < 80) {
+                                    className = 'score_60_80'
+                                } else if (newArray_[i].averagePercentile >= 80 && newArray_[i].averagePercentile < 100) {
+                                    className = 'score_80_100'
+                                }
+                                $(".primaryClass .class_" + a).append(
+                                    '<div id="' + newArray_[i].taskid + '" name="' + newArray_[i].name + '" onclick="showInfo(event)" class="taskDiv animated  bounceInUp ' + className + '">' + newArray_[i].averagePercentile + '</div>'
+                                )
+                            }
+                        }
+                        // console.log(total_average +'/'+ number_average +'='+total_average / number_average )
+                        $('#score_average_pri').html((total_average / number_average).toFixed(1) + '分');
+                    }
+                    else if (curType === "初中") {
+                        var scoreArray_1 = [];
+                        var scoreArray_2 = [];
+                        var scoreArray_3 = [];
+                        var scoreArray_4 = [];
+                        var scoreArray_5 = [];
+                        var scoreArray_6 = [];
+                        for (var i = 0; i < data.results.length; i++) {
+                            if (data.results[i].sequence.toString().length === 4) {
+                                if (data.results[i].sequence.toString().slice(0, 1) === '7') {
+                                    if(data.results[i].sequence.toString().slice(1, 2) === '1'){
+                                        scoreArray_1.push(data.results[i])
+                                    } else if(data.results[i].sequence.toString().slice(1, 2) === '2'){
+                                        scoreArray_2.push(data.results[i])
+                                    }
+                                } else if (data.results[i].sequence.toString().slice(0, 1) === '8') {
+                                    if(data.results[i].sequence.toString().slice(1, 2) === '1'){
+                                        scoreArray_3.push(data.results[i])
+                                    } else if(data.results[i].sequence.toString().slice(1, 2) === '2'){
+                                        scoreArray_4.push(data.results[i])
+                                    }
+                                } else if (data.results[i].sequence.toString().slice(0, 1) === '9') {
+                                    if(data.results[i].sequence.toString().slice(1, 2) === '1'){
+                                        scoreArray_5.push(data.results[i])
+                                    } else if(data.results[i].sequence.toString().slice(1, 2) === '2'){
+                                        scoreArray_6.push(data.results[i])
+                                    }
+                                }
+                            }
+                        }
+                        scoreArray_1.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_2.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_3.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_4.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_5.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_6.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        var total_average = 0
+                        var number_average = 0
+                        for (var a = 1; a < 7; a++) {
+                            var newArray_ = []
+                            if (a === 1) {
+                                newArray_ = scoreArray_1
+                            } else if (a === 2) {
+                                newArray_ = scoreArray_2
+                            } else if (a === 3) {
+                                newArray_ = scoreArray_3
+                            } else if (a === 4) {
+                                newArray_ = scoreArray_4
+                            } else if (a === 5) {
+                                newArray_ = scoreArray_5
+                            } else if (a === 6) {
+                                newArray_ = scoreArray_6
+                            }
+                            for (var i = 0; i < newArray_.length; i++) {
+                                //计算平均分，去掉得分为0的
+                                if (newArray_[i].averagePercentile > 0) {
+                                    number_average++;
+                                    total_average = total_average + newArray_[i].averagePercentile
+                                }
+                                let className = ''
+                                if (newArray_[i].averagePercentile >= 0 && newArray_[i].averagePercentile < 20) {
+                                    className = 'score_0_20'
+                                } else if (newArray_[i].averagePercentile >= 20 && newArray_[i].averagePercentile < 40) {
+                                    className = 'score_20_40'
+                                } else if (newArray_[i].averagePercentile >= 40 && newArray_[i].averagePercentile < 60) {
+                                    className = 'score_40_60'
+                                } else if (newArray_[i].averagePercentile >= 60 && newArray_[i].averagePercentile < 80) {
+                                    className = 'score_60_80'
+                                } else if (newArray_[i].averagePercentile >= 80 && newArray_[i].averagePercentile < 100) {
+                                    className = 'score_80_100'
+                                }
+                                $(".middleClass .class_" + a).append(
+                                    '<div id="' + newArray_[i].taskid + '"name="' + newArray_[i].name + '" onclick="showInfo(event)" class="taskDiv animated  bounceInUp ' + className + '">' + newArray_[i].averagePercentile + '</div>'
+                                )
+                            }
+                        }
+                        // console.log(total_average +'/'+ number_average +'='+total_average / number_average )
+                        $('#score_average_mid').html((total_average / number_average).toFixed(1) + '分');
+                    }
+                    else if (curType === "高中") {
+                        var scoreArray_1 = [];
+                        var scoreArray_2 = [];
+                        var scoreArray_3 = [];
+                        var scoreArray_4 = [];
+                        var scoreArray_5 = [];
+                        var scoreArray_6 = [];
+                        var scoreArray_7 = [];
+                        var scoreArray_8 = [];
+                        var scoreArray_9 = [];
+                        var scoreArray_10 = [];
+                        var total_average = 0
+                        var number_average = 0
+                        for (var i = 0; i < data.results.length; i++) {
+                            if (data.results[i].sequence.toString().length === 5) {
+                                if (data.results[i].sequence.toString().slice(0, 3) === '101') {
+                                    scoreArray_1.push(data.results[i])
+                                } else if (data.results[i].sequence.toString().slice(0, 3) === '102') {
+                                    scoreArray_2.push(data.results[i])
+                                } else if (data.results[i].sequence.toString().slice(0, 3) === '103') {
+                                    scoreArray_3.push(data.results[i])
+                                }else if (data.results[i].sequence.toString().slice(0, 3) === '204') {
+                                    scoreArray_4.push(data.results[i])
+                                }else if (data.results[i].sequence.toString().slice(0, 3) === '305') {
+                                    scoreArray_5.push(data.results[i])
+                                }else if (data.results[i].sequence.toString().slice(0, 3) === '221') {
+                                    scoreArray_6.push(data.results[i])
+                                }else if (data.results[i].sequence.toString().slice(0, 3) === '222') {
+                                    scoreArray_7.push(data.results[i])
+                                }else if (data.results[i].sequence.toString().slice(0, 3) === '223') {
+                                    scoreArray_8.push(data.results[i])
+                                }else if (data.results[i].sequence.toString().slice(0, 3) === '241') {
+                                    scoreArray_9.push(data.results[i])
+                                }else if (data.results[i].sequence.toString().slice(0, 3) === '344') {
+                                    scoreArray_10.push(data.results[i])
+                                }
+                            }
+                        }
+                        scoreArray_1.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_2.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_3.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_4.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_5.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_6.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_7.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_8.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_9.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        scoreArray_10.sort(function (a, b) {
+                            return b.averagePercentile - a.averagePercentile
+                        })
+                        for (var a = 1; a < 11; a++) {
+                            var newArray_ = []
+                            if (a === 1) {
+                                newArray_ = scoreArray_1
+                            } else if (a === 2) {
+                                newArray_ = scoreArray_2
+                            } else if (a === 3) {
+                                newArray_ = scoreArray_3
+                            } else if (a === 4) {
+                                newArray_ = scoreArray_4
+                            } else if (a === 5) {
+                                newArray_ = scoreArray_5
+                            } else if (a === 6) {
+                                newArray_ = scoreArray_6
+                            } else if (a === 7) {
+                                newArray_ = scoreArray_7
+                            } else if (a === 8) {
+                                newArray_ = scoreArray_8
+                            } else if (a === 9) {
+                                newArray_ = scoreArray_9
+                            } else if (a === 10) {
+                                newArray_ = scoreArray_10
+                            }
+                            for (var i = 0; i < newArray_.length; i++) {
+                                //计算平均分，去掉得分为0的
+                                if (newArray_[i].averagePercentile > 0) {
+                                    number_average++;
+                                    total_average = total_average + newArray_[i].averagePercentile
+                                }
+                                let className = ''
+                                if (newArray_[i].averagePercentile >= 0 && newArray_[i].averagePercentile < 20) {
+                                    className = 'score_0_20'
+                                } else if (newArray_[i].averagePercentile >= 20 && newArray_[i].averagePercentile < 40) {
+                                    className = 'score_20_40'
+                                } else if (newArray_[i].averagePercentile >= 40 && newArray_[i].averagePercentile < 60) {
+                                    className = 'score_40_60'
+                                } else if (newArray_[i].averagePercentile >= 60 && newArray_[i].averagePercentile < 80) {
+                                    className = 'score_60_80'
+                                } else if (newArray_[i].averagePercentile >= 80 && newArray_[i].averagePercentile < 100) {
+                                    className = 'score_80_100'
+                                }
+                                $(".highClass .class_" + a).append(
+                                    '<div id="' + newArray_[i].taskid + '"name="' + newArray_[i].name + '" onclick="showInfo(event)" class="taskDiv animated  bounceInUp ' + className + '">' + newArray_[i].averagePercentile + '</div>'
+                                )
+                            }
+                        }
+                        // console.log(total_average +'/'+ number_average +'='+total_average / number_average )
+                        $('#score_average_hig').html((total_average / number_average).toFixed(1) + '分');
+                    }
+                    else if(curType === '大学'){
+                        var uni_model_1 = [];
+                        var uni_model_2 = [];
+                        var uni_model_3 = [];
+                        var uni_model_4 = [];
+                        var uni_model_5 = [];
+                        var uni_model_6 = [];
+
+                        var uni_model_7 = [];
+                        var uni_model_8 = [];
+                        var uni_model_9 = [];
+                        var uni_model_10 = [];
+
+                        var uni_model_11 = [];
+                        var uni_model_12 = [];
+                        var uni_model_13 = [];
+                        var uni_model_14 = [];
+
+                        var uni_model_15 = [];
+                        var uni_model_16 = [];
+                        var uni_model_17= [];
+
+                        var nui_total_array = [] //大学所有任务集合
+
+                        for (var i = 0; i < data.results.length; i++) {
+                            if (data.results[i].sequence.toString().length === 7) {
+                                nui_total_array.push(data.results[i])
+                                if (data.results[i].sequence.toString().slice(0, 1) === '1') {   //数学分析
+                                    if(parseInt(data.results[i].sequence.toString().slice(0, 3)) === 101){
+                                        uni_model_1.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) >= 102 && parseInt(data.results[i].sequence.toString().slice(0, 3)) <= 108){
+                                        uni_model_2.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) >= 109 && parseInt(data.results[i].sequence.toString().slice(0, 3)) <= 111){
+                                        uni_model_3.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) >= 112 && parseInt(data.results[i].sequence.toString().slice(0, 3)) <= 114){
+                                        uni_model_4.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) >= 115 && parseInt(data.results[i].sequence.toString().slice(0, 3)) <= 118){
+                                        uni_model_5.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) >= 119 &&parseInt(data.results[i].sequence.toString().slice(0, 3)) <= 122){
+                                        uni_model_6.push(data.results[i])
+                                    }
+                                } else if(data.results[i].sequence.toString().slice(0, 1) === '2'){ //高等代数
+                                    if(parseInt(data.results[i].sequence.toString().slice(0, 3)) >= 201 && parseInt(data.results[i].sequence.toString().slice(0, 3)) <=203){
+                                        uni_model_7.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) >= 204 && parseInt(data.results[i].sequence.toString().slice(0, 3)) <=206){
+                                        uni_model_8.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) === 207){
+                                        uni_model_9.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) >= 208 && parseInt(data.results[i].sequence.toString().slice(0, 3)) <=211){
+                                        uni_model_10.push(data.results[i])
+                                    }
+                                } else if(data.results[i].sequence.toString().slice(0, 1) === '3'){ //数理统计
+                                    if(parseInt(data.results[i].sequence.toString().slice(0, 3)) === 301){
+                                        uni_model_11.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) === 302){
+                                        uni_model_12.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) === 303){
+                                        uni_model_13.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) === 304){
+                                        uni_model_14.push(data.results[i])
+                                    }
+                                } else if(data.results[i].sequence.toString().slice(0, 1) === '4'){ //概率论
+                                    if(parseInt(data.results[i].sequence.toString().slice(0, 3)) === 401){
+                                        uni_model_15.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) === 402){
+                                        uni_model_16.push(data.results[i])
+                                    } else if(parseInt(data.results[i].sequence.toString().slice(0, 3)) === 403){
+                                        uni_model_17.push(data.results[i])
+                                    }
+                                }
+                            }
+                        }
+                        console.log(nui_total_array)
+                        console.log(uni_model_1)
+                        console.log(uni_model_2)
+                        var total_average = 0
+                        var number_average = 0
+                        if(nui_total_array.length > 0){
+                            //计算平均分，去掉得分为0的
+                            nui_total_array.forEach(nui_task => {
+                                if (nui_task.averagePercentile > 0) {
+                                    number_average++;
+                                    total_average = total_average + nui_task.averagePercentile
+                                }
+                            })
+                            console.log(total_average +'/'+ number_average +'='+total_average / number_average )
+                            $('#score_average_nui').html((total_average / number_average).toFixed(1) + '分');
+                        }
+
+                        uni_model_1.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_2.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_3.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_4.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_5.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_6.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+
+                        uni_model_7.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_8.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_9.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_10.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+
+                        uni_model_11.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_12.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_13.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_14.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+
+                        uni_model_15.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_16.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+                        uni_model_17.sort(function (a, b) {return b.averagePercentile - a.averagePercentile})
+
+                        for (var a = 1; a < 18; a++) {
+                            var newArray_ = []
+                            if (a === 1) {
+                                newArray_ = uni_model_1
+                            } else if (a === 2) {
+                                newArray_ = uni_model_2
+                            } else if (a === 3) {
+                                newArray_ = uni_model_3
+                            } else if (a === 4) {
+                                newArray_ = uni_model_4
+                            } else if (a === 5) {
+                                newArray_ = uni_model_5
+                            } else if (a === 6) {
+                                newArray_ = uni_model_6
+                            } else if (a === 7) {
+                                newArray_ = uni_model_7
+                            } else if (a === 8) {
+                                newArray_ = uni_model_8
+                            } else if (a === 9) {
+                                newArray_ = uni_model_9
+                            } else if (a === 10) {
+                                newArray_ = uni_model_10
+                            } else if (a === 11) {
+                                newArray_ = uni_model_11
+                            } else if (a === 12) {
+                                newArray_ = uni_model_12
+                            } else if (a === 13) {
+                                newArray_ = uni_model_13
+                            } else if (a === 14) {
+                                newArray_ = uni_model_14
+                            } else if (a === 15) {
+                                newArray_ = uni_model_15
+                            } else if (a === 16) {
+                                newArray_ = uni_model_16
+                            } else if (a === 17) {
+                                newArray_ = uni_model_17
+                            }
+                            for (var i = 0; i < newArray_.length; i++) {
+                                let className = ''
+                                if (newArray_[i].averagePercentile >= 0 && newArray_[i].averagePercentile < 20) {
+                                    className = 'score_0_20'
+                                } else if (newArray_[i].averagePercentile >= 20 && newArray_[i].averagePercentile < 40) {
+                                    className = 'score_20_40'
+                                } else if (newArray_[i].averagePercentile >= 40 && newArray_[i].averagePercentile < 60) {
+                                    className = 'score_40_60'
+                                } else if (newArray_[i].averagePercentile >= 60 && newArray_[i].averagePercentile < 80) {
+                                    className = 'score_60_80'
+                                } else if (newArray_[i].averagePercentile >= 80 && newArray_[i].averagePercentile < 100) {
+                                    className = 'score_80_100'
+                                }
+                                $(".uniClass .class_" + a).append(
+                                    '<div id="' + newArray_[i].taskid + '"name="' + newArray_[i].name + '" onclick="showInfo(event)" class="taskDiv animated  bounceInUp ' + className + '">' + newArray_[i].averagePercentile + '</div>'
+                                )
+                            }
+                        }
+                    }
+                })
+            } else {
+                mui.toast('后端服务异常请联系后端管理员!',{ duration:'long', type:'div' });
+            }
+        }
+    });
+
+    function showInfo(e) {
+        var showTaskName = $('#'+e.toElement.id).attr('name');
+        var showTaskScore = $('#'+e.toElement.id).text();
+        mui.toast('ID:'+ e.toElement.id +';<br>'+'名称:'+ showTaskName +';<br>'+ '总平均分:'+showTaskScore+'分;',{ duration:'long', type:'div' });
+    }
+
+    function selectClass(classNumber) {
+        mui.openWindow({
+            url: 'index_list.html?classNumber='+classNumber,
+            createNew: true,
+            styles: {
+                cachemode:"noCache",
+            }
+        });
+    }
+
+</script>
+
+
+</html>

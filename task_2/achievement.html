@@ -1,0 +1,270 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的成绩</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/common.css" rel="stylesheet"/>
+    <link href="../css/animate.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../css/icons-extra.css"/>
+    <style>
+        .myContent {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        h4 {
+            color: #7da56c;
+        }
+        #tableList td, th {
+            padding: 3px;
+        }
+        .myScore{
+            height: 250px;
+            overflow-x: hidden;
+    　　　　overflow-y: scroll;
+        }
+        .mui-segmented-control.mui-scroll-wrapper .mui-control-item{
+            padding: 0 10px;
+        }
+        .myContent .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+            color: #fff;
+            border-radius: 58px;
+            background: #ff842a;
+        }
+        .mui-control-item{
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .scores_type{
+            color: #ff842a;
+            font-size: 12px;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="myContent">
+    <div class="mui-row">
+        <div class="mui-col-sm-3"></div>
+        <div class="mui-col-sm-6" style="text-align: center">
+            <h4 class="curTitle">我的成绩</h4>
+        </div>
+        <div class="mui-col-sm-3" style="text-align: center">
+            <img class="goLeft" onclick="goNext('index.html')" src="../image/icon/goLeft.png"/>
+        </div>
+    </div>
+    <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" id="segmented">
+        <div class="mui-scroll"></div>
+    </div>
+    <div class="mui-slider-group"></div>
+</div>
+
+<script src="../js/mui.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../WebContent/js/echarts.min.js"></script>
+<script type="text/javascript">
+    var clickMusic = new Audio('../mp3/click.mp3')
+
+    //获取:用户  --  项目列表 --任务列表
+    var taskListByUser = {
+        uid: parseInt(localStorage.getItem('uid')),
+        access_token: localStorage.getItem('access_token')
+    }
+    var loginData = {
+        clazz: 'com.lattice.action.proxy.thirdparty.results.ThirdPartyTestResultsProxy',
+        service: 'getAllTasksAndAverageResultForOneUser',
+        args: JSON.stringify(taskListByUser)
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+        data: loginData,
+        dataType: 'json',
+        success: function (data) {
+            /*处理token失效*/
+            if(data.message) {
+                mui.toast('访问时间已经过期,3秒后自动跳转到登录页面!',{ duration:'long', type:'div' });
+                setTimeout(function(){
+                    mui.openWindow({
+                        url: '../login.html',
+                        createNew: true,
+                        styles: {
+                            cachemode:"noCache",
+                        }
+                    });
+                }, 3000);
+            }
+            if (data.results) {
+                if( data.results.length  > 0) {
+                    data.results.forEach( (result,index) => {
+                        var className = '';
+                        if(index === 0){
+                            className = 'mui-active'
+                        }
+                        $(".mui-scroll").append(
+                            '<a class="mui-control-item '+className+'" href="#item'+index+'">'+result.project.projectname+'</a>'
+                        );
+                        $(".mui-slider-group").append(
+                            '<div id="item'+index+'" class="mui-slider-item mui-control-content '+className+'">' +
+                                '<div class="scores_type">'+
+                                    '平均分排名：第<span id="score_ave">100</span>名/百人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+                                    '总分排名：第<span id="score_tot">100</span>名/百人' +
+                                '</div>'+
+                                '<div class="myScore">' +
+                                    '<div id="echartsTable'+index+'" style=";width:600px"></div>' +
+                                '</div>'+
+                            '</div>'
+                        );
+                        var curTasksArray = [];
+                        var echartArray = [];
+                        //清除 平均分为0的任务(表示没有训练过)
+                        result.tasks.forEach( task => {
+                            if(task.averagePercentile !== 0){
+                                curTasksArray.push(task)
+                            }
+                        });
+                        curTasksArray.sort(function(a,b){
+                            return a.averagePercentile - b.averagePercentile
+                        });
+                        if(curTasksArray.length < 7){
+                            $('#echartsTable'+index).css("height","250px");
+                        } else {
+                            $('#echartsTable'+index).css("height",curTasksArray.length*35);
+                        }
+                        for(var i = 0;i<curTasksArray.length;i++){
+                            var array_ = [];
+                            array_[0] = curTasksArray[i].averagePercentile;
+                            array_[1] = curTasksArray[i].name;
+                            echartArray.push(array_)
+                        }
+                        echartArray.unshift(['score', 'taskName']);
+                        var elementId = 'echartsTable'+index;
+                        initEcharts(elementId,echartArray);
+
+                        //:获取此项目下的所有任务的常模总和的排名接口
+                        var userData_ = {
+                            uid:localStorage.getItem('uid'),
+                            projectid:result.project.pid,
+                            access_token:localStorage.getItem('access_token')
+                        }
+                        var loginData = {
+                            clazz: 'com.lattice.action.proxy.common.NormRecordProjectAndTaskAnalysisProxy',
+                            service: 'getNormRecordScoreSumRankForOneProject',
+                            args: JSON.stringify(userData_)
+                        };
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+                            data: loginData,
+                            dataType: 'json',
+                            success: function (data) {
+                                $("#item"+index+" #score_tot").html(data.NormRecordScoreSumRankForOneProject)
+                            }
+                        });
+
+                        //:获取此项目下的所有任务的常模的平均排名接口
+                        var userData_ = {
+                            uid:localStorage.getItem('uid'),
+                            projectid:result.project.pid,
+                            access_token:localStorage.getItem('access_token')
+                        }
+                        var loginData = {
+                            clazz: 'com.lattice.action.proxy.common.NormRecordProjectAndTaskAnalysisProxy',
+                            service: 'getNormRecordScoreAverageForOneProject',
+                            args: JSON.stringify(userData_)
+                        };
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://www.dweipsy.com/lattice/CommonActionThirdPartyProxy',
+                            data: loginData,
+                            dataType: 'json',
+                            success: function (data) {
+                                $("#item"+index+" #score_ave").html(data.NormRecordScoreAverageForOneProject)
+                            }
+                        });
+
+
+                    })
+                } else {
+                    mui.toast('该账号下没有配置指定训练任务！请联系后台管理员！',{ duration:'long', type:'div' });
+                }
+
+            }
+        }
+    });
+
+    function changeTab(e) {
+        console.log(e)
+    }
+
+    function initEcharts(elementId,echartArray) {
+        console.log(elementId);
+        console.log(echartArray);
+        var myChart = echarts.init(document.getElementById(elementId));
+        var option = {
+            dataset: {
+                source: []
+            },
+            // grid: {containLabel: true},
+            grid: {
+                x: 200,
+                y2: 20,
+            },
+            xAxis: {
+                name: '分数',
+                min: 1,
+                max: 99,
+                axisLabel: {
+                    textStyle: {
+                        fontSize : 10      //更改坐标轴文字大小
+                    }
+                },
+            },
+            yAxis: {
+                type: 'category',
+                axisLabel: {
+                    textStyle: {
+                        fontSize : 10     //更改坐标轴文字大小
+                    }
+                },
+            },
+            visualMap: {
+                orient: 'horizontal',
+                top:"10px",
+                left: '167px',
+                itemWidth:15,
+                itemHeight:342,
+                min: 1,
+                max: 99,
+                text: ['99分', '1分'],
+                dimension: 0,
+                inRange: {
+                    color: ['#fff2cf', '#fdd2a0' , '#ff8c71', '#e64b45', '#bd1316', '#7d1100']
+                }
+            },
+            series: [
+                {
+                    type: 'bar',
+                    encode: {
+                        x: 'score',
+                        y: 'taskName'
+                    }
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            option.dataset.source = echartArray;
+            myChart.setOption(option, true);
+        }
+    }
+
+
+</script>
+</body>
+</html>
