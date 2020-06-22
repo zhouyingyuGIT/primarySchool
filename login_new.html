@@ -119,8 +119,8 @@
 </head>
 
 <body>
-<div class="container_new">
-    <div class="mui-row" style="text-align: right;margin-top: 25px">
+<div class="container_new" style="padding-top: 24px">
+    <div class="mui-row" style="text-align: right">
         <button id="updateButton" type="button" class="animated  bounceInDown"><div class="update_out">更新</div></button>
     </div>
     <div class="mui-row" style="text-align: right;margin-top: 8px;">
@@ -341,7 +341,7 @@
                             localStorage.setItem('userType',data.userType);
                             //登录成功--跳转
                             mui.openWindow({
-                                url: 'task_2/index.html',
+                                url: 'task_2/index_new.html',
                                 createNew: true,
                                 styles: {
                                     cachemode: "noCache",

@@ -133,7 +133,11 @@
         data: loginData,
         dataType: 'json',
         success: function (data) {
-            recentProjectid = data.results.projectid
+            if(data.RESPONSE_FLAG === 'SUCCESS'){
+                recentProjectid = data.RESPONSE_RESULTS.projectid
+            } else {
+                mui.toast('网络超时，请稍后再试....',{ duration:'long', type:'div' });
+            }
         }
     });
 

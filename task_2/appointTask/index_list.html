@@ -143,7 +143,7 @@
 <div class="myContent">
     <div class="mui-row">
         <div class="mui-col-sm-3" style="text-align: left">
-            <img class="goLeft" onclick="goNext('index.html')" src="../../image/icon/back.png" />
+            <img class="goLeft" onclick="goNext('../index_new.html')" src="../../image/icon/back.png" />
         </div>
         <div class="mui-col-sm-6" style="text-align: center">
             <p class="curTitle_"></p>
@@ -181,7 +181,11 @@
         data: loginData,
         dataType: 'json',
         success: function (data) {
-            recentTaskid = data.results.taskid;
+            if(data.RESPONSE_FLAG === 'SUCCESS'){
+                recentTaskid = data.RESPONSE_RESULTS.taskid
+            } else {
+                mui.toast('网络超时，请稍后再试....',{ duration:'long', type:'div' });
+            }
         }
     });
 
@@ -261,11 +265,10 @@
 
                 for (var i = 0;i<taskList.length;i++) {
                     var j = i + 1;
-                    var  addStr ='<div style="" class="slide-item formal" id=" '+taskList[i].taskid+' " onclick="doTask(event)">' +
+                    var  addStr ='<div style="" class="slide-item formal" id="div_'+taskList[i].taskid+'">' +
                                     '<p class="slide-item-taskid">' +taskList[i].taskid+'</p>' +
-
                                     '<a class="a_link">' +
-                                        '<img class="animated bounceInDown" src="'+isImgExerse(taskList[i].lastestPercentileScore)+'"  />' +
+                                        '<img class="animated bounceInDown" src="'+isImgExerse(taskList[i].lastestPercentileScore)+'" id="'+taskList[i].taskid+'" onclick="doTask(event)" />' +
                                     '</a>' +
                                     '<p class="statute statute_'+ isExerseStatute(taskList[i].lastestPercentileScore) +'" style="font-size: 16pt;font-weight: 900;margin-top: 12px;height: 15.5pt">' +isExerse(taskList[i].lastestPercentileScore)+ '</p>' +
                                     '<p style="font-size: 13pt">' + taskList[i].name + '</p>' +
@@ -276,7 +279,7 @@
                                 '</div>';
                     $(".slide-box").append(addStr);
                 }
-                $("#"+recentTaskid).css("border-color","orange")
+                $("#div_"+recentTaskid).css("border-color","orange")
             }
         }
     });
@@ -327,7 +330,6 @@
             }else {
                 return 'yes'
             }
-
         }
     }
 
@@ -342,8 +344,6 @@
                 localStorage.setItem('curTaskInfo',JSON.stringify(taskList[i]));
                 mui.openWindow({
                     url: '../../WebMath/1081/'+taskList[i].taskid+'/index.html',
-                    // url: '../../WebMath/'+ taskList[i].projectid+'/'+taskList[i].taskid+'/index.html',
-                    // url: '../../WebMath/1081/4360/index.html',  //本地测试用 1081/4360
                     createNew: true,
                     styles: {
                         cachemode:"noCache",

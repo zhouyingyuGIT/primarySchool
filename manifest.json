@@ -3,14 +3,14 @@
     "id" : "H5E8F0AF5", /*应用的标识，创建应用时自动生成，勿手动修改*/
     "name" : "数学认知能力训练", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "2020.06.09", /*应用版本名称*/
-        "code" : 20200609
+        "name" : "2020.06.16", /*应用版本名称*/
+        "code" : 20200616
     },
-    "description" : "数学认知能力训练", /*应用描述信息*/
+    "description" : "新版UI测试版本", /*应用描述信息*/
     "icons" : {
         "72" : "icon.png"
     },
-    "launch_path" : "login.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path" : "login_new.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer" : {
         "name" : "", /*开发者名称*/
         "email" : "", /*开发者邮箱地址*/
